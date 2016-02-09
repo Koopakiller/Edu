@@ -17,6 +17,7 @@ namespace StringAnalyzer.ViewModel
             this.OpenTextfileCommand = new RelayCommand(this.OnExecuteOpenTextfileCommand);
             this.SaveTextfileCommand = new RelayCommand(this.OnExecuteSaveTextfileCommand);
             this.AboutCommand = new RelayCommand(this.OnExecuteAboutCommand);
+            this.ShowTextHighlightWindowCommand=new RelayCommand(this.OnExecuteShowTextHighlightWindowCommand);
 
             if (this.IsInDesignMode)
             {
@@ -28,12 +29,16 @@ namespace StringAnalyzer.ViewModel
             }
         }
 
+
         #region Fields
 
         private string _text;
         private bool _ignoreLinebreaks = true;
         private bool _ignoreTabs = true;
         private bool _ignoreSpaces;
+        private string _highlightedText;
+
+        private IDialog _textHighlightWindow;
 
         #endregion
 
@@ -83,12 +88,24 @@ namespace StringAnalyzer.ViewModel
                 this.RaisePropertyChanged();
             }
         }
-    
+        public string HighlightedText
+        {
+            get { return this._highlightedText; }
+            set
+            {
+                if (this._highlightedText == value) return;
+
+                this._highlightedText = value;
+                this.RaisePropertyChanged();
+            }
+        }
+
         #region Commands
 
         public ICommand OpenTextfileCommand { get; }
         public ICommand SaveTextfileCommand { get; }
         public ICommand AboutCommand { get; }
+        public ICommand ShowTextHighlightWindowCommand { get; }
 
         #endregion
 
@@ -98,6 +115,7 @@ namespace StringAnalyzer.ViewModel
         public IModalFileDialogFactory SaveFileDialogFactory { get; set; }
         public IModalFileDialogFactory OpenFileDialogFactory { get; set; }
         public IMessageBoxProvider MessageBoxProvider { get; set; }
+        public IDialogFactory<IDialog> TextHighlightWindowFactory { get; set; }
 
         #endregion
 
@@ -143,6 +161,15 @@ namespace StringAnalyzer.ViewModel
         {
             var instance = this.AboutWindowFactory.GetInstance();
             instance.ShowDialog();
+        }
+
+        private void OnExecuteShowTextHighlightWindowCommand()
+        {
+            if (this._textHighlightWindow == null)
+            {
+                this._textHighlightWindow = this.TextHighlightWindowFactory.GetInstance();
+            }
+            this._textHighlightWindow.Show();
         }
 
         #endregion

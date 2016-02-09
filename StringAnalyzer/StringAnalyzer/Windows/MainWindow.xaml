@@ -11,8 +11,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="118*"/>
-            <RowDefinition Height="163*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Menu>
             <MenuItem Header="Datei">
@@ -20,7 +19,8 @@
                 <MenuItem Header="Textdatei speichern..." Command="{Binding SaveTextfileCommand}"/>
             </MenuItem>
             <MenuItem Header="Analyzer">
-
+                <MenuItem Header="Vorkommen finden..." Command="{Binding ShowTextHighlightWindowCommand}"/>
+    
             </MenuItem>
             <MenuItem Header="Optionen">
                 <MenuItem Header="Optionen anzeigen" IsCheckable="True" Name="ShowOptions"/>
@@ -37,6 +37,5 @@
             </StackPanel>
         </Expander>
         <TextBox FontFamily="Consolas" Grid.Row="2" AcceptsReturn="True" AcceptsTab="True" Text="{Binding Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-        <controls:StringPartHighlightBox FontFamily="Consolas" Grid.Row="3" Text="{Binding Text}" HightlightedText="cag"/>
     </Grid>
 </Window>

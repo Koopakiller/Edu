@@ -75,12 +75,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Analyzer\OccurenceFinder.cs" />
     <Compile Include="Controls\StringPartHighlightBox.xaml.cs">
       <DependentUpon>StringPartHighlightBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AboutViewModel.cs" />
     <Compile Include="WindowFactories\AboutWindowFactory.cs" />
     <Compile Include="ViewModel\CommonViewModel.cs" />
+    <Compile Include="WindowFactories\IDialog.cs" />
+    <Compile Include="WindowFactories\IDialogFactory.cs" />
     <Compile Include="WindowFactories\IMessageBoxProvider.cs" />
     <Compile Include="WindowFactories\IModalDialog.cs" />
     <Compile Include="WindowFactories\IModalDialogFactory.cs" />
@@ -89,11 +92,15 @@
     <Compile Include="WindowFactories\MessageBoxProvider.cs" />
     <Compile Include="WindowFactories\OpenFileDialogFactory.cs" />
     <Compile Include="WindowFactories\SaveFileDialogFactory.cs" />
+    <Compile Include="WindowFactories\TextHighlightWindowFactory.cs" />
     <Compile Include="Windows\AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\TextHighlightWindow.xaml.cs">
+      <DependentUpon>TextHighlightWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Controls\StringPartHighlightBox.xaml">
       <SubType>Designer</SubType>
@@ -111,6 +118,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Windows\TextHighlightWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

@@ -24,6 +24,9 @@
                 <viewModel:CommonViewModel.MessageBoxProvider>
                     <windowFactories:MessageBoxProvider/>
                 </viewModel:CommonViewModel.MessageBoxProvider>
+                <viewModel:CommonViewModel.TextHighlightWindowFactory>
+                    <windowFactories:TextHighlightWindowFactory/>
+                </viewModel:CommonViewModel.TextHighlightWindowFactory>
             </viewModel:CommonViewModel>
             <viewModel:AboutViewModel x:Key="AboutViewModel"/>
         </ResourceDictionary>

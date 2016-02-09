@@ -83,7 +83,7 @@ namespace StringAnalyzer.ViewModel
                 this.RaisePropertyChanged();
             }
         }
-
+    
         #region Commands
 
         public ICommand OpenTextfileCommand { get; }

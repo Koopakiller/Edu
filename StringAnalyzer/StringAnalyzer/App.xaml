@@ -7,7 +7,8 @@
              d1p1:Ignorable="d" 
              xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModel="clr-namespace:StringAnalyzer.ViewModel"
-             xmlns:windowFactories="clr-namespace:StringAnalyzer.WindowFactories">
+             xmlns:windowFactories="clr-namespace:StringAnalyzer.WindowFactories"
+             xmlns:controls="clr-namespace:StringAnalyzer.Controls">
     <Application.Resources>
         <ResourceDictionary>
             <viewModel:CommonViewModel x:Key="CommonViewModel">

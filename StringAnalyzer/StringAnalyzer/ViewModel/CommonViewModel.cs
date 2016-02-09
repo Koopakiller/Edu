@@ -1,5 +1,7 @@
 using System;
 using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows;
@@ -36,7 +38,7 @@ namespace StringAnalyzer.ViewModel
         private string _text;
         private bool _ignoreLinebreaks = true;
         private bool _ignoreTabs = true;
-        private bool _ignoreSpaces;
+        private bool _ignoreSpaces=false;
 
         #endregion
 
@@ -95,7 +97,18 @@ namespace StringAnalyzer.ViewModel
 
         #endregion
 
+        #region Window Factories
+
+        public IModalDialogFactory<IModalDialog<bool?>, bool?> AboutWindowFactory { get; set; }
+        public IModalFileDialogFactory SaveFileDialogFactory { get; set; }
+        public IModalFileDialogFactory OpenFileDialogFactory { get; set; }
+        public IMessageBoxProvider MessageBoxProvider { get; set; }
+
         #endregion
+
+        #endregion
+
+        #region Comand Execution Methods
 
         private void OnExecuteOpenTextfileCommand()
         {
@@ -137,9 +150,23 @@ namespace StringAnalyzer.ViewModel
             instance.ShowDialog();
         }
 
-        public IModalDialogFactory<IModalDialog<bool?>, bool?> AboutWindowFactory { get; set; }
-        public IModalFileDialogFactory SaveFileDialogFactory { get; set; }
-        public IModalFileDialogFactory OpenFileDialogFactory { get; set; }
-        public IMessageBoxProvider MessageBoxProvider { get; set; }
+        #endregion
+
+        #region Methods
+
+        public string GetText()
+        {
+            var chrs = new char[this.Text.Length];
+            var counter = 0;
+            foreach (var chr in this.Text.Where(chr => (!this.IgnoreSpaces || chr != ' ')
+                                                    && (!this.IgnoreTabs || chr != '\t')
+                                                    && (!this.IgnoreLinebreaks || (chr != '\r' && chr != '\n'))))
+            {
+                chrs[counter++] = chr;
+            }
+            return new string(chrs, 0, counter);
+        }
+
+        #endregion
     }
 }

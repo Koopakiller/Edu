@@ -1,0 +1,62 @@
+c:\users\tomla\onedrive\dokumente\visual studio 2015\Projects\StringAnalyzer\StringAnalyzer\bin\Debug\StringAnalyzer.exe.config
+c:\users\tomla\onedrive\dokumente\visual studio 2015\Projects\StringAnalyzer\StringAnalyzer\bin\Debug\StringAnalyzer.exe
+c:\users\tomla\onedrive\dokumente\visual studio 2015\Projects\StringAnalyzer\StringAnalyzer\bin\Debug\StringAnalyzer.pdb
+c:\users\tomla\onedrive\dokumente\visual studio 2015\Projects\StringAnalyzer\StringAnalyzer\bin\Debug\GalaSoft.MvvmLight.dll
+c:\users\tomla\onedrive\dokumente\visual studio 2015\Projects\StringAnalyzer\StringAnalyzer\bin\Debug\GalaSoft.MvvmLight.Extras.dll
+c:\users\tomla\onedrive\dokumente\visual studio 2015\Projects\StringAnalyzer\StringAnalyzer\bin\Debug\GalaSoft.MvvmLight.Platform.dll
+c:\users\tomla\onedrive\dokumente\visual studio 2015\Projects\StringAnalyzer\StringAnalyzer\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+c:\users\tomla\onedrive\dokumente\visual studio 2015\Projects\StringAnalyzer\StringAnalyzer\bin\Debug\System.Windows.Interactivity.dll
+c:\users\tomla\onedrive\dokumente\visual studio 2015\Projects\StringAnalyzer\StringAnalyzer\bin\Debug\GalaSoft.MvvmLight.pdb
+c:\users\tomla\onedrive\dokumente\visual studio 2015\Projects\StringAnalyzer\StringAnalyzer\bin\Debug\GalaSoft.MvvmLight.xml
+c:\users\tomla\onedrive\dokumente\visual studio 2015\Projects\StringAnalyzer\StringAnalyzer\bin\Debug\GalaSoft.MvvmLight.Extras.pdb
+c:\users\tomla\onedrive\dokumente\visual studio 2015\Projects\StringAnalyzer\StringAnalyzer\bin\Debug\GalaSoft.MvvmLight.Extras.xml
+c:\users\tomla\onedrive\dokumente\visual studio 2015\Projects\StringAnalyzer\StringAnalyzer\bin\Debug\GalaSoft.MvvmLight.Platform.pdb
+c:\users\tomla\onedrive\dokumente\visual studio 2015\Projects\StringAnalyzer\StringAnalyzer\bin\Debug\GalaSoft.MvvmLight.Platform.xml
+c:\users\tomla\onedrive\dokumente\visual studio 2015\Projects\StringAnalyzer\StringAnalyzer\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+c:\users\tomla\onedrive\dokumente\visual studio 2015\Projects\StringAnalyzer\StringAnalyzer\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+c:\users\tomla\onedrive\dokumente\visual studio 2015\Projects\StringAnalyzer\StringAnalyzer\obj\Debug\StringAnalyzer.csprojResolveAssemblyReference.cache
+c:\users\tomla\onedrive\dokumente\visual studio 2015\Projects\StringAnalyzer\StringAnalyzer\obj\Debug\App.g.cs
+c:\users\tomla\onedrive\dokumente\visual studio 2015\Projects\StringAnalyzer\StringAnalyzer\obj\Debug\GeneratedInternalTypeHelper.g.cs
+c:\users\tomla\onedrive\dokumente\visual studio 2015\Projects\StringAnalyzer\StringAnalyzer\obj\Debug\StringAnalyzer_MarkupCompile.cache
+c:\users\tomla\onedrive\dokumente\visual studio 2015\Projects\StringAnalyzer\StringAnalyzer\obj\Debug\StringAnalyzer_MarkupCompile.lref
+c:\users\tomla\onedrive\dokumente\visual studio 2015\Projects\StringAnalyzer\StringAnalyzer\obj\Debug\App.baml
+c:\users\tomla\onedrive\dokumente\visual studio 2015\Projects\StringAnalyzer\StringAnalyzer\obj\Debug\StringAnalyzer.g.resources
+c:\users\tomla\onedrive\dokumente\visual studio 2015\Projects\StringAnalyzer\StringAnalyzer\obj\Debug\StringAnalyzer.Properties.Resources.resources
+c:\users\tomla\onedrive\dokumente\visual studio 2015\Projects\StringAnalyzer\StringAnalyzer\obj\Debug\StringAnalyzer.csproj.GenerateResource.Cache
+c:\users\tomla\onedrive\dokumente\visual studio 2015\Projects\StringAnalyzer\StringAnalyzer\obj\Debug\StringAnalyzer.exe
+c:\users\tomla\onedrive\dokumente\visual studio 2015\Projects\StringAnalyzer\StringAnalyzer\obj\Debug\StringAnalyzer.pdb
+c:\users\tomla\onedrive\dokumente\visual studio 2015\Projects\StringAnalyzer\StringAnalyzer\obj\Debug\Windows\AboutWindow.baml
+c:\users\tomla\onedrive\dokumente\visual studio 2015\Projects\StringAnalyzer\StringAnalyzer\obj\Debug\Windows\MainWindow.baml
+c:\users\tomla\onedrive\dokumente\visual studio 2015\Projects\StringAnalyzer\StringAnalyzer\obj\Debug\Windows\AboutWindow.g.cs
+c:\users\tomla\onedrive\dokumente\visual studio 2015\Projects\StringAnalyzer\StringAnalyzer\obj\Debug\Windows\MainWindow.g.cs
+C:\Version Control\GitHub\School\StringAnalyzer\StringAnalyzer\bin\Debug\StringAnalyzer.exe.config
+C:\Version Control\GitHub\School\StringAnalyzer\StringAnalyzer\obj\Debug\StringAnalyzer.exe
+C:\Version Control\GitHub\School\StringAnalyzer\StringAnalyzer\obj\Debug\StringAnalyzer.pdb
+C:\Version Control\GitHub\School\StringAnalyzer\StringAnalyzer\bin\Debug\StringAnalyzer.exe
+C:\Version Control\GitHub\School\StringAnalyzer\StringAnalyzer\bin\Debug\StringAnalyzer.pdb
+C:\Version Control\GitHub\School\StringAnalyzer\StringAnalyzer\bin\Debug\GalaSoft.MvvmLight.dll
+C:\Version Control\GitHub\School\StringAnalyzer\StringAnalyzer\bin\Debug\GalaSoft.MvvmLight.Extras.dll
+C:\Version Control\GitHub\School\StringAnalyzer\StringAnalyzer\bin\Debug\GalaSoft.MvvmLight.Platform.dll
+C:\Version Control\GitHub\School\StringAnalyzer\StringAnalyzer\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Version Control\GitHub\School\StringAnalyzer\StringAnalyzer\bin\Debug\System.Windows.Interactivity.dll
+C:\Version Control\GitHub\School\StringAnalyzer\StringAnalyzer\bin\Debug\GalaSoft.MvvmLight.pdb
+C:\Version Control\GitHub\School\StringAnalyzer\StringAnalyzer\bin\Debug\GalaSoft.MvvmLight.xml
+C:\Version Control\GitHub\School\StringAnalyzer\StringAnalyzer\bin\Debug\GalaSoft.MvvmLight.Extras.pdb
+C:\Version Control\GitHub\School\StringAnalyzer\StringAnalyzer\bin\Debug\GalaSoft.MvvmLight.Extras.xml
+C:\Version Control\GitHub\School\StringAnalyzer\StringAnalyzer\bin\Debug\GalaSoft.MvvmLight.Platform.pdb
+C:\Version Control\GitHub\School\StringAnalyzer\StringAnalyzer\bin\Debug\GalaSoft.MvvmLight.Platform.xml
+C:\Version Control\GitHub\School\StringAnalyzer\StringAnalyzer\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+C:\Version Control\GitHub\School\StringAnalyzer\StringAnalyzer\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+C:\Version Control\GitHub\School\StringAnalyzer\StringAnalyzer\obj\Debug\StringAnalyzer.csprojResolveAssemblyReference.cache
+C:\Version Control\GitHub\School\StringAnalyzer\StringAnalyzer\obj\Debug\Windows\AboutWindow.baml
+C:\Version Control\GitHub\School\StringAnalyzer\StringAnalyzer\obj\Debug\Windows\MainWindow.baml
+C:\Version Control\GitHub\School\StringAnalyzer\StringAnalyzer\obj\Debug\Windows\AboutWindow.g.cs
+C:\Version Control\GitHub\School\StringAnalyzer\StringAnalyzer\obj\Debug\Windows\MainWindow.g.cs
+C:\Version Control\GitHub\School\StringAnalyzer\StringAnalyzer\obj\Debug\App.g.cs
+C:\Version Control\GitHub\School\StringAnalyzer\StringAnalyzer\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Version Control\GitHub\School\StringAnalyzer\StringAnalyzer\obj\Debug\StringAnalyzer_MarkupCompile.cache
+C:\Version Control\GitHub\School\StringAnalyzer\StringAnalyzer\obj\Debug\StringAnalyzer_MarkupCompile.lref
+C:\Version Control\GitHub\School\StringAnalyzer\StringAnalyzer\obj\Debug\App.baml
+C:\Version Control\GitHub\School\StringAnalyzer\StringAnalyzer\obj\Debug\StringAnalyzer.g.resources
+C:\Version Control\GitHub\School\StringAnalyzer\StringAnalyzer\obj\Debug\StringAnalyzer.Properties.Resources.resources
+C:\Version Control\GitHub\School\StringAnalyzer\StringAnalyzer\obj\Debug\StringAnalyzer.csproj.GenerateResource.Cache

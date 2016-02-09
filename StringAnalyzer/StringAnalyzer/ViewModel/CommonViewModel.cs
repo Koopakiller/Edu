@@ -1,9 +1,7 @@
 using System;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Security;
-using System.Security.Cryptography.X509Certificates;
 using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
@@ -14,9 +12,6 @@ namespace StringAnalyzer.ViewModel
 {
     public class CommonViewModel : ViewModelBase
     {
-        /// <summary>
-        /// Initializes a new instance of the MainViewModel class.
-        /// </summary>
         public CommonViewModel()
         {
             this.OpenTextfileCommand = new RelayCommand(this.OnExecuteOpenTextfileCommand);
@@ -38,7 +33,7 @@ namespace StringAnalyzer.ViewModel
         private string _text;
         private bool _ignoreLinebreaks = true;
         private bool _ignoreTabs = true;
-        private bool _ignoreSpaces=false;
+        private bool _ignoreSpaces;
 
         #endregion
 

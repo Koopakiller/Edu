@@ -6,10 +6,10 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Brainstorming Server")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Server Anwendung für Gruppen Brainstorming.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Tom Lambert (Koopakiller)")]
-[assembly: AssemblyProduct("Client")]
+[assembly: AssemblyProduct("Server")]
 [assembly: AssemblyCopyright("Copyright © Tom Lambert (Koopakiller) 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

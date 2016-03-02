@@ -1,7 +1,6 @@
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Windows.Media.Animation;
 using GalaSoft.MvvmLight;
 
 namespace Koopakiller.Apps.Brainstorming.Server.ViewModel

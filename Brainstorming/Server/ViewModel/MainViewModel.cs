@@ -1,4 +1,8 @@
+using System.Windows.Input;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
+using Koopakiller.Apps.Brainstorming.Shared.ViewModel;
+using Shared.ViewModel;
 
 namespace Koopakiller.Apps.Brainstorming.Server.ViewModel
 {
@@ -31,11 +35,15 @@ namespace Koopakiller.Apps.Brainstorming.Server.ViewModel
             ////}
 
             this.CurrentViewModel = this._startupViewModel;
+
+            this.AboutCommand=new RelayCommand(this.ExecuteAboutCommand);
         }
 
         private ViewModelBase _currentViewModel;
+        private ViewModelBase _messageViewModel;
 
         private readonly StartupViewModel _startupViewModel = new StartupViewModel();
+        private readonly AboutViewModel _aboutViewModel = new AboutViewModel();
 
 
         public ViewModelBase CurrentViewModel
@@ -51,6 +59,36 @@ namespace Koopakiller.Apps.Brainstorming.Server.ViewModel
                 this._currentViewModel = value;
                 this.RaisePropertyChanged();
             }
+        }
+
+        public ViewModelBase MessageViewModel
+        {
+            get
+            {
+                return this._messageViewModel;
+            }
+            set
+            {
+                if (this._messageViewModel == value) { return; }
+
+                this._messageViewModel = value;
+                this.RaisePropertyChanged();
+            }
+        }
+
+
+        public ICommand AboutCommand { get; }
+
+        public void ExecuteAboutCommand()
+        {
+            this._aboutViewModel.Close += this.AboutViewModelClose;
+            this.MessageViewModel = this._aboutViewModel;
+        }
+
+        private void AboutViewModelClose(MessageViewModelBase<AboutViewModel> sender)
+        {
+            this._aboutViewModel.Close -= this.AboutViewModelClose;
+            this.MessageViewModel = null;
         }
     }
 }

@@ -29,6 +29,28 @@ namespace Koopakiller.Apps.Brainstorming.Server.ViewModel
             ////{
             ////    // Code runs "for real"
             ////}
+
+            this.CurrentViewModel = this._startupViewModel;
+        }
+
+        private ViewModelBase _currentViewModel;
+
+        private readonly StartupViewModel _startupViewModel = new StartupViewModel();
+
+
+        public ViewModelBase CurrentViewModel
+        {
+            get
+            {
+                return this._currentViewModel;
+            }
+            set
+            {
+                if (this._currentViewModel == value) { return; }
+
+                this._currentViewModel = value;
+                this.RaisePropertyChanged();
+            }
         }
     }
 }

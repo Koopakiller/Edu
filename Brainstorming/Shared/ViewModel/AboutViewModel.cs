@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Reflection;
-using System.Windows.Input;
-using GalaSoft.MvvmLight;
 using Shared.ViewModel;
 
 namespace Koopakiller.Apps.Brainstorming.Shared.ViewModel

@@ -6,8 +6,8 @@
              xmlns:viewModel="clr-namespace:Koopakiller.Apps.Brainstorming.Server.ViewModel"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModel:StartupViewModel}"
              d:DesignHeight="300" d:DesignWidth="300">
-    <StackPanel>
-        <Grid>
+    <StackPanel Margin="8">
+        <Grid Margin="0" MinHeight="0">
             <Grid.Style>
                 <Style TargetType="Grid">
                     <Style.Triggers>
@@ -29,8 +29,21 @@
                     </Style.Triggers>
                 </Style>
             </Grid.Style>
-            <TextBlock Text="Ihre IP: "/>
-            <TextBlock Text="{Binding CurrentIP}"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Ihre IP: "/>
+            <TextBox Grid.Row="0" Grid.Column="1" IsReadOnly="True" BorderThickness="1" Text="{Binding CurrentIP, Mode=OneWay}" HorizontalAlignment="Left" MinWidth="150"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Port: "/>
+            <TextBox Grid.Row="2" Grid.Column="1" IsReadOnly="False" BorderThickness="1" Text="{Binding Port, Mode=TwoWay}" HorizontalAlignment="Left" MinWidth="150"/>
         </Grid>
     </StackPanel>
 </UserControl>

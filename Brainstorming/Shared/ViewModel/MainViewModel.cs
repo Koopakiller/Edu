@@ -1,10 +1,15 @@
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
-using Koopakiller.Apps.Brainstorming.Shared.ViewModel;
 using Shared.ViewModel;
 
-namespace Koopakiller.Apps.Brainstorming.Server.ViewModel
+#if _SERVER
+using Koopakiller.Apps.Brainstorming.Server.ViewModel;
+#elif _CLIENT
+using Koopakiller.Apps.Brainstorming.Client.ViewModel;
+#endif
+
+namespace Koopakiller.Apps.Brainstorming.Shared.ViewModel
 {
     /// <summary>
     /// This class contains properties that the main View can data bind to.
@@ -36,7 +41,7 @@ namespace Koopakiller.Apps.Brainstorming.Server.ViewModel
 
             this.CurrentViewModel = this._startupViewModel;
 
-            this.AboutCommand=new RelayCommand(this.ExecuteAboutCommand);
+            this.AboutCommand = new RelayCommand(this.ExecuteAboutCommand);
         }
 
         private ViewModelBase _currentViewModel;

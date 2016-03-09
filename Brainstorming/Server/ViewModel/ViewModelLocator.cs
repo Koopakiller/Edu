@@ -12,8 +12,8 @@
   See http://www.galasoft.ch/mvvm
 */
 
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
+using Koopakiller.Apps.Brainstorming.Shared.ViewModel;
 using Microsoft.Practices.ServiceLocation;
 
 namespace Koopakiller.Apps.Brainstorming.Server.ViewModel

@@ -24,7 +24,8 @@ Print "   P  g  E"
 Print " E 1  2  3"
 Print " g 4  5  2"
 Print " P 6  4  1"
-Print " 0 - Über L_PGE"
+Print ""
+Print "0 - Über L_PGE"
 
 Input Zahl
 
@@ -48,22 +49,44 @@ Then
 IfEnd
 
 'Gerade erfragen
-If Zahl=2 Or Zahl=4
+If Zahl=2 Or Zahl=4 Or Zahl=5
 Then
   7 ⇒ g
   "g"⇒name
   Goto InputG
   Lbl g7
+  
+  If Zahl=5
+  Then
+    Ax⇒gAx : Ay⇒gAy : Az⇒gAz
+    Bx⇒gBx : By⇒gBy : Bz⇒gBz
+    12 ⇒ g
+    "h"⇒name
+    Goto InputG
+    Lbl g12
+    Ax⇒hAx : Ay⇒hAy : Az⇒hAz
+    Bx⇒hBx : By⇒hBy : Bz⇒hBz
+  IfEnd
 IfEnd
 
 
 'Ebene erfragen
-If Zahl=1 Or Zahl=2
+If Zahl=1 Or Zahl=2 Or Zahl=3
 Then
   8 ⇒ g
   "E"⇒name
   Goto InputE
   Lbl g8
+  
+  If Zahl=3
+  Then
+    a⇒Ea : b⇒Eb : c⇒Ec : D⇒ED
+    13 ⇒ g
+    "F"⇒name
+    Goto InputE
+    Lbl g13
+    a⇒Fa : b⇒Fb : c⇒Fc : D⇒FD
+  IfEnd
 IfEnd
 
 ClrText

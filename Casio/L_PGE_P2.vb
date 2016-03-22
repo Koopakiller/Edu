@@ -396,23 +396,25 @@ Switch Zahl
     IfEnd  
   Else
 
-    -(hAx×hBy - hBx×hAy + hBx×gAy - gAx×hBy) / (hBx×gBy - gBx×hBy) ⇒ v
+    -(hAx×hBy - hBx×hAy + hBx×gAy - gAx×hBy) / (hBx×gBy - gBx×hBy) ⇒ v1
+    -(hAy×hBz - hBy×hAz + hBy×gAz - gAy×hBz) / (hBy×gBz - gBy×hBz) ⇒ v2
+    -(hAz×hBx - hBz×hAx + hBz×gAx - gAz×hBx) / (hBz×gBx - gBz×hBx) ⇒ v3
     
-    If (hBx×gBy - gBx×hBy)=0
+    If v1=v2 And v2=v3
     Then
-      Print "g ∦ h   ∧   g ⋂ h = Ø"
-      Print "Geraden g und h sind windschief"
-    Else
       Print "g ⋂ h = S"
       Print "Geraden g und h schneiden sich im Punkt S"
 
       19⇒g
-      gAx+gBx×v⇒x
-      gAy+gBy×v⇒y
-      gAz+gBz×v⇒z
+      hAx+hBx×v1⇒x
+      hAy+hBy×v1⇒y
+      hAz+hBz×v1⇒z
       "S"⇒name
       Goto PrintP
       Lbl g19
+    Else
+      Print "g ∦ h   ∧   g ⋂ h = Ø"
+      Print "Geraden g und h sind windschief"
     IfEnd
   IfEnd
 

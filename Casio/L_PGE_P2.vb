@@ -359,12 +359,12 @@ Switch Zahl
   Print "Gerade - Gerade"
   Print ""
 
-  13⇒g
+  18⇒g
   gAx⇒Ax : gAy⇒Ay : gAz⇒Az
   gBx⇒Bx : gBy⇒By : gBz⇒Bz  
   "g"⇒name
   Goto PrintG
-  Lbl g13
+  Lbl g18
   Print ""
 
   14⇒g
@@ -400,13 +400,13 @@ Switch Zahl
       Print "g ⋂ h = S"
       Print "Geraden g und h schneiden sich im Punkt S"
 
-      12⇒g
+      19⇒g
       gAx+gBx×v1⇒x
       gAy+gBy×v2⇒y
       gAz+gBz×v3⇒z
       "S"⇒name
       Goto PrintP
-      Lbl g12
+      Lbl g19
     Else
       Print "g ∦ h   ∧   g ⋂ h = Ø"
       Print "Geraden g und h sind windschief"
@@ -614,6 +614,8 @@ Switch g
  Case 15:Goto g15
  Case 16:Goto g16
  Case 17:Goto g17
+ Case 18:Goto g18
+ Case 19:Goto g19
  Default
   Goto Ende
 SwitchEnd

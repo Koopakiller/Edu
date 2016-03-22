@@ -399,16 +399,28 @@ Switch Zahl
     -(hAx×hBy - hBx×hAy + hBx×gAy - gAx×hBy) / (hBx×gBy - gBx×hBy) ⇒ v1
     -(hAy×hBz - hBy×hAz + hBy×gAz - gAy×hBz) / (hBy×gBz - gBy×hBz) ⇒ v2
     -(hAz×hBx - hBz×hAx + hBz×gAx - gAz×hBx) / (hBz×gBx - gBz×hBx) ⇒ v3
-    
-    If v1=v2 And v2=v3
+
+    If v1=v2
+    Then 
+      v1⇒v    
+    ElseIf v2=v3
+    Then 
+      v2⇒v    
+    ElseIf v3=v1
+    Then 
+      v3⇒v
+    IfEnd
+
+
+    If v1=v2 Or v2=v3 Or v3=v1
     Then
       Print "g ⋂ h = S"
       Print "Geraden g und h schneiden sich im Punkt S"
 
       19⇒g
-      hAx+hBx×v1⇒x
-      hAy+hBy×v1⇒y
-      hAz+hBz×v1⇒z
+      gAx+gBx×v⇒x
+      gAy+gBy×v⇒y
+      gAz+gBz×v⇒z
       "S"⇒name
       Goto PrintP
       Lbl g19

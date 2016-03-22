@@ -283,11 +283,139 @@ Switch Zahl
   Goto Ende
 
  Case 3
- Case 5
+  Print "Ebene - Ebene"
+  Print ""
 
+  15⇒g
+  Ea⇒a : Eb⇒b : Ec⇒c : ED⇒D 
+  "E"⇒name
+  Goto PrintE
+  Lbl g15
+  Print ""
+
+  16⇒g
+  Fa⇒a : Fb⇒b : Fc⇒c : FD⇒D 
+  "F"⇒name
+  Goto PrintE
+  Lbl g16
+  Print ""
+
+  Ea/Fa⇒u1
+  Eb/Fb⇒u2
+  Ec/Fc⇒u3
+
+  If u1=u2 And u2=u3
+  Then
+    'Parallel
+    If Fc×(ED/Ec)=FD 
+    Then
+      'Gemeinsamer Schnittpunkt
+
+      Print "E = F"
+      Print "Ebenen E und F sind identisch"
+
+    Else
+      Print "E ‖ F   ∧   E ⋂ F = Ø"
+      Print "Ebenen E und F sind parallel und nicht identisch"
+    IfEnd
+  Else
+    [Ea,Eb,Ec]⇒ven
+    [Fa,Fb,Fc]⇒vfn
+    (dotp(vfn,vfn)×ED - dotp(ven,vfn)×FD)  /  (dotp(ven,ven)×dotp(vfn,vfn) - dotp(ven,vfn)^2)⇒v1
+    (dotp(ven,ven)×FD - dotp(ven,vfn)×ED)  /  (dotp(ven,ven)×dotp(vfn,vfn) - dotp(ven,vfn)^2)⇒v2
+
+    v1×Ea + v2×Fa ⇒ Ax
+    v1×Eb + v2×Fb ⇒ Ay
+    v1×Ec + v2×Fc ⇒ Az
+
+    Eb×Fc - Ec×Fb ⇒ Bx
+    Ec×Fa - Ea×Fc ⇒ By
+    Ea×Fb - Eb×Fa ⇒ Bz
+
+    Print "E ⋂ F = g"
+    Print "Ebene E und F schneiden einander in Gerade g"
+
+    17⇒g
+    "g"⇒name
+    Goto PrintG
+    Lbl g17
+
+    Print ""
+    Print "Schnittwinkel:"
+    angle(ven,vfn)⇒ang
+    ExpToStr ang,s
+    StrJoin "∠ = (",s,s
+    StrJoin s,")°",s
+    Print s
+    NumToStr ang,f,s
+    StrJoin "  ≈ ",s,s
+    StrJoin s,"°",s
+    Print s
+
+  IfEnd
+  Goto Ende
+
+ Case 5
+  Print "Gerade - Gerade"
+  Print ""
+
+  13⇒g
+  gAx⇒Ax : gAy⇒Ay : gAz⇒Az
+  gBx⇒Bx : gBy⇒By : gBz⇒Bz  
+  "g"⇒name
+  Goto PrintG
+  Lbl g13
+  Print ""
+
+  14⇒g
+  hAx⇒Ax : hAy⇒Ay : hAz⇒Az
+  hBx⇒Bx : hBy⇒By : hBz⇒Bz 
+  "h"⇒name
+  Goto PrintG
+  Lbl g14
+  Print ""
+
+  hBx/gBx⇒u1
+  hBy/gBy⇒u2
+  hBz/gBz⇒u3
+
+  (gAx-hAx)/hBx⇒v1
+  (gAy-hAy)/hBy⇒v2
+  (gAz-hAz)/hBz⇒v3
+  
+  If u1=u2 And U2=u3 
+  Then
+    'Parallel
+    If v1=v2 And V2=v3 
+    Then
+      Print "g = h"
+      Print "Geraden g und h sind identisch"
+    Else
+      Print "g ‖ h"
+      Print "Geraden g und h sind parallel"
+    IfEnd  
+  Else
+    If v1=v2 And v2=v3 
+    Then
+      Print "g ⋂ h = S"
+      Print "Geraden g und h schneiden sich im Punkt S"
+
+      12⇒g
+      gAx+gBx×v1⇒x
+      gAy+gBy×v2⇒y
+      gAz+gBz×v3⇒z
+      "S"⇒name
+      Goto PrintP
+      Lbl g12
+    Else
+      Print "g ∦ h   ∧   g ⋂ h = Ø"
+      Print "Geraden g und h sind windschief"
+    IfEnd
+  IfEnd
+
+  Goto Ende
 
  Case 6
-
   Print "Punkt - Punkt"
   Print ""
 
@@ -480,9 +608,16 @@ Switch g
  Case 9:Goto g9
  Case 10:Goto g10 
  Case 11:Goto g11
+ Case 12:Goto g12
+ Case 13:Goto g13
+ Case 14:Goto g14
+ Case 15:Goto g15
+ Case 16:Goto g16
+ Case 17:Goto g17
  Default
   Goto Ende
 SwitchEnd
 
 
 Lbl Ende
+

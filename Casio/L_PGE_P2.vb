@@ -379,14 +379,14 @@ Switch Zahl
   hBy/gBy⇒u2
   hBz/gBz⇒u3
 
-  (gAx-hAx)/hBx⇒v1
-  (gAy-hAy)/hBy⇒v2
-  (gAz-hAz)/hBz⇒v3
   
-  If u1=u2 And U2=u3 
+  If u1=u2 And u2=u3 
   Then
     'Parallel
-    If v1=v2 And V2=v3 
+    (gAx-hAx)/hBx⇒v1
+    (gAy-hAy)/hBy⇒v2
+    (gAz-hAz)/hBz⇒v3
+    If v1=v2 And v2=v3 
     Then
       Print "g = h"
       Print "Geraden g und h sind identisch"
@@ -395,21 +395,24 @@ Switch Zahl
       Print "Geraden g und h sind parallel"
     IfEnd  
   Else
-    If v1=v2 And v2=v3 
+
+    -(hAx×hBy - hBx×hAy + hBx×gAy - gAx×hBy) / (hBx×gBy - gBx×hBy) ⇒ v
+    
+    If (hBx×gBy - gBx×hBy)=0
     Then
+      Print "g ∦ h   ∧   g ⋂ h = Ø"
+      Print "Geraden g und h sind windschief"
+    Else
       Print "g ⋂ h = S"
       Print "Geraden g und h schneiden sich im Punkt S"
 
       19⇒g
-      gAx+gBx×v1⇒x
-      gAy+gBy×v2⇒y
-      gAz+gBz×v3⇒z
+      gAx+gBx×v⇒x
+      gAy+gBy×v⇒y
+      gAz+gBz×v⇒z
       "S"⇒name
       Goto PrintP
       Lbl g19
-    Else
-      Print "g ∦ h   ∧   g ⋂ h = Ø"
-      Print "Geraden g und h sind windschief"
     IfEnd
   IfEnd
 

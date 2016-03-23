@@ -27,7 +27,7 @@ Print " P 6  4  1"
 Print ""
 Print "0 - Über L_PGE_P"
 
-Input θZahl
+Input θZahl,"Was wird berechnet? (Zahl)"
 
 'Punkt erfragen
 If θZahl=1 Or θZahl=4 Or θZahl=6
@@ -715,7 +715,9 @@ Lbl InputP
   StrJoin "Punkt ", θname, θs
   StrJoin θs, " = ( x | y | z )", θs
   Print θs
-  Input θx : Input θy : Input θz
+  Input θx, "x" 
+  Input θy, "y"
+  Input θz, "z"
 Goto gotog
 
 Lbl InputG
@@ -726,8 +728,12 @@ Lbl InputG
   Print "    |Ax|   |Bx|"
   Print "x = |Ay| + |By|"
   Print "    |Az|   |Bz|"
-  Input θAx : Input θAy : Input θAz
-  Input θBx : Input θBy : Input θBz
+  Input θAx, "Ax"
+  Input θAy, "Ay"
+  Input θAz, "Az"
+  Input θBx, "Bx"
+  Input θBy, "By"
+  Input θBz, "Bz"
 Goto gotog
 
 Lbl InputE
@@ -735,7 +741,10 @@ Lbl InputE
   StrJoin "Ebene ",θname,θs
   StrJoin θs,": ax + by + cz = D",θs
   Print θs
-  Input θa : Input θb : Input θc : Input θD
+  Input θa, "a" 
+  Input θb, "b"
+  Input θc, "c"
+  Input θD, "D"
 Goto gotog
 
 

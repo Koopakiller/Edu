@@ -449,11 +449,14 @@ Switch θZahl
   θpx⇒θx:θpy⇒θy:θpz⇒θz
   Goto PrintP
   Lbl g10
+  Print ""
+
   11⇒θg
-  "Q"⇒name
+  "Q"⇒θname
   θqx⇒θx:θqy⇒θy:θqz⇒θz
   Goto PrintP
   Lbl g11
+  Print ""
 
   If θpx=θx And θpy=θy And θpz=θz 
   Then

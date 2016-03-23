@@ -11,7 +11,7 @@
 'm, n, k, l, d, u, v = Hilfsvariablen
 
 SetDegree
-"Fix5"⇒f
+"Fix5"⇒θf
 
 ClrText
 Lbl Start
@@ -27,65 +27,65 @@ Print " P 6  4  1"
 Print ""
 Print "0 - Über L_PGE_P"
 
-Input Zahl
+Input θZahl
 
 'Punkt erfragen
-If Zahl=1 Or Zahl=4 Or Zahl=6
+If θZahl=1 Or θZahl=4 Or θZahl=6
 Then
-  6 ⇒ g
+  6 ⇒ θg
   "P"⇒name
   Goto InputP
   Lbl g6
 
-  If Zahl=6 
+  If θZahl=6 
   Then
-    x⇒px:y⇒py:z⇒pz
-    9 ⇒ g
-    "Q"⇒name
+    θx⇒θpx:θy⇒θpy:θz⇒θpz
+    9 ⇒ θg
+    "Q"⇒θname
     Goto InputP
     Lbl g9
-    x⇒qx:y⇒qy:z⇒qz
+    θx⇒θqx:θy⇒θqy:θz⇒θqz
   IfEnd
 IfEnd
 
 'Gerade erfragen
-If Zahl=2 Or Zahl=4 Or Zahl=5
+If θZahl=2 Or θZahl=4 Or θZahl=5
 Then
-  7 ⇒ g
-  "g"⇒name
+  7 ⇒ θg
+  "g"⇒θname
   Goto InputG
   Lbl g7
   
-  If Zahl=5
+  If θZahl=5
   Then
-    Ax⇒gAx : Ay⇒gAy : Az⇒gAz
-    Bx⇒gBx : By⇒gBy : Bz⇒gBz
-    12 ⇒ g
-    "h"⇒name
+    θAx⇒θgAx : θAy⇒θgAy : θAz⇒θgAz
+    θBx⇒θgBx : θBy⇒θgBy : θBz⇒θgBz
+    12 ⇒ θg
+    "h"⇒θname
     Goto InputG
     Lbl g12
-    Ax⇒hAx : Ay⇒hAy : Az⇒hAz
-    Bx⇒hBx : By⇒hBy : Bz⇒hBz
+    θAx⇒θhAx : θAy⇒θhAy : θAz⇒θhAz
+    θBx⇒θhBx : θBy⇒θhBy : θBz⇒θhBz
   IfEnd
 IfEnd
 
 
 'Ebene erfragen
-If Zahl=1 Or Zahl=2 Or Zahl=3
+If θZahl=1 Or θZahl=2 Or θZahl=3
 Then
-  8 ⇒ g
-  "E"⇒name
+  8 ⇒ θg
+  "E"⇒θname
   Goto InputE
   Lbl g8
   
-  If Zahl=3
+  If θZahl=3
   Then
-    a⇒Ea : b⇒Eb : c⇒Ec : D⇒ED
-    13 ⇒ g
-    "F"⇒name
+    θa⇒θEa : θb⇒θEb : θc⇒θEc : θD⇒θED
+    13 ⇒ θg
+    "F"⇒θname
     Goto InputE
     Lbl g13
-    a⇒Fa : b⇒Fb : c⇒Fc : D⇒FD
+    θa⇒θFa : θb⇒θFb : θc⇒θFc : θD⇒θFD
   IfEnd
 IfEnd
 
@@ -95,22 +95,22 @@ Switch Zahl
   Print "Punkt - Ebene"
   Print ""
   
-  0⇒g
-  "P"⇒name
+  0⇒θg
+  "P"⇒θname
   Goto PrintP
   Lbl g0
   Print ""
-  1⇒g
-  "E"⇒name
+  1⇒θg
+  "E"⇒θname
   Goto PrintE
   Lbl g1
   Print ""
 
-  x×a + y×b + z×c - D ⇒ k
-  a×a + b×b + c×c ⇒ l
-  abs(k/√(l)) ⇒ d
+  θx×θa + θy×θb + θz×θc - θD ⇒ θk
+  θa×θa + θb×θb + θc×θc ⇒ θl
+  abs(θk/√(θl)) ⇒ θd
 
-  If d=0 
+  If θd=0 
   Then
     Print "P ∈ E"
     Print "Punkt liegt in Ebene"
@@ -119,20 +119,20 @@ Switch Zahl
     Print "Punkt liegt nicht in Ebene"
     Print ""
     Print "Abstand"
-    ExpToStr k,t
-    StrJoin " k = ",t,s
-    Print s
-    ExpToStr l,t
+    ExpToStr θk,θt
+    StrJoin " k = ",θt,θs
+    Print θs
+    ExpToStr θl,θt
     StrJoin " l = ",t,s
-    Print s
+    Print θs
 
     Print " d = | k : √l |"
-    ExpToStr d,t
-    StrJoin "   = ",t,s
-    Print s
-    NumToStr d,f,t
-    StrJoin "   ≈ ",t,s
-    Print s
+    ExpToStr θd,θt
+    StrJoin "   = ",θt,θs
+    Print θs
+    NumToStr θd,θf,θt
+    StrJoin "   ≈ ",θt,θs
+    Print θs
   IfEnd
 
   Goto Ende
@@ -141,24 +141,24 @@ Switch Zahl
   Print "Gerade - Ebene"
   Print ""
   
-  2⇒g
-  "g"⇒name
-  "λ"⇒λ
+  2⇒θg
+  "g"⇒θname
+  "λ"⇒θλ
   Goto PrintG
   Lbl g2
   Print ""
-  3⇒g
-  "E"⇒name
+  3⇒θg
+  "E"⇒θname
   Goto PrintE
   Lbl g3
   Print ""
  
-  Ax×a + Ay×b + Az×c - D ⇒ m
-  -(Bx×a) - (By×b) - (Bz×c) ⇒ n
+  θAx×θa + θAy×θb + θAz×θc - θD ⇒ θm
+  -(θBx×θa) - (θBy×θb) - (θBz×θc) ⇒ θn
 
-  If n=0 
+  If θn=0 
   Then
-    If m=0
+    If θm=0
     Then
       Print "g ∈ E"
       Print ""
@@ -169,25 +169,25 @@ Switch Zahl
       Print "Gerade g ist parallel zur Ebene E,"
       Print "liegt aber nicht darin"
   
-      Ax×a + Ay×b + Az×c - D ⇒ k
-      Ax×Ax + Ay×Ay + Az×Az ⇒ l
-      k/√(l) ⇒ d
+      θAx×θa + θAy×θb + θAz×θc - θD ⇒ θk
+      θAx×θAx + θAy×θAy + θAz×θAz ⇒ θl
+      θk/√(θl) ⇒ θd
 
       Print "Abstand"
-      ExpToStr k,t
-      StrJoin " k = ",t,s
-      Print s
-      ExpToStr l,t
-      StrJoin " l = ",t,s
-      Print s
+      ExpToStr θk,θt
+      StrJoin " k = ",θt,θs
+      Print θs
+      ExpToStr θl,θt
+      StrJoin " l = ",θt,θs
+      Print θs
 
       Print " d = k:√l"
-      ExpToStr d,t
-      StrJoin "   = ",t,s
-      Print s
-      NumToStr d,f,t
-      StrJoin "   ≈ ",t,s
-      Print s
+      ExpToStr θd,θt
+      StrJoin "   = ",θt,θs
+      Print θs
+      NumToStr θd,θf,θt
+      StrJoin "   ≈ ",θt,θs
+      Print θs
 
     IfEnd
   Else
@@ -196,36 +196,36 @@ Switch Zahl
     Print ""      
 
     Print "Schnittpunkt:"
-    m/n ⇒ l
-    Ax + l×Bx ⇒ x
-    Ay + l×By ⇒ y
-    Az + l×Bz ⇒ z
-    ExpToStr x,t
-    StrJoin "S( ", t, s
-    StrJoin s, " | ", s
-    ExpToStr y,t
-    StrJoin s, t, s
-    StrJoin s, " | ", s
-    ExpToStr z,t
-    StrJoin s, t, s
-    StrJoin s, " )", s
-    Print s
-    NumToStr x,f,t
-    StrJoin "S( ", t, s
-    StrJoin s, " | ", s
-    NumToStr y,f,t
-    StrJoin s, t, s
-    StrJoin s, " | ", s
-    NumToStr z,f,t
-    StrJoin s, t, s
-    StrJoin s, " )", s
-    Print s
+    θm/θn ⇒ θl
+    θAx + θl×θBx ⇒ θx
+    θAy + θl×θBy ⇒ θy
+    θAz + θl×θBz ⇒ θz
+    ExpToStr θx,θt
+    StrJoin "S( ", θt, θs
+    StrJoin θs, " | ", θs
+    ExpToStr θy,θt
+    StrJoin θs, θt, θs
+    StrJoin θs, " | ", θs
+    ExpToStr θz,θt
+    StrJoin θs, θt, θs
+    StrJoin θs, " )", θs
+    Print θs
+    NumToStr θx,θf,θt
+    StrJoin "S( ", θt, θs
+    StrJoin θs, " | ", θs
+    NumToStr θy,θf,θt
+    StrJoin θs, θt, θs
+    StrJoin θs, " | ", θs
+    NumToStr θz,θf,θt
+    StrJoin θs, θt, θs
+    StrJoin θs, " )", θs
+    Print θs
 
     Print ""
     Print "Schnittwinkel:"
 
-    22⇒g
-    90-angle([a,b,c],[Bx,By,Bz])⇒ang
+    22⇒θg
+    90-angle([θa,θb,θc],[θBx,θBy,θBz])⇒θang
     Goto PrintAng
     Lbl g22
 
@@ -237,21 +237,21 @@ Switch Zahl
   Print "Punkt - Gerade"
   Print ""
 
-  4⇒g
-  "P"⇒name
+  4⇒θg
+  "P"⇒θname
   Goto PrintP
   Lbl g4
   Print ""
-  5⇒g
-  "g"⇒name
-  "λ"⇒λ
+  5⇒θg
+  "g"⇒θname
+  "λ"⇒θλ
   Goto PrintG
   Lbl g5
   Print ""
  
-  norm(crossp([Bx,By,Bz],[x-Ax,y-Ay,z-Az])) ⇒ k
-  norm([Bx,By,Bz]) ⇒ l
-  abs(k/l) ⇒ d
+  norm(crossp([θBx,θBy,θBz],[θx-θAx,θy-θAy,θz-θAz])) ⇒ θk
+  norm([θBx,θBy,θBz]) ⇒ θl
+  abs(θk/θl) ⇒ θd
 
   If d=0 
   Then
@@ -262,20 +262,20 @@ Switch Zahl
     Print "Punkt liegt nicht in Gerade"
     Print ""
     Print "Kleinstmöglicher Abstand"
-    ExpToStr k,t
-    StrJoin " k = ",t,s
-    Print s
-    ExpToStr l,t
-    StrJoin " l = ",t,s
-    Print s
+    ExpToStr θk,θt
+    StrJoin " k = ",θt,θs
+    Print θs
+    ExpToStr θl,θt
+    StrJoin " l = ",θt,θs
+    Print θs
 
     Print " d = | k : l |"
-    ExpToStr d,t
-    StrJoin "   = ",t,s
-    Print s
-    NumToStr d,f,t
-    StrJoin "   ≈ ",t,s
-    Print s
+    ExpToStr θd,θt
+    StrJoin "   = ",θt,θs
+    Print θs
+    NumToStr θd,θf,θt
+    StrJoin "   ≈ ",θt,θs
+    Print θs
   IfEnd
 
   Goto Ende
@@ -284,28 +284,28 @@ Switch Zahl
   Print "Ebene - Ebene"
   Print ""
 
-  15⇒g
-  Ea⇒a : Eb⇒b : Ec⇒c : ED⇒D 
-  "E"⇒name
+  15⇒θg
+  θEa⇒θa : θEb⇒θb : θEc⇒θc : θED⇒θD 
+  "E"⇒θname
   Goto PrintE
   Lbl g15
   Print ""
 
-  16⇒g
-  Fa⇒a : Fb⇒b : Fc⇒c : FD⇒D 
-  "F"⇒name
+  16⇒θg
+  θFa⇒θa : θFb⇒θb : θFc⇒θc : θFD⇒θD 
+  "F"⇒θname
   Goto PrintE
   Lbl g16
   Print ""
 
-  Ea/Fa⇒u1
-  Eb/Fb⇒u2
-  Ec/Fc⇒u3
+  θEa/θFa⇒θu1
+  θEb/θFb⇒θu2
+  θEc/θFc⇒θu3
 
-  If u1=u2 And u2=u3
+  If θu1=θu2 And θu2=θu3
   Then
     'Parallel
-    If Fc×(ED/Ec)=FD 
+    If θFc×(θED/θEc)=θFD 
     Then
       'Gemeinsamer Schnittpunkt
 
@@ -317,32 +317,32 @@ Switch Zahl
       Print "Ebenen E und F sind parallel und nicht identisch"
     IfEnd
   Else
-    [Ea,Eb,Ec]⇒ven
-    [Fa,Fb,Fc]⇒vfn
-    (dotp(vfn,vfn)×ED - dotp(ven,vfn)×FD)  /  (dotp(ven,ven)×dotp(vfn,vfn) - dotp(ven,vfn)^2)⇒v1
-    (dotp(ven,ven)×FD - dotp(ven,vfn)×ED)  /  (dotp(ven,ven)×dotp(vfn,vfn) - dotp(ven,vfn)^2)⇒v2
+    [θEa,θEb,θEc]⇒θven
+    [θFa,θFb,θFc]⇒θvfn
+    (dotp(θvfn,θvfn)×θED - dotp(θven,θvfn)×θFD)  /  (dotp(θven,θven)×dotp(θvfn,θvfn) - dotp(θven,θvfn)^2)⇒θv1
+    (dotp(θven,θven)×θFD - dotp(θven,θvfn)×θED)  /  (dotp(θven,θven)×dotp(θvfn,θvfn) - dotp(θven,θvfn)^2)⇒θv2
 
-    v1×Ea + v2×Fa ⇒ Ax
-    v1×Eb + v2×Fb ⇒ Ay
-    v1×Ec + v2×Fc ⇒ Az
+    θv1×θEa + θv2×θFa ⇒ θAx
+    θv1×θEb + θv2×θFb ⇒ θAy
+    θv1×θEc + θv2×θFc ⇒ θAz
 
-    Eb×Fc - Ec×Fb ⇒ Bx
-    Ec×Fa - Ea×Fc ⇒ By
-    Ea×Fb - Eb×Fa ⇒ Bz
+    θEb×θFc - θEc×θFb ⇒ θBx
+    θEc×θFa - θEa×θFc ⇒ θBy
+    θEa×θFb - θEb×θFa ⇒ θBz
 
     Print "E ⋂ F = g"
     Print "Ebene E und F schneiden einander in Gerade g"
 
-    17⇒g
-    "g"⇒name
-    "λ"⇒λ
+    17⇒θg
+    "g"⇒θname
+    "λ"⇒θλ
     Goto PrintG
     Lbl g17
 
     Print ""
     Print "Schnittwinkel:"
-    20⇒g
-    angle(ven,vfn)⇒ang
+    20⇒θg
+    angle(θven,θvfn)⇒θang
     Goto PrintAng
     Lbl g20
 
@@ -353,36 +353,36 @@ Switch Zahl
   Print "Gerade - Gerade"
   Print ""
 
-  18⇒g
-  gAx⇒Ax : gAy⇒Ay : gAz⇒Az
-  gBx⇒Bx : gBy⇒By : gBz⇒Bz  
-  "g"⇒name
-  "λ"⇒λ
+  18⇒θg
+  θgAx⇒θAx : θgAy⇒θAy : θgAz⇒θAz
+  θgBx⇒θBx : θgBy⇒θBy : θgBz⇒θBz  
+  "g"⇒θname
+  "λ"⇒θλ
   Goto PrintG
   Lbl g18
   Print ""
 
-  14⇒g
-  hAx⇒Ax : hAy⇒Ay : hAz⇒Az
-  hBx⇒Bx : hBy⇒By : hBz⇒Bz 
-  "h"⇒name
-  "κ"⇒λ
+  14⇒θg
+  θhAx⇒θAx : θhAy⇒θAy : θhAz⇒θAz
+  θhBx⇒θBx : θhBy⇒θBy : θhBz⇒θBz 
+  "h"⇒θname
+  "κ"⇒θλ
   Goto PrintG
   Lbl g14
   Print ""
 
-  hBx/gBx⇒u1
-  hBy/gBy⇒u2
-  hBz/gBz⇒u3
+  θhBx/θgBx⇒θu1
+  θhBy/θgBy⇒θu2
+  θhBz/θgBz⇒θu3
 
   
-  If u1=u2 And u2=u3 
+  If θu1=θu2 And θu2=θu3 
   Then
     'Parallel
-    (gAx-hAx)/hBx⇒v1
-    (gAy-hAy)/hBy⇒v2
-    (gAz-hAz)/hBz⇒v3
-    If v1=v2 And v2=v3 
+    (θgAx-θhAx)/θhBx⇒θv1
+    (θgAy-θhAy)/θhBy⇒θv2
+    (θgAz-θhAz)/θhBz⇒θv3
+    If θv1=θv2 And θv2=θv3 
     Then
       Print "g = h"
       Print "Geraden g und h sind identisch"
@@ -392,32 +392,32 @@ Switch Zahl
     IfEnd  
   Else
 
-    -(hAx×hBy - hBx×hAy + hBx×gAy - gAx×hBy) / (hBx×gBy - gBx×hBy) ⇒ v1
-    -(hAy×hBz - hBy×hAz + hBy×gAz - gAy×hBz) / (hBy×gBz - gBy×hBz) ⇒ v2
-    -(hAz×hBx - hBz×hAx + hBz×gAx - gAz×hBx) / (hBz×gBx - gBz×hBx) ⇒ v3
+    -(θhAx×hBy - θhBx×hAy + θhBx×gAy - θgAx×hBy) / (θhBx×gBy - θgBx×hBy) ⇒ θv1
+    -(θhAy×hBz - θhBy×hAz + θhBy×gAz - θgAy×hBz) / (θhBy×gBz - θgBy×hBz) ⇒ θv2
+    -(θhAz×hBx - θhBz×hAx + θhBz×gAx - θgAz×hBx) / (θhBz×gBx - θgBz×hBx) ⇒ θv3
 
-    If v1=v2
+    If θv1=θv2
     Then 
-      v1⇒v    
-    ElseIf v2=v3
+      θv1⇒θv    
+    ElseIf θv2=θv3
     Then 
-      v2⇒v    
-    ElseIf v3=v1
+      θv2⇒θv    
+    ElseIf θv3=θv1
     Then 
-      v3⇒v
+      θv3⇒θv
     IfEnd
 
 
-    If v1=v2 Or v2=v3 Or v3=v1
+    If θv1=θv2 Or θv2=θv3 Or θv3=θv1
     Then
       Print "g ⋂ h = S"
       Print "Geraden g und h schneiden sich im Punkt S"
 
-      19⇒g
-      gAx+gBx×v⇒x
-      gAy+gBy×v⇒y
-      gAz+gBz×v⇒z
-      "S"⇒name
+      19⇒θg
+      θgAx+θgBx×θv⇒θx
+      θgAy+θgBy×θv⇒θy
+      θgAz+θgBz×θv⇒θz
+      "S"⇒θname
       Goto PrintP
       Lbl g19
   
@@ -430,8 +430,8 @@ Switch Zahl
       Print "Ihr Winkel zu einander beträgt"
     IfEnd
 
-    21⇒g
-    angle([gBx,gBy,gBz],[hBx,hBy,hBz])⇒ang
+    21⇒θg
+    angle([θgBx,θgBy,θgBz],[θhBx,θhBy,θhBz])⇒θang
     Goto PrintAng
     Lbl g21
 
@@ -444,30 +444,30 @@ Switch Zahl
   Print "Punkt - Punkt"
   Print ""
 
-  10⇒g
-  "P"⇒name
-  px⇒x:py⇒y:pz⇒z
+  10⇒θg
+  "P"⇒θname
+  θpx⇒θx:θpy⇒θy:θpz⇒θz
   Goto PrintP
   Lbl g10
-  11⇒g
+  11⇒θg
   "Q"⇒name
-  qx⇒x:qy⇒y:qz⇒z
+  θqx⇒θx:θqy⇒θy:θqz⇒θz
   Goto PrintP
   Lbl g11
 
-  If px=x And py=y And pz=z 
+  If θpx=θx And θpy=θy And θpz=θz 
   Then
     Print "Punkte sind Identisch"
   Else
     Print "Abstand"
-    norm([qx-px,qy-py,qz-pz])⇒d
-    ExpToStr d,t
-    StrJoin " d = ",t,s
-    Print s
+    norm([θqx-θpx,θqy-θpy,θqz-θpz])⇒θd
+    ExpToStr θd,θt
+    StrJoin " d = ",θt,θs
+    Print θs
     
-    NumToStr d,f,t
-    StrJoin "   ≈ ", t, s
-    Print s
+    NumToStr θd,θf,θt
+    StrJoin "   ≈ ", θt, θs
+    Print θs
   IfEnd
 
   Goto Ende
@@ -495,215 +495,215 @@ SwitchEnd
 
 'Ausgabemethoden
 Lbl PrintP
-  StrJoin " ", name, s
-  StrJoin s,"( ",s 
-  ExpToStr x,t
-  StrJoin s, t, s
-  StrJoin s, " | ", s
-  ExpToStr y,t
-  StrJoin s, t, s
-  StrJoin s, " | ", s
-  ExpToStr z,t
-  StrJoin s, t, s
-  StrJoin s, " )", s
-  Print s
+  StrJoin " ", θname, θs
+  StrJoin θs,"( ",θs 
+  ExpToStr θx,θt
+  StrJoin θs, θt, θs
+  StrJoin θs, " | ", θs
+  ExpToStr θy,θt
+  StrJoin θs, θt, θs
+  StrJoin θs, " | ", θs
+  ExpToStr θz,θt
+  StrJoin θs, θt, θs
+  StrJoin θs, " )", θs
+  Print θs
 
-  StrJoin "≈", name, s
-  StrJoin s,"( ",s 
-  NumToStr x,f,t
-  StrJoin s, t, s
-  StrJoin s, " | ", s
-  NumToStr y,f,t
-  StrJoin s, t, s
-  StrJoin s, " | ", s
-  NumToStr z,f,t
-  StrJoin s, t, s
-  StrJoin s, " )", s
-  Print s
+  StrJoin "≈", θname, θs
+  StrJoin θs,"( ",θs 
+  NumToStr θx,θf,θt
+  StrJoin θs, θt, θs
+  StrJoin θs, " | ", θs
+  NumToStr θy,θf,θt
+  StrJoin θs, θt, θs
+  StrJoin θs, " | ", θs
+  NumToStr θz,θf,θt
+  StrJoin θs, θt, θs
+  StrJoin θs, " )", θs
+  Print θs
 Goto gotog
 
 Lbl PrintE
-  StrJoin name,": (",s
-  ExpToStr a,t
-  StrJoin s, t, s
-  StrJoin s, ")x + (", s
-  ExpToStr b,t
-  StrJoin s, t, s
-  StrJoin s, ")y + (", s
-  ExpToStr c,t
-  StrJoin s, t, s
-  StrJoin s, ")z = ", s
-  ExpToStr D,t
-  StrJoin s, t, s
-  Print s
+  StrJoin θname,": (",θs
+  ExpToStr θa,θt
+  StrJoin θs, θt, θs
+  StrJoin θs, ")x + (", θs
+  ExpToStr θb,θt
+  StrJoin θs, θt, θs
+  StrJoin θs, ")y + (", θs
+  ExpToStr θc,θt
+  StrJoin θs, θt, θs
+  StrJoin θs, ")z = ", θs
+  ExpToStr θD,θt
+  StrJoin θs, θt, θs
+  Print θs
 
-  ""⇒s
-  StrLen name, t
-  For 1⇒i to t
-    StrJoin s, " ", s
+  ""⇒θs
+  StrLen θname, θt
+  For 1⇒θi to θt
+    StrJoin θs, " ", θs
   Next
-  StrJoin s," ≈",s
-  NumToStr a,f,t
-  StrJoin s, t, s
-  StrJoin s, "x + ", s
-  NumToStr b,f,t
-  StrJoin s, t, s
-  StrJoin s, "y + ", s
-  NumToStr c,f,t
-  StrJoin s, t, s
-  StrJoin s, "z = ", s
-  NumToStr D,f,t
-  StrJoin s, t, s
-  Print s
+  StrJoin θs," ≈",θs
+  NumToStr θa,θf,θt
+  StrJoin θs, θt, θs
+  StrJoin θs, "x + ", θs
+  NumToStr θb,θf,θt
+  StrJoin θs, θt, θs
+  StrJoin θs, "y + ", θs
+  NumToStr θc,θf,θt
+  StrJoin θs, θt, θs
+  StrJoin θs, "z = ", θs
+  NumToStr θD,θf,θt
+  StrJoin θs, θt, θs
+  Print θs
 Goto gotog
 
 Lbl PrintG
-  ""⇒s1:"‛"⇒s2:""⇒s3
+  ""⇒θs1:"‛"⇒θs2:""⇒θs3
 
-  NumToStr Ax, f, u1
-  NumToStr Ay, f, u2
-  NumToStr Az, f, u3
-  StrLen u1, u1
-  StrLen u2, u2
-  StrLen u3, u3
-  max(u1, max(u2, u3)) ⇒ u
+  NumToStr θAx, θf, θu1
+  NumToStr θAy, θf, θu2
+  NumToStr θAz, θf, θu3
+  StrLen θu1, θu1
+  StrLen θu2, θu2
+  StrLen θu3, θu3
+  max(θu1, max(θu2, θu3)) ⇒ θu
   
-  NumToStr Ax, f, t
-  StrJoin s1,"       |",s1
-  StrJoin s1, t, s1
-  For 1⇒i to u-u1
-    StrJoin s1, " ", s1
+  NumToStr θAx, θf, θt
+  StrJoin θs1,"       |",θs1
+  StrJoin θs1, θt, θs1
+  For 1⇒θi to θu-θu1
+    StrJoin θs1, " ", θs1
   Next
-  StrJoin s1, "|    |", s1
+  StrJoin θs1, "|    |", θs1
 
-  StrJoin s2, name, s2
-  StrJoin s2,": x ≈ |",s2
-  NumToStr Ay, f, t
-  StrJoin s2, t, s2
-  For 1⇒i to u-u2
-    StrJoin s2, " ", s2
+  StrJoin θs2, θname, θs2
+  StrJoin θs2,": x ≈ |",θs2
+  NumToStr θAy, θf, θt
+  StrJoin θs2, θt, θs2
+  For 1⇒θi to θu-θu2
+    StrJoin θs2, " ", θs2
   Next
-  StrJoin s2, "| + λ|", s2
+  StrJoin θs2, "| + λ|", θs2
 
-  NumToStr Az, f, t
-  StrJoin s3,"       |",s3
-  StrJoin s3, t, s3
-  For 1⇒i to u-u3
-    StrJoin s3, " ", s3
+  NumToStr θAz, θf, θt
+  StrJoin θs3,"       |",θs3
+  StrJoin θs3, θt, θs3
+  For 1⇒θi to θu-θu3
+    StrJoin θs3, " ", θs3
   Next
-  StrJoin s3, "|    |", s3
+  StrJoin θs3, "|    |", θs3
 
-  NumToStr Bx, f, u1
-  NumToStr By, f, u2
-  NumToStr Bz, f, u3
-  StrLen u1, u1
-  StrLen u2, u2
-  StrLen u3, u3
-  max(u1, max(u2, u3)) ⇒ u
+  NumToStr θBx, θf, θu1
+  NumToStr θBy, θf, θu2
+  NumToStr θBz, θf, θu3
+  StrLen θu1, θu1
+  StrLen θu2, θu2
+  StrLen θu3, θu3
+  max(θu1, max(θu2, θu3)) ⇒ θu
 
-  NumToStr Bx, f, t
-  StrJoin s1,t,s1
-  For 1⇒i to u-u1
-    StrJoin s1, " ", s1
+  NumToStr θBx, θf, θt
+  StrJoin θs1,θt,θs1
+  For 1⇒θi to θu-θu1
+    StrJoin θs1, " ", θs1
   Next
-  StrJoin s1, "|",s1
+  StrJoin θs1, "|",θs1
 
-  NumToStr By, f, t
-  StrJoin s2,t,s2
-  For 1⇒i to u-u2
-    StrJoin s2, " ", s2
+  NumToStr θBy, θf, θt
+  StrJoin θs2,θt,θs2
+  For 1⇒θi to θu-θu2
+    StrJoin θs2, " ", θs2
   Next
-  StrJoin s2, "|",s2
+  StrJoin θs2, "|",θs2
 
-  NumToStr Bz, f, t
-  StrJoin s3,t,s3
-  For 1⇒i to u-u3
-    StrJoin s3, " ", s3
+  NumToStr θBz, θf, θt
+  StrJoin θs3,θt,θs3
+  For 1⇒θi to θu-θu3
+    StrJoin θs3, " ", θs3
   Next
-  StrJoin s3, "|",s3
+  StrJoin θs3, "|",θs3
 
 
 
-  ExpToStr Ax, u1
-  ExpToStr Ay, u2
-  ExpToStr Az, u3
-  StrLen u1, u1
-  StrLen u2, u2
-  StrLen u3, u3
-  max(u1, max(u2, u3)) ⇒ u
+  ExpToStr θAx, θu1
+  ExpToStr θAy, θu2
+  ExpToStr θAz, θu3
+  StrLen θu1, θu1
+  StrLen θu2, θu2
+  StrLen θu3, θu3
+  max(θu1, max(θu2, θu3)) ⇒ θu
   
-  ExpToStr Ax, t
-  StrJoin s1,"       |",s1
-  StrJoin s1, t, s1
-  For 1⇒i to u-u1
-    StrJoin s1, " ", s1
+  ExpToStr θAx, θt
+  StrJoin θs1,"       |",θs1
+  StrJoin θs1, θt, θs1
+  For 1⇒θi to θu-θu1
+    StrJoin θs1, " ", θs1
   Next
-  StrJoin s1, "|    |", s1
-  StrJoin s2,"   x = |",s2
+  StrJoin θs1, "|    |", θs1
+  StrJoin θs2,"   x = |",θs2
 
-  ExpToStr Ay, t
-  StrJoin s2, t, s2
-  For 1⇒i to u-u2
-    StrJoin s2, " ", s2
+  ExpToStr θAy, θt
+  StrJoin θs2, θt, θs2
+  For 1⇒θi to θu-θu2
+    StrJoin θs2, " ", θs2
   Next
-  StrJoin s2, "| + ", s2
-  StrJoin s2, λ, s2
-  StrJoin s2, "|", s2
+  StrJoin θs2, "| + ", θs2
+  StrJoin θs2, θλ, θs2
+  StrJoin θs2, "|", θs2
 
 
-  ExpToStr Az, t
-  StrJoin s3,"       |",s3
-  StrJoin s3, t, s3
-  For 1⇒i to u-u3
-    StrJoin s3, " ", s3
+  ExpToStr θAz, θt
+  StrJoin θs3,"       |",θs3
+  StrJoin θs3, θt, θs3
+  For 1⇒θi to θu-θu3
+    StrJoin θs3, " ", θs3
   Next
-  StrJoin s3, "|    |", s3
+  StrJoin θs3, "|    |", θs3
 
-  ExpToStr Bx, u1
-  ExpToStr By, u2
-  ExpToStr Bz, u3
-  StrLen u1, u1
-  StrLen u2, u2
-  StrLen u3, u3
-  max(u1, max(u2, u3)) ⇒ u
+  ExpToStr θBx, θu1
+  ExpToStr θBy, θu2
+  ExpToStr θBz, θu3
+  StrLen θu1, θu1
+  StrLen θu2, θu2
+  StrLen θu3, θu3
+  max(θu1, max(θu2, θu3)) ⇒ θu
 
-  ExpToStr Bx, t
-  StrJoin s1,t,s1
-  For 1⇒i to u-u1
-    StrJoin s1, " ", s1
+  ExpToStr θBx, θt
+  StrJoin θs1,θt,θs1
+  For 1⇒θi to θu-θu1
+    StrJoin θs1, " ", θs1
   Next
-  StrJoin s1, "|",s1
+  StrJoin θs1, "|",θs1
 
-  ExpToStr By, t
-  StrJoin s2,t,s2
-  For 1⇒i to u-u2
-    StrJoin s2, " ", s2
+  ExpToStr θBy, θt
+  StrJoin θs2,θt,θs2
+  For 1⇒θi to θu-θu2
+    StrJoin θs2, " ", θs2
   Next
-  StrJoin s2, "|",s2
+  StrJoin θs2, "|",θs2
 
-  ExpToStr Bz, t
-  StrJoin s3,t,s3
-  For 1⇒i to u-u3
-    StrJoin s3, " ", s3
+  ExpToStr θBz, θt
+  StrJoin θs3,θt,θs3
+  For 1⇒θi to θu-θu3
+    StrJoin θs3, " ", θs3
   Next
-  StrJoin s3, "|",s3
+  StrJoin θs3, "|",θs3
 
 
-  Print s1
-  Print s2
-  Print s3
+  Print θs1
+  Print θs2
+  Print θs3
 Goto gotog
 
 
 Lbl PrintAng
-  ExpToStr ang,s
-  StrJoin "∠ = (",s,s
-  StrJoin s,")°",s
-  Print s
-  NumToStr ang,f,s
-  StrJoin "  ≈ ",s,s
-  StrJoin s,"°",s
-  Print s
+  ExpToStr θang,θs
+  StrJoin "∠ = (",θs,θs
+  StrJoin θs,")°",θs
+  Print θs
+  NumToStr θang,θf,θs
+  StrJoin "  ≈ ",θs,θs
+  StrJoin θs,"°",θs
+  Print θs
 Goto gotog
 
 
@@ -712,36 +712,36 @@ Lbl InputP
   ClrText
   Print ""
 
-  StrJoin "Punkt ", name, s
-  StrJoin s, " = ( x | y | z )", s
-  Print s
-  Input x : Input y : Input z
+  StrJoin "Punkt ", θname, θs
+  StrJoin θs, " = ( x | y | z )", θs
+  Print θs
+  Input θx : Input θy : Input θz
 Goto gotog
 
 Lbl InputG
   ClrText
-  StrJoin "Gerade ", name, s
-  StrJoin s, ":", s
-  Print s
+  StrJoin "Gerade ", θname, θs
+  StrJoin θs, ":", θs
+  Print θs
   Print "    |Ax|   |Bx|"
   Print "x = |Ay| + |By|"
   Print "    |Az|   |Bz|"
-  Input Ax : Input Ay : Input Az
-  Input Bx : Input By : Input Bz
+  Input θAx : Input θAy : Input θAz
+  Input θBx : Input θBy : Input θBz
 Goto gotog
 
 Lbl InputE
   ClrText
-  StrJoin "Ebene ",name,s
-  StrJoin s,": ax + by + cz = D",s
-  Print s
-  Input a : Input b : Input c : Input D
+  StrJoin "Ebene ",θname,θs
+  StrJoin θs,": ax + by + cz = D",θs
+  Print θs
+  Input θa : Input θb : Input θc : Input θD
 Goto gotog
 
 
 'Return to Label
 Lbl gotog
-Switch g
+Switch θg
  Case 0:Goto g0
  Case 1:Goto g1
  Case 2:Goto g2

@@ -25,7 +25,7 @@ Print " E 1  2  3"
 Print " g 4  5  2"
 Print " P 6  4  1"
 Print ""
-Print "0 - Über L_PGE"
+Print "0 - Über L_PGE_P"
 
 Input Zahl
 
@@ -222,15 +222,11 @@ Switch Zahl
 
     Print ""
     Print "Schnittwinkel:"
-    90-angle([a,b,c],[Bx,By,Bz]) ⇒ ang
-    ExpToStr ang,s
-    StrJoin "∠ = (",s,s
-    StrJoin s,")°",s
-    Print s
-    NumToStr ang,f,s
-    StrJoin "  ≈ ",s,s
-    StrJoin s,"°",s
-    Print s
+
+    22⇒g
+    90-angle([a,b,c],[Bx,By,Bz])⇒ang
+    Goto PrintAng
+    Lbl g22
 
   IfEnd
 
@@ -342,15 +338,10 @@ Switch Zahl
 
     Print ""
     Print "Schnittwinkel:"
+    20⇒g
     angle(ven,vfn)⇒ang
-    ExpToStr ang,s
-    StrJoin "∠ = (",s,s
-    StrJoin s,")°",s
-    Print s
-    NumToStr ang,f,s
-    StrJoin "  ≈ ",s,s
-    StrJoin s,"°",s
-    Print s
+    Goto PrintAng
+    Lbl g20
 
   IfEnd
   Goto Ende
@@ -424,10 +415,21 @@ Switch Zahl
       "S"⇒name
       Goto PrintP
       Lbl g19
+  
+      Print ""
+      Print "Schnittwinkel:"
     Else
       Print "g ∦ h   ∧   g ⋂ h = Ø"
       Print "Geraden g und h sind windschief"
+      Print ""
+      Print "Ihr Winkel zu einander beträgt"
     IfEnd
+
+    21⇒g
+    angle([gBx,gBy,gBz],[hBx,hBy,hBz])⇒ang
+    Goto PrintAng
+    Lbl g21
+
   IfEnd
 
   Goto Ende
@@ -487,14 +489,28 @@ SwitchEnd
 
 'Ausgabemethoden
 Lbl PrintP
+  StrJoin " ", name, s
+  StrJoin s,"( ",s 
   ExpToStr x,t
-  StrJoin name,"( ",s 
   StrJoin s, t, s
   StrJoin s, " | ", s
   ExpToStr y,t
   StrJoin s, t, s
   StrJoin s, " | ", s
   ExpToStr z,t
+  StrJoin s, t, s
+  StrJoin s, " )", s
+  Print s
+
+  StrJoin "≈", name, s
+  StrJoin s,"( ",s 
+  NumToStr x,f,t
+  StrJoin s, t, s
+  StrJoin s, " | ", s
+  NumToStr y,f,t
+  StrJoin s, t, s
+  StrJoin s, " | ", s
+  NumToStr z,f,t
   StrJoin s, t, s
   StrJoin s, " )", s
   Print s
@@ -514,9 +530,94 @@ Lbl PrintE
   ExpToStr D,t
   StrJoin s, t, s
   Print s
+
+  ""⇒s
+  StrLen name, t
+  For 1⇒i to t
+    StrJoin s, " ", s
+  Next
+  StrJoin s," ≈",s
+  NumToStr a,f,t
+  StrJoin s, t, s
+  StrJoin s, "x + ", s
+  NumToStr b,f,t
+  StrJoin s, t, s
+  StrJoin s, "y + ", s
+  NumToStr c,f,t
+  StrJoin s, t, s
+  StrJoin s, "z = ", s
+  NumToStr D,f,t
+  StrJoin s, t, s
+  Print s
 Goto gotog
 
 Lbl PrintG
+  ""⇒s1:"‛"⇒s2:""⇒s3
+
+  NumToStr Ax, f, u1
+  NumToStr Ay, f, u2
+  NumToStr Az, f, u3
+  StrLen u1, u1
+  StrLen u2, u2
+  StrLen u3, u3
+  max(u1, max(u2, u3)) ⇒ u
+  
+  NumToStr Ax, f, t
+  StrJoin s1,"       |",s1
+  StrJoin s1, t, s1
+  For 1⇒i to u-u1
+    StrJoin s1, " ", s1
+  Next
+  StrJoin s1, "|    |", s1
+
+  StrJoin s2, name, s2
+  StrJoin s2,": x̅ ≈ |",s2
+  NumToStr Ay, f, t
+  StrJoin s2, t, s2
+  For 1⇒i to u-u2
+    StrJoin s2, " ", s2
+  Next
+  StrJoin s2, "| + λ|", s2
+
+  NumToStr Az, f, t
+  StrJoin s3,"       |",s3
+  StrJoin s3, t, s3
+  For 1⇒i to u-u3
+    StrJoin s3, " ", s3
+  Next
+  StrJoin s3, "|    |", s3
+
+  NumToStr Bx, f, u1
+  NumToStr By, f, u2
+  NumToStr Bz, f, u3
+  StrLen u1, u1
+  StrLen u2, u2
+  StrLen u3, u3
+  max(u1, max(u2, u3)) ⇒ u
+
+  NumToStr Bx, f, t
+  StrJoin s1,t,s1
+  For 0⇒i to u-u1
+    StrJoin s1, " ", s1
+  Next
+  StrJoin s1, "|",s1
+
+  NumToStr By, f, t
+  StrJoin s2,t,s2
+  For 0⇒i to u-u2
+    StrJoin s2, " ", s2
+  Next
+  StrJoin s2, "|",s2
+
+  NumToStr Bz, f, t
+  StrJoin s3,t,s3
+  For 0⇒i to u-u3
+    StrJoin s3, " ", s3
+  Next
+  StrJoin s3, "|",s3
+
+
+
   ExpToStr Ax, u1
   ExpToStr Ay, u2
   ExpToStr Az, u3
@@ -526,24 +627,28 @@ Lbl PrintG
   max(u1, max(u2, u3)) ⇒ u
   
   ExpToStr Ax, t
-  StrJoin "      |", t, s1
-  For 0⇒i to u-u1
+  StrJoin s1,"       |",s1
+  StrJoin s1, t, s1
+  For 1⇒i to u-u1
     StrJoin s1, " ", s1
   Next
-  StrJoin s1, "|   |", s1
-  StrJoin name,": x = |",s
+  StrJoin s1, "|    |", s1
+
+  StrJoin s2,"   x̅ = |",s2
   ExpToStr Ay, t
-  StrJoin s, t, s2
-  For 0⇒i to u-u2
+  StrJoin s2, t, s2
+  For 1⇒i to u-u2
     StrJoin s2, " ", s2
   Next
-  StrJoin s2, "| + |", s2
+  StrJoin s2, "| + λ|", s2
+
   ExpToStr Az, t
-  StrJoin "      |", t, s3
-  For 0⇒i to u-u3
+  StrJoin s3,"       |",s3
+  StrJoin s3, t, s3
+  For 1⇒i to u-u3
     StrJoin s3, " ", s3
   Next
-  StrJoin s3, "|   |", s3
+  StrJoin s3, "|    |", s3
 
   ExpToStr Bx, u1
   ExpToStr By, u2
@@ -559,12 +664,14 @@ Lbl PrintG
     StrJoin s1, " ", s1
   Next
   StrJoin s1, "|",s1
+
   ExpToStr By, t
   StrJoin s2,t,s2
   For 0⇒i to u-u2
     StrJoin s2, " ", s2
   Next
   StrJoin s2, "|",s2
+
   ExpToStr Bz, t
   StrJoin s3,t,s3
   For 0⇒i to u-u3
@@ -572,9 +679,22 @@ Lbl PrintG
   Next
   StrJoin s3, "|",s3
 
+
   Print s1
   Print s2
   Print s3
+Goto gotog
+
+
+Lbl PrintAng
+  ExpToStr ang,s
+  StrJoin "∠ = (",s,s
+  StrJoin s,")°",s
+  Print s
+  NumToStr ang,f,s
+  StrJoin "  ≈ ",s,s
+  StrJoin s,"°",s
+  Print s
 Goto gotog
 
 
@@ -633,6 +753,9 @@ Switch g
  Case 17:Goto g17
  Case 18:Goto g18
  Case 19:Goto g19
+ Case 20:Goto g20
+ Case 21:Goto g21
+ Case 22:Goto g22
  Default
   Goto Ende
 SwitchEnd

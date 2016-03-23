@@ -143,6 +143,7 @@ Switch Zahl
   
   2⇒g
   "g"⇒name
+  "λ"⇒λ
   Goto PrintG
   Lbl g2
   Print ""
@@ -243,6 +244,7 @@ Switch Zahl
   Print ""
   5⇒g
   "g"⇒name
+  "λ"⇒λ
   Goto PrintG
   Lbl g5
   Print ""
@@ -333,6 +335,7 @@ Switch Zahl
 
     17⇒g
     "g"⇒name
+    "λ"⇒λ
     Goto PrintG
     Lbl g17
 
@@ -354,6 +357,7 @@ Switch Zahl
   gAx⇒Ax : gAy⇒Ay : gAz⇒Az
   gBx⇒Bx : gBy⇒By : gBz⇒Bz  
   "g"⇒name
+  "λ"⇒λ
   Goto PrintG
   Lbl g18
   Print ""
@@ -362,6 +366,7 @@ Switch Zahl
   hAx⇒Ax : hAy⇒Ay : hAz⇒Az
   hBx⇒Bx : hBy⇒By : hBz⇒Bz 
   "h"⇒name
+  "κ"⇒λ
   Goto PrintG
   Lbl g14
   Print ""
@@ -433,6 +438,7 @@ Switch Zahl
   IfEnd
 
   Goto Ende
+
 
  Case 6
   Print "Punkt - Punkt"
@@ -571,7 +577,7 @@ Lbl PrintG
   StrJoin s1, "|    |", s1
 
   StrJoin s2, name, s2
-  StrJoin s2,": x̅ ≈ |",s2
+  StrJoin s2,": x ≈ |",s2
   NumToStr Ay, f, t
   StrJoin s2, t, s2
   For 1⇒i to u-u2
@@ -597,21 +603,21 @@ Lbl PrintG
 
   NumToStr Bx, f, t
   StrJoin s1,t,s1
-  For 0⇒i to u-u1
+  For 1⇒i to u-u1
     StrJoin s1, " ", s1
   Next
   StrJoin s1, "|",s1
 
   NumToStr By, f, t
   StrJoin s2,t,s2
-  For 0⇒i to u-u2
+  For 1⇒i to u-u2
     StrJoin s2, " ", s2
   Next
   StrJoin s2, "|",s2
 
   NumToStr Bz, f, t
   StrJoin s3,t,s3
-  For 0⇒i to u-u3
+  For 1⇒i to u-u3
     StrJoin s3, " ", s3
   Next
   StrJoin s3, "|",s3
@@ -633,14 +639,17 @@ Lbl PrintG
     StrJoin s1, " ", s1
   Next
   StrJoin s1, "|    |", s1
+  StrJoin s2,"   x = |",s2
 
-  StrJoin s2,"   x̅ = |",s2
   ExpToStr Ay, t
   StrJoin s2, t, s2
   For 1⇒i to u-u2
     StrJoin s2, " ", s2
   Next
-  StrJoin s2, "| + λ|", s2
+  StrJoin s2, "| + ", s2
+  StrJoin s2, λ, s2
+  StrJoin s2, "|", s2
+
 
   ExpToStr Az, t
   StrJoin s3,"       |",s3
@@ -660,21 +669,21 @@ Lbl PrintG
 
   ExpToStr Bx, t
   StrJoin s1,t,s1
-  For 0⇒i to u-u1
+  For 1⇒i to u-u1
     StrJoin s1, " ", s1
   Next
   StrJoin s1, "|",s1
 
   ExpToStr By, t
   StrJoin s2,t,s2
-  For 0⇒i to u-u2
+  For 1⇒i to u-u2
     StrJoin s2, " ", s2
   Next
   StrJoin s2, "|",s2
 
   ExpToStr Bz, t
   StrJoin s3,t,s3
-  For 0⇒i to u-u3
+  For 1⇒i to u-u3
     StrJoin s3, " ", s3
   Next
   StrJoin s3, "|",s3

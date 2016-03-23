@@ -80,12 +80,12 @@ Then
   
   If θZahl=3
   Then
-    θa⇒θEa : θb⇒θEb : θc⇒θEc : θD⇒θED
+    θa⇒θEa : θb⇒θEb : θic⇒θEc : θD⇒θED
     13 ⇒ θg
     "F"⇒θname
     Goto InputE
     Lbl g13
-    θa⇒θFa : θb⇒θFb : θc⇒θFc : θD⇒θFD
+    θa⇒θFa : θb⇒θFb : θic⇒θFc : θD⇒θFD
   IfEnd
 IfEnd
 
@@ -106,8 +106,8 @@ Switch θZahl
   Lbl g1
   Print ""
 
-  θx×θa + θy×θb + θz×θc - θD ⇒ θk
-  θa×θa + θb×θb + θc×θc ⇒ θl
+  θx×θa + θy×θb + θz×θic - θD ⇒ θk
+  θa×θa + θb×θb + θic×θic ⇒ θl
   abs(θk/√(θl)) ⇒ θd
 
   If θd=0 
@@ -153,8 +153,8 @@ Switch θZahl
   Lbl g3
   Print ""
  
-  θAx×θa + θAy×θb + θAz×θc - θD ⇒ θm
-  -(θBx×θa) - (θBy×θb) - (θBz×θc) ⇒ θn
+  θAx×θa + θAy×θb + θAz×θic - θD ⇒ θm
+  -(θBx×θa) - (θBy×θb) - (θBz×θic) ⇒ θn
 
   If θn=0 
   Then
@@ -169,7 +169,7 @@ Switch θZahl
       Print "Gerade g ist parallel zur Ebene E,"
       Print "liegt aber nicht darin"
   
-      θAx×θa + θAy×θb + θAz×θc - θD ⇒ θk
+      θAx×θa + θAy×θb + θAz×θic - θD ⇒ θk
       θAx×θAx + θAy×θAy + θAz×θAz ⇒ θl
       θk/√(θl) ⇒ θd
 
@@ -225,7 +225,7 @@ Switch θZahl
     Print "Schnittwinkel:"
 
     22⇒θg
-    90-angle([θa,θb,θc],[θBx,θBy,θBz])⇒θang
+    90-angle([θa,θb,θic],[θBx,θBy,θBz])⇒θang
     Goto PrintAng
     Lbl g22
 
@@ -285,14 +285,14 @@ Switch θZahl
   Print ""
 
   15⇒θg
-  θEa⇒θa : θEb⇒θb : θEc⇒θc : θED⇒θD 
+  θEa⇒θa : θEb⇒θb : θEc⇒θic : θED⇒θD 
   "E"⇒θname
   Goto PrintE
   Lbl g15
   Print ""
 
   16⇒θg
-  θFa⇒θa : θFb⇒θb : θFc⇒θc : θFD⇒θD 
+  θFa⇒θa : θFb⇒θb : θFc⇒θic : θFD⇒θD 
   "F"⇒θname
   Goto PrintE
   Lbl g16
@@ -530,7 +530,7 @@ Lbl PrintE
   ExpToStr θb,θt
   StrJoin θs, θt, θs
   StrJoin θs, ")y + (", θs
-  ExpToStr θc,θt
+  ExpToStr θic,θt
   StrJoin θs, θt, θs
   StrJoin θs, ")z = ", θs
   ExpToStr θD,θt
@@ -549,7 +549,7 @@ Lbl PrintE
   NumToStr θb,θf,θt
   StrJoin θs, θt, θs
   StrJoin θs, "y + ", θs
-  NumToStr θc,θf,θt
+  NumToStr θic,θf,θt
   StrJoin θs, θt, θs
   StrJoin θs, "z = ", θs
   NumToStr θD,θf,θt
@@ -577,7 +577,7 @@ Lbl PrintG
   StrJoin θs1, "|    |", θs1
 
   StrJoin θs2, θname, θs2
-  StrJoin θs2,": x ≈ |",θs2
+  StrJoin θs2,": x̅ ≈ |",θs2
   NumToStr θAy, θf, θt
   StrJoin θs2, θt, θs2
   For 1⇒θi to θu-θu2
@@ -639,7 +639,7 @@ Lbl PrintG
     StrJoin θs1, " ", θs1
   Next
   StrJoin θs1, "|    |", θs1
-  StrJoin θs2,"   x = |",θs2
+  StrJoin θs2,"   x̅ = |",θs2
 
   ExpToStr θAy, θt
   StrJoin θs2, θt, θs2
@@ -743,7 +743,7 @@ Lbl InputE
   Print θs
   Input θa, "a" 
   Input θb, "b"
-  Input θc, "c"
+  Input θic, "c"
   Input θD, "D"
 Goto gotog
 

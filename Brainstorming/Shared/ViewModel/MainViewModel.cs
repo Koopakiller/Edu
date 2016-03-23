@@ -1,15 +1,14 @@
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using Koopakiller.Apps.Brainstorming.Shared.ViewModel;
 using Shared.ViewModel;
 
 #if _SERVER
-using Koopakiller.Apps.Brainstorming.Server.ViewModel;
+namespace Koopakiller.Apps.Brainstorming.Server.ViewModel
 #elif _CLIENT
-using Koopakiller.Apps.Brainstorming.Client.ViewModel;
+namespace Koopakiller.Apps.Brainstorming.Client.ViewModel
 #endif
-
-namespace Koopakiller.Apps.Brainstorming.Shared.ViewModel
 {
     /// <summary>
     /// This class contains properties that the main View can data bind to.
@@ -23,27 +22,8 @@ namespace Koopakiller.Apps.Brainstorming.Shared.ViewModel
     /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
-    public class MainViewModel : ViewModelBase
+    public partial class MainViewModel : ViewModelBase
     {
-        /// <summary>
-        /// Initializes a new instance of the MainViewModel class.
-        /// </summary>
-        public MainViewModel()
-        {
-            ////if (IsInDesignMode)
-            ////{
-            ////    // Code runs in Blend --> create design time data.
-            ////}
-            ////else
-            ////{
-            ////    // Code runs "for real"
-            ////}
-
-            this.CurrentViewModel = this._startupViewModel;
-
-            this.AboutCommand = new RelayCommand(this.ExecuteAboutCommand);
-        }
-
         private ViewModelBase _currentViewModel;
         private ViewModelBase _messageViewModel;
 

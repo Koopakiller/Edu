@@ -7,18 +7,19 @@
              mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModel:StartupViewModel}"
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel Margin="8">
-        <Grid Margin="0" MinHeight="0">
-            <Grid.Style>
-                <Style TargetType="Grid">
+        <StackPanel Margin="0" MinHeight="0">
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding IsOnline}" Value="True">
                             <Setter Property="Visibility" Value="Hidden"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
-            </Grid.Style>
+            </StackPanel.Style>
             <TextBlock Text="Sie sind mit keinem Netzwerk verbunden"/>
-        </Grid>
+            <Button HorizontalAlignment="Left" Content="Aktualisieren" Command="{Binding UpdateCommand}"></Button>
+        </StackPanel>
         <Grid>
             <Grid.Style>
                 <Style TargetType="Grid">
@@ -33,6 +34,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="5"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -44,6 +46,8 @@
             <TextBox Grid.Row="0" Grid.Column="1" IsReadOnly="True" BorderThickness="1" Text="{Binding CurrentIP, Mode=OneWay}" HorizontalAlignment="Left" MinWidth="150"/>
             <TextBlock Grid.Row="2" Grid.Column="0" Text="Port: "/>
             <TextBox Grid.Row="2" Grid.Column="1" IsReadOnly="False" BorderThickness="1" Text="{Binding Port, Mode=TwoWay}" HorizontalAlignment="Left" MinWidth="150"/>
+            
+            <Button Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Left" Content="Server starten" Command="{Binding StartServerCommand}"/>
         </Grid>
     </StackPanel>
 </UserControl>

@@ -1,5 +1,4 @@
 using System.Net;
-using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Koopakiller.Apps.Brainstorming.Shared;

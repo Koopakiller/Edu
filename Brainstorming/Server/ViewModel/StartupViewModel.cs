@@ -1,7 +1,10 @@
+using System;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Windows.Input;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using Koopakiller.Apps.Brainstorming.Shared;
 
 namespace Koopakiller.Apps.Brainstorming.Server.ViewModel
@@ -18,6 +21,8 @@ namespace Koopakiller.Apps.Brainstorming.Server.ViewModel
             {
                 this.UpdateCurrentIP();
             }
+            this.UpdateCommand=new RelayCommand(this.UpdateCurrentIP);
+            this.StartServerCommand = new RelayCommand(()=>this.StartServer?.Invoke(this, EventArgs.Empty));
         }
 
         #region Fields
@@ -55,6 +60,9 @@ namespace Koopakiller.Apps.Brainstorming.Server.ViewModel
 
         public bool IsOnline => this.CurrentIP != null;
 
+        public ICommand UpdateCommand { get; }
+        public ICommand StartServerCommand { get; }
+
         #endregion
 
         // ReSharper disable once InconsistentNaming
@@ -63,5 +71,7 @@ namespace Koopakiller.Apps.Brainstorming.Server.ViewModel
             var host = Dns.GetHostEntry(Dns.GetHostName());
             this.CurrentIP = host.AddressList.FirstOrDefault(ip => ip.AddressFamily == AddressFamily.InterNetwork);
         }
+        
+        public event EventHandler<Model.Server> StartServer;
     }
 }

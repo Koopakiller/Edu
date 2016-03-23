@@ -123,7 +123,7 @@ Switch θZahl
     StrJoin " k = ",θt,θs
     Print θs
     ExpToStr θl,θt
-    StrJoin " l = ",t,s
+    StrJoin " l = ",θt,θs
     Print θs
 
     Print " d = | k : √l |"
@@ -253,7 +253,7 @@ Switch θZahl
   norm([θBx,θBy,θBz]) ⇒ θl
   abs(θk/θl) ⇒ θd
 
-  If d=0 
+  If θd=0 
   Then
     Print "P ∈ g"
     Print "Punkt liegt in Gerade"
@@ -392,9 +392,9 @@ Switch θZahl
     IfEnd  
   Else
 
-    -(θhAx×hBy - θhBx×hAy + θhBx×gAy - θgAx×hBy) / (θhBx×gBy - θgBx×hBy) ⇒ θv1
-    -(θhAy×hBz - θhBy×hAz + θhBy×gAz - θgAy×hBz) / (θhBy×gBz - θgBy×hBz) ⇒ θv2
-    -(θhAz×hBx - θhBz×hAx + θhBz×gAx - θgAz×hBx) / (θhBz×gBx - θgBz×hBx) ⇒ θv3
+    -(θhAx×θhBy - θhBx×θhAy + θhBx×θgAy - θgAx×θhBy) / (θhBx×θgBy - θgBx×θhBy) ⇒ θv1
+    -(θhAy×θhBz - θhBy×θhAz + θhBy×θgAz - θgAy×θhBz) / (θhBy×θgBz - θgBy×θhBz) ⇒ θv2
+    -(θhAz×θhBx - θhBz×θhAx + θhBz×θgAx - θgAz×θhBx) / (θhBz×θgBx - θgBz×θhBx) ⇒ θv3
 
     If θv1=θv2
     Then 

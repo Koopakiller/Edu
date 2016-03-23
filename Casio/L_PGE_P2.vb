@@ -33,7 +33,7 @@ Input θZahl
 If θZahl=1 Or θZahl=4 Or θZahl=6
 Then
   6 ⇒ θg
-  "P"⇒name
+  "P"⇒θname
   Goto InputP
   Lbl g6
 
@@ -90,7 +90,7 @@ Then
 IfEnd
 
 ClrText
-Switch Zahl
+Switch θZahl
  Case 1
   Print "Punkt - Ebene"
   Print ""

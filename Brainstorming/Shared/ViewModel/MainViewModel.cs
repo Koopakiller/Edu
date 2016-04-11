@@ -1,8 +1,6 @@
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.CommandWpf;
 using Koopakiller.Apps.Brainstorming.Shared.ViewModel;
-using Shared.ViewModel;
 
 #if _SERVER
 namespace Koopakiller.Apps.Brainstorming.Server.ViewModel
@@ -24,14 +22,22 @@ namespace Koopakiller.Apps.Brainstorming.Client.ViewModel
     /// </summary>
     public partial class MainViewModel : ViewModelBase
     {
-        private ViewModelBase _currentViewModel;
-        private ViewModelBase _messageViewModel;
+        private CurrentViewModelBase _currentViewModel;
+        private MessageViewModelBase _messageViewModel;
 
         private readonly StartupViewModel _startupViewModel = new StartupViewModel();
         private readonly AboutViewModel _aboutViewModel = new AboutViewModel();
 
+        void OnNavigationStarted(object sender, CurrentViewModelBase cvm)
+        {
+            this.CurrentViewModel = cvm;
+        }
+        void OnShowMessageStarted(object sender, MessageViewModelBase vm)
+        {
+            this.MessageViewModel = vm;
+        }
 
-        public ViewModelBase CurrentViewModel
+        public CurrentViewModelBase CurrentViewModel
         {
             get
             {
@@ -41,12 +47,23 @@ namespace Koopakiller.Apps.Brainstorming.Client.ViewModel
             {
                 if (this._currentViewModel == value) { return; }
 
+                if (this._currentViewModel != null)
+                {
+                    this._currentViewModel.NavigationStarted -= this.OnNavigationStarted;
+                    this._currentViewModel.ShowMessageStarted -= this.OnShowMessageStarted;
+                }
+
                 this._currentViewModel = value;
+                if (this._currentViewModel != null)
+                {
+                    this._currentViewModel.NavigationStarted += this.OnNavigationStarted;
+                    this._currentViewModel.ShowMessageStarted += this.OnShowMessageStarted;
+                }
                 this.RaisePropertyChanged();
             }
         }
 
-        public ViewModelBase MessageViewModel
+        public MessageViewModelBase MessageViewModel
         {
             get
             {
@@ -55,8 +72,15 @@ namespace Koopakiller.Apps.Brainstorming.Client.ViewModel
             set
             {
                 if (this._messageViewModel == value) { return; }
+                if (this._messageViewModel != null)
+                {
+                    this._messageViewModel.Close -= this.MessageViewModelClose;
 
-                this._messageViewModel = value;
+                }
+                this._messageViewModel = value; if (this._messageViewModel != null)
+                {
+                    this._messageViewModel.Close += this.MessageViewModelClose;
+                }
                 this.RaisePropertyChanged();
             }
         }
@@ -66,13 +90,11 @@ namespace Koopakiller.Apps.Brainstorming.Client.ViewModel
 
         public void ExecuteAboutCommand()
         {
-            this._aboutViewModel.Close += this.AboutViewModelClose;
             this.MessageViewModel = this._aboutViewModel;
         }
 
-        private void AboutViewModelClose(MessageViewModelBase<AboutViewModel> sender)
+        private void MessageViewModelClose(MessageViewModelBase sender)
         {
-            this._aboutViewModel.Close -= this.AboutViewModelClose;
             this.MessageViewModel = null;
         }
     }

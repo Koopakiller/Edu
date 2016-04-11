@@ -1,11 +1,12 @@
+using System;
 using System.Net;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Koopakiller.Apps.Brainstorming.Shared;
+using Koopakiller.Apps.Brainstorming.Shared.ViewModel;
 
 namespace Koopakiller.Apps.Brainstorming.Client.ViewModel
 {
-    public class StartupViewModel : ViewModelBase
+    public class StartupViewModel : CurrentViewModelBase
     {
         public StartupViewModel()
         {
@@ -13,9 +14,14 @@ namespace Koopakiller.Apps.Brainstorming.Client.ViewModel
             {
                 this.ServerIP = new IPAddress(new byte[] { 12, 34, 56, 78 });
             }
+            else
+            {
+                this.ServerIP = NetworkHelper.GetCurrentIP();
+            }
 
-            this.ConnectCommand = new RelayCommand(this.OnConnectToServer, ()=>!this.IsConnected);
+            this.ConnectCommand = new RelayCommand(this.OnConnectToServer, () => !this.IsConnected);
         }
+     
 
         #region Fields
 
@@ -62,15 +68,27 @@ namespace Koopakiller.Apps.Brainstorming.Client.ViewModel
 
         #region Commands
 
-        public RelayCommand ConnectCommand { get; set; }
+        public RelayCommand ConnectCommand { get; }
 
         #endregion
 
         #endregion
 
-        public void OnConnectToServer()
+        private async void OnConnectToServer()
         {
-            this.IsConnected = true;
+            try
+            {
+                this.IsConnected = true;
+                var client = new Model.Client(this.ServerIP, this.Port);
+            var topic=    await client.Connect();
+                this.NavigateToViewModel(new SendViewModel() { Client = client , Topic=topic});
+            }
+            catch (Exception ex)
+            {
+                this.ShowMessage("Fehler beim Verbinden",
+                     $"Das Verbinden mit dem Server ist fehlgeschlagen.\n\nTechnische Informationen:\n{ex.Message}");
+                this.IsConnected = false;
+            }
         }
     }
 }

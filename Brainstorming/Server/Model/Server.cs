@@ -1,61 +1,58 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
-using System.Net.Sockets;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace Koopakiller.Apps.Brainstorming.Server.Model
 {
     public class Server
     {
-        private const int BufferSize = 256;
+        private MyTcpListener _server;
 
-        private readonly TcpListener _server;
-        private readonly Encoding _encoding = Encoding.Unicode;
+        // ReSharper disable once InconsistentNaming
+        public IPAddress IPAddress { get; }
+        public int Port { get; }
 
         public Server(IPAddress ip, int port)
         {
-            this._server = new TcpListener(ip, port);
+            this.IPAddress = ip;
+            this.Port = port;
         }
 
-        public async Task Start(CancellationToken token)
+        public string WelcomeMessage { get; set; } = string.Empty;
+
+        public void Start(CancellationToken token)
         {
+            this._server = new MyTcpListener(this.IPAddress, this.Port);
             this._server.Start();
+            this.WaitForClientConnect();
+        }
 
-            while (true)
-            {
-                var client = this._server.AcceptTcpClient();
+        private void WaitForClientConnect()
+        {
+            this._server.BeginAcceptTcpClient(this.OnClientConnect, this._server);
+        }
 
-                await Task.Run(() =>
-                {
-                    try
-                    {
-                        var bytes = new byte[BufferSize];
-                        // Get a stream object for reading and writing
-                        using (var stream = client.GetStream())
-                        {
-                            int i;
-                            var sb = new StringBuilder();
-                            while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
-                            {
-                                sb.Append(this._encoding.GetString(bytes, 0, i));
+        private readonly List<ClientHandler> _clientHandlers = new List<ClientHandler>();
 
-                                //  var msg = this._encoding.GetBytes(data);
+        private void OnClientConnect(IAsyncResult asyn)
+        {
+            if (asyn.AsyncState == null || !((MyTcpListener)asyn.AsyncState).Active) return;
 
-                                //  stream.Write(msg, 0, msg.Length);
-                            }
-                            this.DataReceived?.Invoke(this, sb.ToString());
-                        }
-                    }
-                    finally
-                    {
-                        client.Close();
-                        client.Dispose();
-                    }
-                }, token);
+            var client = ((MyTcpListener)asyn.AsyncState).EndAcceptTcpClient(asyn);
 
-            }
+            var x = new ClientHandler(client);
+            this._clientHandlers.Add(x);
+            x.WelcomeMessage = this.WelcomeMessage;
+            x.DataReceived += this.x_DataReceived;
+            x.StartWaitForRequest();
+
+            this.WaitForClientConnect();
+        }
+
+        private void x_DataReceived(object sender, string e)
+        {
+            this.DataReceived?.Invoke(sender, e);
         }
 
         public event EventHandler<string> DataReceived;

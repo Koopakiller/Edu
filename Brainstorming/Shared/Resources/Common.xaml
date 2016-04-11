@@ -4,9 +4,12 @@
     xmlns:svm="clr-namespace:Koopakiller.Apps.Brainstorming.Shared.ViewModel"
     xmlns:sviews="clr-namespace:Koopakiller.Apps.Brainstorming.Shared.Views"
     xmlns:converter="clr-namespace:Koopakiller.Apps.Brainstorming.Shared.Converter">
-    
+
     <DataTemplate DataType="{x:Type svm:AboutViewModel}">
         <sviews:AboutView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type svm:MessageBoxViewModel}">
+        <sviews:MessageBoxView />
     </DataTemplate>
 
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>

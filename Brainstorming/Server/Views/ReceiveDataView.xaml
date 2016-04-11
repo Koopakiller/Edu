@@ -3,10 +3,93 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Koopakiller.Apps.Brainstorming.Server.Views"
-             mc:Ignorable="d" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:vm="clr-namespace:Koopakiller.Apps.Brainstorming.Server.ViewModel"
+             xmlns:ui="clr-namespace:Koopakiller.Apps.Brainstorming.Shared.UI"
+             xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance vm:ReceiveDataViewModel}"
              d:DesignHeight="300" d:DesignWidth="300">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding Path=StartServerCommand, Mode=OneWay}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0">
+            <Run Text="Thema: "/>
+            <Run FontWeight="Bold" Text="{Binding Topic}"/>
+        </TextBlock>
+        <TextBlock Grid.Row="1">
+            <Run Text="Server IP Adresse/Port: "/>
+            <Run Text="{Binding ServerAddress, Mode=OneWay}"/>
+            <Run Text=" : "/>
+            <Run Text="{Binding Port, Mode=OneWay}"/>
+        </TextBlock>
+
+        <TabControl Grid.Row="2">
+            <TabItem Header="Tabelle">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <ListView Grid.Row="0" ui:ListViewSort.SortAtHeaderClick="true" ItemsSource="{Binding Suggestions}" Name="ListView">
+                        <ListView.View>
+                            <GridView>
+                                <GridView.Columns>
+                                    <GridViewColumn Header="Vorschlag" DisplayMemberBinding="{Binding SuggestionItems[0].Text}"/>
+                                    <GridViewColumn Header="Anzahl" DisplayMemberBinding="{Binding Count}"/>
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Content="Ausgewählte Begriffe zu einem gruppieren" Command="{Binding GroupItemsCommand}" CommandParameter="{Binding SelectedItems, ElementName=ListView}"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Säulendiagramm">
+                <chartingToolkit:Chart DataContext="{Binding Suggestions}">
+                    <chartingToolkit:Chart.LegendStyle>
+                        <Style TargetType="FrameworkElement" >
+                            <Setter Property="Width" Value="0" />
+                        </Style>
+                    </chartingToolkit:Chart.LegendStyle>
+                    <chartingToolkit:Chart.Series>
+                        <chartingToolkit:ColumnSeries ItemsSource="{Binding}" IndependentValueBinding="{Binding SuggestionItems[0].Text}" DependentValueBinding="{Binding Count}"/>
+                    </chartingToolkit:Chart.Series>
+                </chartingToolkit:Chart>
+            </TabItem>
+            <TabItem Header="Kreisdiagramm">
+                <chartingToolkit:Chart DataContext="{Binding Suggestions}">
+                    <chartingToolkit:Chart.Series>
+                        <chartingToolkit:PieSeries ItemsSource="{Binding}" IndependentValueBinding="{Binding SuggestionItems[0].Text}" DependentValueBinding="{Binding Count}"/>
+                    </chartingToolkit:Chart.Series>
+                </chartingToolkit:Chart>
+            </TabItem>
+        </TabControl>
+
     </Grid>
 </UserControl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

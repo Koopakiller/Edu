@@ -3,15 +3,15 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 
-namespace Shared.ViewModel
+namespace Koopakiller.Apps.Brainstorming.Shared.ViewModel
 {
-    public class MessageViewModelBase<T> : ViewModelBase where T : MessageViewModelBase<T>
+    public class MessageViewModelBase : ViewModelBase 
     {
         public MessageViewModelBase()
         {
             this.CloseCommand = new RelayCommand(this.RaiseClose);
         }
-        public event Action<MessageViewModelBase<T>> Close;
+        public event Action<MessageViewModelBase> Close;
 
         protected void RaiseClose()
         {

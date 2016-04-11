@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Reflection;
-using Shared.ViewModel;
 
 namespace Koopakiller.Apps.Brainstorming.Shared.ViewModel
 {
-    public class AboutViewModel : MessageViewModelBase<AboutViewModel>
+    public class AboutViewModel : MessageViewModelBase
     {
         public AboutViewModel()
         {

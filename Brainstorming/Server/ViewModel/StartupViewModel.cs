@@ -1,18 +1,18 @@
 using System;
-using System.Linq;
 using System.Net;
-using System.Net.Sockets;
 using System.Windows.Input;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Koopakiller.Apps.Brainstorming.Shared;
+using Koopakiller.Apps.Brainstorming.Shared.ViewModel;
 
 namespace Koopakiller.Apps.Brainstorming.Server.ViewModel
 {
-    public class StartupViewModel : ViewModelBase
+    public class StartupViewModel : CurrentViewModelBase
     {
         public StartupViewModel()
         {
+            this.UpdateCommand = new RelayCommand(this.UpdateCurrentIP);
+            this.StartServerCommand = new RelayCommand(this.OnStartServer, this.IsDataValid);
             if (this.IsInDesignMode)
             {
                 this.CurrentIP = new IPAddress(new byte[] { 12, 34, 56, 78 });
@@ -21,15 +21,32 @@ namespace Koopakiller.Apps.Brainstorming.Server.ViewModel
             {
                 this.UpdateCurrentIP();
             }
-            this.UpdateCommand=new RelayCommand(this.UpdateCurrentIP);
-            this.StartServerCommand = new RelayCommand(()=>this.StartServer?.Invoke(this, EventArgs.Empty));
+        }
+
+        private bool IsDataValid()
+        {
+            return !string.IsNullOrWhiteSpace(this.Topic) && this.CurrentIP != null&&this.Port!=null;
+        }
+        // ReSharper disable once InconsistentNaming
+        private void UpdateCurrentIP()
+        {
+            this.CurrentIP = NetworkHelper.GetCurrentIP();
+        }
+
+        private void OnStartServer()
+        {
+            var server = new Model.Server(this.CurrentIP, (int)this.Port) { WelcomeMessage = this.Topic };
+            this.StartServer?.Invoke(this, server);
+
+            this.NavigateToViewModel(new ReceiveDataViewModel(server) { Topic = this.Topic });
         }
 
         #region Fields
 
         // ReSharper disable once InconsistentNaming
         private IPAddress _currentIP;
-        private int _port = Constants.StandardPort;
+        private int? _port = Constants.StandardPort;
+        private string _topic;
 
         #endregion
 
@@ -45,10 +62,11 @@ namespace Koopakiller.Apps.Brainstorming.Server.ViewModel
                 this.RaisePropertyChanged();
                 // ReSharper disable once ExplicitCallerInfoArgument
                 this.RaisePropertyChanged(nameof(this.IsOnline));
+                this.StartServerCommand.RaiseCanExecuteChanged();
             }
         }
 
-        public int Port
+        public int? Port
         {
             get { return this._port; }
             set
@@ -58,20 +76,24 @@ namespace Koopakiller.Apps.Brainstorming.Server.ViewModel
             }
         }
 
+        public string Topic
+        {
+            get { return this._topic; }
+            set
+            {
+                this._topic = value;
+                this.RaisePropertyChanged();
+                this.StartServerCommand.RaiseCanExecuteChanged();
+            }
+        }
+
         public bool IsOnline => this.CurrentIP != null;
 
         public ICommand UpdateCommand { get; }
-        public ICommand StartServerCommand { get; }
+        public RelayCommand StartServerCommand { get; }
 
         #endregion
 
-        // ReSharper disable once InconsistentNaming
-        private void UpdateCurrentIP()
-        {
-            var host = Dns.GetHostEntry(Dns.GetHostName());
-            this.CurrentIP = host.AddressList.FirstOrDefault(ip => ip.AddressFamily == AddressFamily.InterNetwork);
-        }
-        
         public event EventHandler<Model.Server> StartServer;
     }
 }

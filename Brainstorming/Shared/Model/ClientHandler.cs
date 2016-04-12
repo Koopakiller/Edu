@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
-using Koopakiller.Apps.Brainstorming.Shared;
 
-namespace Koopakiller.Apps.Brainstorming.Server.Model
+namespace Koopakiller.Apps.Brainstorming.Shared.Model
 {
     public class ClientHandler
     {
@@ -62,6 +61,12 @@ namespace Koopakiller.Apps.Brainstorming.Server.Model
         {
             this._isClosed = true;
             this._networkStream.Close();
+        }
+
+        public void SendData(string data)
+        {
+            var bytes = Constants.Encoding.GetBytes(data);
+            this._networkStream.Write(bytes, 0, bytes.Length);
         }
     }
 }

@@ -3,7 +3,7 @@
     /// <summary>
     /// Interaction logic for ReceiveDataView.xaml
     /// </summary>
-    public partial class ReceiveDataView 
+    public partial class ReceiveDataView
     {
         public ReceiveDataView()
         {

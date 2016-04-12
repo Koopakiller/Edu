@@ -1,10 +1,32 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 
 namespace Koopakiller.Apps.Brainstorming.Shared.ViewModel
 {
     public class CurrentViewModelBase : ViewModelBase
     {
+        public CurrentViewModelBase()
+        {
+            this.MenuItems.Add(new MenuItemViewModel("Hilfe")
+            {
+                SubItems =
+                {
+                    new MenuItemViewModel("Über")
+                    {
+                        Command = new RelayCommand(this.OnShowAbout),
+                    }
+                }
+            });
+        }
+
+        private void OnShowAbout()
+        {
+            this.ShowMessage(new AboutViewModel());
+        }
+
         protected void NavigateToViewModel(CurrentViewModelBase viewModel)
         {
             this.NavigationStarted?.Invoke(this, viewModel);
@@ -23,6 +45,6 @@ namespace Koopakiller.Apps.Brainstorming.Shared.ViewModel
 
         internal event EventHandler<MessageViewModelBase> ShowMessageStarted;
 
-        
+        public IList<MenuItemViewModel> MenuItems { get; } = new ObservableCollection<MenuItemViewModel>();
     }
 }

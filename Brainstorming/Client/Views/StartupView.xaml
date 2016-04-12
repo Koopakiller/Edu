@@ -6,7 +6,7 @@
              xmlns:viewModel="clr-namespace:Koopakiller.Apps.Brainstorming.Client.ViewModel"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModel:StartupViewModel}"
              d:DesignHeight="300" d:DesignWidth="300">
-    <StackPanel Margin="8">
+    <StackPanel >
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -28,7 +28,7 @@
             <TextBlock Grid.Row="2" Grid.Column="0" Text="Port: "/>
             <TextBox Grid.Row="2" Grid.Column="1" IsReadOnly="False" BorderThickness="1" Text="{Binding Port, Mode=TwoWay}" HorizontalAlignment="Left" MinWidth="150"/>
 
-            <Button Content="Verbinden" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Right" Padding="10 5 10 5" Command="{Binding ConnectCommand}"/>
+            <Button Content="Verbinden" Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="0" Command="{Binding ConnectCommand}"/>
 
         </Grid>
     </StackPanel>

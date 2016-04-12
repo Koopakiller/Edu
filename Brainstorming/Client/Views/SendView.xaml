@@ -13,7 +13,9 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="5"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="5"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -21,8 +23,12 @@
             <Run Text="Thema: "/>
             <Run Text="{Binding Topic}" FontWeight="Bold"/>
         </TextBlock>
-        <TextBox Grid.Row="1" Text="{Binding Text}"/>
-        <Button Command="{Binding SendCommand}" Grid.Row="1" Grid.Column="1" Content="Senden"/>
-        <CheckBox IsChecked="{Binding ClearTextAfterSend, Mode=TwoWay}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Content="Text nach dem Senden löschen"/>
+        <TextBox Grid.Row="2" Grid.Column="0" Text="{Binding Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+            <TextBox.InputBindings>
+                <KeyBinding Command="{Binding SendCommand}" Key="Return" />
+            </TextBox.InputBindings>
+        </TextBox>
+        <Button Command="{Binding SendCommand}" Grid.Row="2" Grid.Column="1" Content="Senden"/>
+        <CheckBox IsChecked="{Binding ClearTextAfterSend, Mode=TwoWay}" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Content="Text nach dem Senden löschen"/>
     </Grid>
 </UserControl>

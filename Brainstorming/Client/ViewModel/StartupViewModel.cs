@@ -21,7 +21,7 @@ namespace Koopakiller.Apps.Brainstorming.Client.ViewModel
 
             this.ConnectCommand = new RelayCommand(this.OnConnectToServer, () => !this.IsConnected);
         }
-     
+
 
         #region Fields
 
@@ -79,9 +79,9 @@ namespace Koopakiller.Apps.Brainstorming.Client.ViewModel
             try
             {
                 this.IsConnected = true;
-                var client = new Model.Client(this.ServerIP, this.Port);
-            var topic=    await client.Connect();
-                this.NavigateToViewModel(new SendViewModel() { Client = client , Topic=topic});
+                var client = new Shared.Model.Client(this.ServerIP, this.Port);
+                var topic = await client.Connect();
+                this.NavigateToViewModel(new SendViewModel() { Client = client, Topic = topic });
             }
             catch (Exception ex)
             {

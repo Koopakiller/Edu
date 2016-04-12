@@ -35,7 +35,7 @@ namespace Koopakiller.Apps.Brainstorming.Server.ViewModel
 
         private void OnStartServer()
         {
-            var server = new Model.Server(this.CurrentIP, (int)this.Port) { WelcomeMessage = this.Topic };
+            var server = new Shared.Model.Server(this.CurrentIP, (int)this.Port) { WelcomeMessage = this.Topic };
             this.StartServer?.Invoke(this, server);
 
             this.NavigateToViewModel(new ReceiveDataViewModel(server) { Topic = this.Topic });
@@ -94,6 +94,6 @@ namespace Koopakiller.Apps.Brainstorming.Server.ViewModel
 
         #endregion
 
-        public event EventHandler<Model.Server> StartServer;
+        public event EventHandler<Shared.Model.Server> StartServer;
     }
 }

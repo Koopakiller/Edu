@@ -3,22 +3,28 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModel="clr-namespace:Koopakiller.Apps.Brainstorming.Shared.ViewModel"
         mc:Ignorable="d" DataContext="{Binding Main, Source={StaticResource Locator}}"
-        Title="Client" Height="350" Width="525">
+        Title="Client" Height="350" Width="525" Icon="client icon.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Menu >
-            <MenuItem Header="Client"/>
-            <MenuItem Header="Hilfe">
-                <MenuItem Header="Über" Command="{Binding AboutCommand}"/>
-            </MenuItem>
+        <Menu ItemsSource="{Binding Path=CurrentViewModel.MenuItems}">
+            <Menu.Resources>
+                <Style TargetType="{x:Type MenuItem}" d:DataContext="{d:DesignInstance viewModel:MenuItemViewModel}">
+                    <Setter Property="Header" Value="{Binding Header}"/>
+                    <Setter Property="Command" Value="{Binding Command}"/>
+                    <Setter Property="ItemsSource" Value="{Binding SubItems}"/>
+                    <Setter Property="IsChecked" Value="{Binding IsChecked}"/>
+                    <Setter Property="IsCheckable" Value="{Binding IsCheckable}"/>
+                </Style>
+            </Menu.Resources>
         </Menu>
 
-        <ContentControl Grid.Row="1" Content="{Binding CurrentViewModel}" />
+        <ContentControl Margin="10" Grid.Row="1" Content="{Binding CurrentViewModel}" />
 
         <Border Grid.Row="0" Grid.RowSpan="2" Background="#40000000" Padding="20">
             <Border.Style>

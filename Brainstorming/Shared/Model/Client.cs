@@ -1,11 +1,11 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
-using Koopakiller.Apps.Brainstorming.Shared;
 
-namespace Koopakiller.Apps.Brainstorming.Client.Model
+namespace Koopakiller.Apps.Brainstorming.Shared.Model
 {
     public class Client : IDisposable
     {
@@ -32,7 +32,16 @@ namespace Koopakiller.Apps.Brainstorming.Client.Model
             {
                 sb.Append(Constants.Encoding.GetString(bytes, 0, i));
             }
+
+            await Task.Run(() =>
+            {
+                var reader = new StreamReader(stream);
+                var text = reader.ReadToEndAsync();
+            });
+
             return sb.ToString();
+
+
 
         }
 

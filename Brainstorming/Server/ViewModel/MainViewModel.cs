@@ -7,9 +7,6 @@ namespace Koopakiller.Apps.Brainstorming.Server.ViewModel
         public MainViewModel()
         {
             this.CurrentViewModel = this._startupViewModel;
-
-            this.AboutCommand = new RelayCommand(this.ExecuteAboutCommand);
-            
         }
     }
 }

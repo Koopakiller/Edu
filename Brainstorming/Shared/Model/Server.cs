@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading;
 
-namespace Koopakiller.Apps.Brainstorming.Server.Model
+namespace Koopakiller.Apps.Brainstorming.Shared.Model
 {
     public class Server
     {
@@ -12,6 +12,8 @@ namespace Koopakiller.Apps.Brainstorming.Server.Model
         // ReSharper disable once InconsistentNaming
         public IPAddress IPAddress { get; }
         public int Port { get; }
+
+        public bool IsStopped { get; set; }
 
         public Server(IPAddress ip, int port)
         {
@@ -52,9 +54,20 @@ namespace Koopakiller.Apps.Brainstorming.Server.Model
 
         private void x_DataReceived(object sender, string e)
         {
-            this.DataReceived?.Invoke(sender, e);
+            if (!this.IsStopped)
+            {
+                this.DataReceived?.Invoke(sender, e);
+            }
         }
 
         public event EventHandler<string> DataReceived;
+
+        public void SendData(string data)
+        {
+            foreach (var client in this._clientHandlers)
+            {
+                client.SendData(data);
+            }
+        }
     }
 }

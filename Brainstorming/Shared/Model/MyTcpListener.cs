@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Net.Sockets;
 
-namespace Koopakiller.Apps.Brainstorming.Server.Model
+namespace Koopakiller.Apps.Brainstorming.Shared.Model
 {
     public class MyTcpListener : TcpListener
     {

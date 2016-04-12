@@ -6,7 +6,7 @@
              xmlns:viewModel="clr-namespace:Koopakiller.Apps.Brainstorming.Server.ViewModel"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModel:StartupViewModel}"
              d:DesignHeight="300" d:DesignWidth="300">
-    <StackPanel Margin="8">
+    <StackPanel >
         <StackPanel Margin="0" MinHeight="0">
             <StackPanel.Style>
                 <Style TargetType="StackPanel">

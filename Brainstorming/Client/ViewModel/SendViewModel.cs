@@ -12,7 +12,7 @@ namespace Koopakiller.Apps.Brainstorming.Client.ViewModel
             this.SendCommand = new RelayCommand(this.OnSend);
         }
 
-        public Model.Client Client { get; set; }
+        public Shared.Model.Client Client { get; set; }
 
         public string Topic
         {

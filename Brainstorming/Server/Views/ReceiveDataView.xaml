@@ -63,7 +63,7 @@
                         </Style>
                     </chartingToolkit:Chart.LegendStyle>
                     <chartingToolkit:Chart.Series>
-                        <chartingToolkit:ColumnSeries ItemsSource="{Binding}" IndependentValueBinding="{Binding SuggestionItems[0].Text}" DependentValueBinding="{Binding Count}"/>
+                        <chartingToolkit:ColumnSeries ItemsSource="{Binding}" IndependentValueBinding="{Binding SuggestionItems[0].Text}" DependentValueBinding="{Binding Count}" />
                     </chartingToolkit:Chart.Series>
                 </chartingToolkit:Chart>
             </TabItem>

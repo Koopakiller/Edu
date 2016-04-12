@@ -1,4 +1,3 @@
-using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using Koopakiller.Apps.Brainstorming.Shared.ViewModel;
 
@@ -26,7 +25,6 @@ namespace Koopakiller.Apps.Brainstorming.Client.ViewModel
         private MessageViewModelBase _messageViewModel;
 
         private readonly StartupViewModel _startupViewModel = new StartupViewModel();
-        private readonly AboutViewModel _aboutViewModel = new AboutViewModel();
 
         void OnNavigationStarted(object sender, CurrentViewModelBase cvm)
         {
@@ -84,14 +82,7 @@ namespace Koopakiller.Apps.Brainstorming.Client.ViewModel
                 this.RaisePropertyChanged();
             }
         }
-
-
-        public ICommand AboutCommand { get; }
-
-        public void ExecuteAboutCommand()
-        {
-            this.MessageViewModel = this._aboutViewModel;
-        }
+        
 
         private void MessageViewModelClose(MessageViewModelBase sender)
         {

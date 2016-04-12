@@ -11,11 +11,16 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Constants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\IPAddressToStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Client.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\ClientHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\MyTcpListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Server.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NetworkHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\ListViewSort.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\AboutViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CurrentViewModelBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MenuItemViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MessageBoxViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MessageViewModelBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\AboutView.xaml.cs">

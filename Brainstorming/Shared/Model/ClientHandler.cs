@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
 
@@ -30,27 +31,34 @@ namespace Koopakiller.Apps.Brainstorming.Shared.Model
 
         private void ReadCallback(IAsyncResult result)
         {
-            if (this._isClosed)
+            try
             {
-                this._clientSocket.Close();
-                return;
-            }
-            var networkStream = this._clientSocket.GetStream();
+                if (this._isClosed)
+                {
+                    this._clientSocket.Close();
+                    return;
+                }
+                var networkStream = this._clientSocket.GetStream();
 
-            var read = networkStream.EndRead(result);
-            if (read == 0)
+                var read = networkStream.EndRead(result);
+                if (read == 0)
+                {
+                    this._networkStream.Close();
+                    this._clientSocket.Close();
+                    return;
+                }
+
+                var buffer = (byte[]) result.AsyncState;
+                var data = Constants.Encoding.GetString(buffer, 0, read);
+
+                this.DataReceived?.Invoke(((IPEndPoint) this._clientSocket.Client.RemoteEndPoint).Address, data);
+
+                this.WaitForRequest();
+            }
+            catch (Exception ex)
             {
-                this._networkStream.Close();
-                this._clientSocket.Close();
-                return;
+                Debug.WriteLine("Error: "+ex.Message);
             }
-
-            var buffer = (byte[])result.AsyncState;
-            var data = Constants.Encoding.GetString(buffer, 0, read);
-
-            this.DataReceived?.Invoke(((IPEndPoint)this._clientSocket.Client.RemoteEndPoint).Address, data);
-
-            this.WaitForRequest();
         }
 
         public event EventHandler<string> DataReceived;

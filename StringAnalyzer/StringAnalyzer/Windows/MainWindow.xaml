@@ -49,8 +49,8 @@
                         </Style>
                     </WrapPanel.Resources>
                     <CheckBox Content="Zeilenumbrüche ignorieren" IsChecked="{Binding IgnoreLinebreaks, Mode=TwoWay}"/>
-                    <CheckBox Content="Tabulatoren ignorieren" IsChecked="{Binding IgnoreLinebreaks, Mode=TwoWay}"/>
-                    <CheckBox Content="Leerzeichen ignorieren" IsChecked="{Binding IgnoreLinebreaks, Mode=TwoWay}"/>
+                    <CheckBox Content="Tabulatoren ignorieren" IsChecked="{Binding IgnoreTabs, Mode=TwoWay}"/>
+                    <CheckBox Content="Leerzeichen ignorieren" IsChecked="{Binding IgnoreSpaces, Mode=TwoWay}"/>
                 </WrapPanel>
             </GroupBox>
             <GroupBox Header="Teilzeichenfolge hervorheben" Visibility="{Binding IsChecked, ElementName=ShowHighlightText, Converter={StaticResource BooleanToVisibilityConverter}}">

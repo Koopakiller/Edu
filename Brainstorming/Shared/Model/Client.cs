@@ -58,7 +58,6 @@ namespace Koopakiller.Apps.Brainstorming.Shared.Model
         {
             this._client.GetStream().Close();
             this._client.Close();
-            this._client.Dispose();
         }
     }
 }

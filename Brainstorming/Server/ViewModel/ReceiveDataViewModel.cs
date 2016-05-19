@@ -34,10 +34,10 @@ namespace Koopakiller.Apps.Brainstorming.Server.ViewModel
                     {
                         Command =new RelayCommand(this.OnPrintAnalysis),
                     },
-                    new MenuItemViewModel("Daten an Clients senden")
-                    {
-                        Command =new RelayCommand(this.OnSendAnalysisToClients),
-                    },
+                    //new MenuItemViewModel("Daten an Clients senden")
+                    //{
+                    //    Command =new RelayCommand(this.OnSendAnalysisToClients),
+                    //},
                 },
             });
             this.MenuItems.Insert(0, new MenuItemViewModel("Server")

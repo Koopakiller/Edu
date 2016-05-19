@@ -135,22 +135,5 @@ namespace StringAnalyzer.Helper
                 yield return length;
             }
         }
-
-        public void DoSome()
-        {
-            //Unbedingt noch die Übersetzungen einfügen ;)
-
-            Console.WriteLine("Hello World!");
-            Console.ReadKey();
-
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            for (int i = 0; i < 10; ++i)
-            {
-                for (int j = 0; j < 10; ++j)
-                {
-                    Console.Write( $"")
-                }
-            }
-        }
     }
 }

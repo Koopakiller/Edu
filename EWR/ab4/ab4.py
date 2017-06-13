@@ -25,6 +25,7 @@ def main():
     print()
 
     if __name__ == '__main__':
+
         if read_yesno("Would you like to extend the predefined set of k's? [y/N] ", default_input=False):
             k = read_integer("Custom k: ")
             ks.append(k)
@@ -32,12 +33,14 @@ def main():
         print()
 
         __prec = 28
-        if read_yesno("Would you like to provide a custom precision? The default precision is {0}. [y/N] "
+        if read_yesno("Would you like to provide a custom precision for the decimal type? "
+                      "The default precision is {0}. [y/N] "
                       .format(__prec), default_input=False):
             __prec = read_integer_interval("Custom precision: ", minimum=1)
             getcontext().prec = __prec
             print("Initialized the precision of decimal to {0} places".format(__prec))
         print()
+
     ks.sort()
 
     print("Test started...")

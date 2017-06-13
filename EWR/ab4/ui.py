@@ -1,3 +1,5 @@
+# Author: Tom Lambert
+# Content: Functions to interact with the user
 
 
 def read_integer(msg=None, error_msg=None):

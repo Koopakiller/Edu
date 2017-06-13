@@ -45,6 +45,7 @@ class SumTest:
             print("result = {0:>20} | k = {1:>3} | 10^k = {2:>20}".format(res, k, 10**k))
 
 
+
 # Main Program
 
 def main():

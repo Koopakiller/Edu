@@ -1,3 +1,5 @@
+#
+
 from __future__ import print_function
 from decimal import *
 
@@ -5,38 +7,14 @@ from decimal import *
 class Sum:
     """Provides mechanisms to calculate sums."""
 
-    def __init__(self, delegate):
+    def __init__(self, delegate, start_value=1, end_value=10):
         """
         Initializes the Sum-class.
         :param delegate: A method which determines one addend.
         """
-        self.start_value = 1
-        self.end_value = 10
+        self.start_value = start_value
+        self.end_value = end_value
         self.__delegate = delegate
-
-    def __get_start_value(self):
-        return self.__start_value
-
-    def __set_start_value(self, value):
-        if value > self.end_value:
-            raise ValueError("start_value cannot be greater then end_value.")
-        if not isinstance(value, (int, long)):
-            raise TypeError("Only int and long are allowed.")
-        self.__start_value = value
-
-    start_value = property(__get_start_value, __set_start_value)
-
-    def __get_end_value(self):
-        return self.__start_value
-
-    def __set_end_value(self, value):
-        if value < self.start_value:
-            raise ValueError("end_value cannot be less then start_value.")
-        if not isinstance(value, (int, long)):
-            raise TypeError("Only int and long are allowed.")
-        self.__start_value = value
-
-    end_value = property(__get_end_value, __set_end_value)
 
     def calculate(self):
         """

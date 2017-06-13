@@ -18,7 +18,7 @@ def main():
     if __name__ == '__main__':
         print("Would you like to use a predefined set of mantissas?")
 
-        
+
 
     dtr.min_precision = 1
     dtr.max_precision = 10

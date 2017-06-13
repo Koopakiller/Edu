@@ -22,23 +22,30 @@ def main():
     print("This program compares harmonic series calculated with different number of addends.")
     print("The maximum of the sum is a power to 10 (=10^k)")
     print("The predefined set of k's is {0}".format(ks))
+    print()
+
     if __name__ == '__main__':
-        if read_yesno("Would you like to extend the predefined set of k's? [Y/n] "
-                      .format(__min_k, __max_k), default_input=True):
-            prec = read_integer("Custom k: ")
-            ks.append(prec)
+        if read_yesno("Would you like to extend the predefined set of k's? [y/N] ", default_input=False):
+            k = read_integer("Custom k: ")
+            ks.append(k)
             ks = list(set(ks))  # distinct the list
+        print()
+
+        __prec = 28
+        if read_yesno("Would you like to provide a custom precision? The default precision is {0}. [y/N] "
+                      .format(__prec), default_input=False):
+            __prec = read_integer_interval("Custom precision: ", minimum=1)
+            getcontext().prec = __prec
+            print("Initialized the precision of decimal to {0} places".format(__prec))
+        print()
     ks.sort()
 
-    print()
     print("Test started...")
-
-    getcontext().prec = 28
-    print("Initialized the precision of decimal to 28 places")
-
     print()
+
     print("The sums will be calculated for i=1 to i=10^k")
     print("k = {0}".format(ks))
+    print()
 
     lst = []
     last_sum = None
@@ -62,6 +69,7 @@ def main():
     print("Maximum difference between the sums is {0}".format(diff))
     print("The average difference between the k's is {0}".format(avg))
     print()
+
     print("Test finished")
 
 main()

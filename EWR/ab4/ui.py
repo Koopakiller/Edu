@@ -38,10 +38,10 @@ def read_integer_interval(msg=None, error_msg=None, minimum=None, maximum=None):
     res = read_integer(msg=msg, error_msg=error_msg)
     if minimum is not None and res < minimum:
         print("The value cannot be less then {0}!".format(minimum))
-        return read_integer(msg=msg, error_msg=error_msg, minimum=minimum, maximum=maximum)
+        return read_integer_interval(msg=msg, error_msg=error_msg, minimum=minimum, maximum=maximum)
     if maximum is not None and res > maximum:
         print("The value cannot be greater then {0}!".format(maximum))
-        return read_integer(msg=msg, error_msg=error_msg, minimum=minimum, maximum=maximum)
+        return read_integer_interval(msg=msg, error_msg=error_msg, minimum=minimum, maximum=maximum)
     return res
 
 

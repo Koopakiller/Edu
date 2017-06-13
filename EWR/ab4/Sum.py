@@ -4,7 +4,7 @@
 from decimal import *
 
 
-class Sum:
+class Sum(object):
     """Provides functionality to calculate sums."""
 
     def __init__(self, delegate, start_value=1, end_value=10):

@@ -4,7 +4,7 @@
 from decimal import *
 
 
-class DecimalTestRunner:
+class DecimalTestRunner(object):
     """
         Provides functions to compare decimals with different exponents and precisions
     """

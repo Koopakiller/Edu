@@ -2,47 +2,58 @@
 
 from __future__ import print_function
 from decimal import *
-from DecimalTestRunner import DecimalTestRunner
 from Sum import Sum
 from ui import *
 
-
-__min_prec = 3
-__max_prec = 10
 __min_k = 1
-__max_k = 5
-
-
-def test_runner_function(k):
-    s = Sum(lambda x: Decimal(1) / Decimal(str(x)))
-    s.start_value = 1
-    s.end_value = 10**k
-    return s.calculate()
+__max_k = 4
 
 
 # Main Program
 def main():
-    dtr = DecimalTestRunner()
-    dtr.min_precision = __min_prec
-    dtr.max_precision = __max_prec
+    """The main program"""
+    ks = range(__min_k, __max_k + 1)
 
     if __name__ == '__main__':
-        if read_yesno("Would you like to extend the predefined set of mantissas? (starting with {0}, ending with {1}) "
+        if read_yesno("Would you like to extend the predefined set of k's? (starting with {0}, ending with {1}) "
                       "[Y/n] "
-                      .format(__min_prec, __max_prec)):
-            prec = read_integer("Custom Precision: ")
-            dtr.custom_precisions.extend([prec])
+                      .format(__min_k, __max_k)):
+            prec = read_integer("Custom k: ")
+            ks.append(prec)
+            ks = list(set(ks))  # distinct the list
+    ks.sort()
 
     print()
-    print("Test started")
+    print("Test started...")
 
-    for k in range(__min_k, __max_k + 1):
-        print("Test started for k={0}".format(k))
-        dtr.delegate = lambda: test_runner_function(k)
-        diff = dtr.run()
-        print("Maximum difference with the given mantissas is {0}".format(diff))
-        print()
+    getcontext().prec = 28
+    print("Initialized the precision of decimal to 28 places")
 
+    print()
+    print("The sums will be calculated for i=1 to i=10^k")
+    print("k = {0}".format(ks))
+
+    lst = []
+    last_sum = None
+    diffs = []
+
+    for k in ks:
+        s = Sum(lambda x: Decimal(1) / Decimal(str(x)))
+        s.start_value = 1
+        s.end_value = 10 ** k
+        res = s.calculate()
+        if last_sum is not None:
+            diff = res - last_sum
+            print("                 + {0} = ...".format(diff))
+            diffs.append(diff)
+        last_sum = res
+        print(" k = {0:<2} | result = {1}".format(k, res))
+        lst.append(res)
+
+    diff = max(lst) - min(lst)
+    avg = sum(diffs) / len(diffs)
+    print("Maximum difference between the sums is {0}".format(diff))
+    print("The average difference between the k's is {0}".format(avg))
     print("Test finished")
 
 main()

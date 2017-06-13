@@ -1,95 +1,70 @@
 # Author: Tom Lambert
-# Content: Provides functions to compare decimals with different exponents and mantissas
+# Content: Provides functions to compare decimals with different precisions
+
+from decimal import *
 
 
 class DecimalTestRunner:
-    def __init__(self):
-        self._min_exponent = 1
-        self._max_exponent = 10
-        self._min_mantissa = 1
-        self._max_mantissa = 10
-        self._custom_exponents = []
-        self._custom_mantissas = []
-        self._mantissas = []
-        self._exponents = []
+    """
+        Provides functions to compare decimals with different exponents and precisions
+    """
 
-# min_exponent
-    def _get_min_exponent(self):
-        return self._min_exponent
+    def __init__(self, delegate):
+        """
+        :param delegate: A delegate which returns a decimal for comparison.
+        """
+        self._min_precision = 1
+        self._max_precision = 10
+        self._custom_precisions = []
+        self._precisions = []
+        self._delegate = delegate
 
-    def _set_min_exponent(self, value):
+# min_precision
+    def _get_min_precision(self):
+        return self._min_precision
+
+    def _set_min_precision(self, value):
         if value <= 0:
-            raise ValueError("Exponent cannot less or equal 0")
-        self._min_exponent = value
-        self._update_exponents()
+            raise ValueError("precision cannot less or equal 0")
+        self._min_precision = value
+        self._update_precisions()
 
-    min_exponent = property(_get_min_exponent, _set_min_exponent)
+    min_precision = property(_get_min_precision, _set_min_precision)
 
-# max_exponent
-    def _get_max_exponent(self):
-        return self._max_exponent
+# max_precision
+    def _get_max_precision(self):
+        return self._max_precision
 
-    def _set_max_exponent(self, value):
+    def _set_max_precision(self, value):
         if value <= 0:
-            raise ValueError("Exponent cannot less or equal 0")
-        self._max_exponent = value
-        self._update_exponents()
+            raise ValueError("precision cannot less or equal 0")
+        self._max_precision = value
+        self._update_precisions()
 
-    max_exponent = property(_get_min_exponent, _set_min_exponent)
-
-# min_mantissa
-    def _get_min_mantissa(self):
-        return self._min_mantissa
-
-    def _set_min_mantissa(self, value):
-        if value <= 0:
-            raise ValueError("Mantissa cannot less or equal 0")
-        self._min_mantissa = value
-        self._update_mantissas()
-
-    min_mantissa = property(_get_min_mantissa, _set_min_mantissa)
-
-# max_mantissa
-    def _get_max_mantissa(self):
-        return self._max_mantissa
-
-    def _set_max_mantissa(self, value):
-        if value <= 0:
-            raise ValueError("Mantissa cannot less or equal 0")
-        self._max_mantissa = value
-        self._update_mantissas()
-
-    max_mantissa = property(_get_min_mantissa, _set_min_mantissa)
+    max_precision = property(_get_min_precision, _set_min_precision)
 
 # custom_exponents
-    def _get_custom_exponents(self):
+    def _get_custom_precisions(self):
         return self._custom_exponents
 
-    def _set_custom_exponents(self, value):
-        self._custom_exponents = value
-        self._update_exponents()
+    def _set_custom_precisions(self, value):
+        self._custom_precisions = value
+        self._update_precisions()
 
-    custom_exponents = property(_get_custom_exponents, _set_custom_exponents)
-
-# custom_exponents
-    def _get_custom_mantissas(self):
-        return self._custom_exponents
-
-    def _set_custom_mantissas(self, value):
-        self._custom_mantissas = value
-        self._update_mantissas()
-
-    custom_mantissas = property(_get_custom_mantissas, _set_custom_mantissas)
+    custom_precisions = property(_get_custom_precisions, _set_custom_precisions)
 
 # update lists
-    def _update_exponents(self):
-        """Updates the _exponents list."""
-        self._exponents = range(self._min_exponent, self._max_exponent + 1)
-        self._exponents.extend(self._custom_exponents)
-        self._exponents = list(set(self._exponents))  # distinct the list
 
-    def _update_mantissas(self):
-        """Updates the _mantissas list."""
-        self._mantissas = range(self._min_mantissa, self._max_mantissa + 1)
-        self._mantissas.extend(self._custom_mantissas)
-        self._mantissas = list(set(self._mantissas))  # distinct the list
+    def _update_precisions(self):
+        """Updates the _precisions list."""
+        self._precisions = range(self._min_precision, self._max_precision + 1)
+        self._precisions.extend(self._custom_precisions)
+        self._precisions = list(set(self._precisions))  # distinct the list
+
+# class logic
+    def run(self):
+        lst = []
+        for m in self._precisions:
+            getcontext().prec = m
+            lst.extend(self._delegate())
+        return max(lst) - min(lst)

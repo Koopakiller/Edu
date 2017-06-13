@@ -10,10 +10,16 @@ def read_integer(msg=None, error_msg=None):
     :return: An int or a long from the user.
     """
     res = raw_input(msg)
-    if isinstance(res, int):
+
+    try:
         return int(res)
-    if isinstance(res, long):
+    except TypeError:
+        pass
+
+    try:
         return long(res)
+    except TypeError:
+        pass
 
     if error_msg is not None:
         print(error_msg)

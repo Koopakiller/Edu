@@ -15,13 +15,19 @@ class Sum(object):
         self.start_value = start_value
         self.end_value = end_value
         self.__delegate = delegate
-        self.cache = {}
+        self._cache = {}
 
-    def get_from_cache(self):
-
+    def _get_from_cache(self):
+        """
+        Returns a cached value for the current start-value.
+        If there is no cached value available, the default start values will be returned.
+        :return: A tuple (<a>, <b>) with:
+            <a>: The value to start the further calculation
+            <b>: The sum of the current start-value to <a>
+        """
         max_key = self.start_value
         try:
-            dict_entry = self.cache[self.start_value]
+            dict_entry = self._cache[self.start_value]
             for key in dict_entry:
                 if key <= self.end_value and key > max_key:
                     max_key = key
@@ -32,19 +38,24 @@ class Sum(object):
 
         return max_key, res
 
-    def add_to_cache(self, res):
-        if self.start_value not in self.cache:
-            self.cache.update({self.start_value: {}})
-        if self.end_value not in self.cache[self.start_value]:
-            self.cache[self.start_value].update({self.end_value: res})
+    def _add_to_cache(self, res):
+        """
+        Adds the current start- and end-value with the result to the cache.
+        :param res: The result to add.
+        :return: Nothing.
+        """
+        if self.start_value not in self._cache:
+            self._cache.update({self.start_value: {}})
+        if self.end_value not in self._cache[self.start_value]:
+            self._cache[self.start_value].update({self.end_value: res})
 
     def calculate(self):
         """
         Calculates the sum.
         :return: The sum.
         """
-        start, res = self.get_from_cache()
+        start, res = self._get_from_cache()
         for i in range(start, self.end_value + 1):
             res += self.__delegate(i)
-        self.add_to_cache(res)
+        self._add_to_cache(res)
         return res

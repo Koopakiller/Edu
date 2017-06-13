@@ -2,6 +2,8 @@
 
 from __future__ import print_function
 from decimal import *
+
+from utils import *
 from Sum import Sum
 from ui import *
 
@@ -17,7 +19,7 @@ def main():
     if __name__ == '__main__':
         if read_yesno("Would you like to extend the predefined set of k's? (starting with {0}, ending with {1}) "
                       "[Y/n] "
-                      .format(__min_k, __max_k)):
+                      .format(__min_k, __max_k), default_input=True):
             prec = read_integer("Custom k: ")
             ks.append(prec)
             ks = list(set(ks))  # distinct the list
@@ -51,9 +53,10 @@ def main():
         lst.append(res)
 
     diff = max(lst) - min(lst)
-    avg = sum(diffs) / len(diffs)
+    avg = average(diffs)
     print("Maximum difference between the sums is {0}".format(diff))
     print("The average difference between the k's is {0}".format(avg))
+    print()
     print("Test finished")
 
 main()

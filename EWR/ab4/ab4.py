@@ -1,34 +1,43 @@
 #!/usr/bin/env python
 
 from __future__ import print_function
+from decimal import *
 from DecimalTestRunner import DecimalTestRunner
-from SumTestRunner import SumTestRunner
+from Sum import Sum
 from ui import *
 
 
-def test_runner_function():
-    t = SumTestRunner()
-    t.run()
+__min_prec = 1
+__max_prec = 10
+__min_k = 1
+__max_k = 5
+
+
+def test_runner_function(k):
+    s = Sum(lambda x: Decimal(1) / Decimal(str(x)))
+    s.start_value = 1
+    s.end_value = 10**k
+    return s.calculate()
+
 
 # Main Program
 def main():
-
-    dtr = DecimalTestRunner(test_runner_function)
+    dtr = DecimalTestRunner()
+    dtr.min_precision = __min_prec
+    dtr.max_precision = __max_prec
 
     if __name__ == '__main__':
-        print("Would you like to use a predefined set of mantissas?")
+        if read_yesno("Would you like to extend the predefined set of mantissas? (starting with {0}, ending with {1}) "
+                      "[Y/n] "
+                      .format(__min_prec, __max_prec)):
+            dtr.custom_precisions.extend(read_integer("Custom Precision:"))
 
+    print()
+    print("Test started")
 
-
-    dtr.min_precision = 1
-    dtr.max_precision = 10
-
-
-
-    # x = Sum(lambda i: Decimal(1)/i)
-    # x.start_value = 1
-    # x.end_value = 100
-    # result = x.calculate()
-    # print(result)
+    for k in range(__min_k, __max_k + 1):
+        print("Test started for k={0}".format(k))
+        dtr.delegate = lambda: test_runner_function(k)
+        dtr.run()
 
 main()

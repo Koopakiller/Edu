@@ -28,7 +28,7 @@ def read_yesno(msg="[Y/n]", error_msg="Unrecognized input!", default_input=None)
     :param default_input: The value to return, in case the user entered "". Pass None to ask the user again.
     :return: True if he entered "y" or "yes"; otherwise False.
     """
-    res = input(msg)
+    res = raw_input(msg)
     if res.lower() in ["y", "yes"]:
         return True
     if res.lower() in ["n", "no"]:

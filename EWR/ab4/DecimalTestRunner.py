@@ -9,7 +9,7 @@ class DecimalTestRunner:
         Provides functions to compare decimals with different exponents and precisions
     """
 
-    def __init__(self, delegate):
+    def __init__(self, delegate=None):
         """
         :param delegate: A delegate which returns a decimal for comparison.
         """
@@ -17,7 +17,7 @@ class DecimalTestRunner:
         self._max_precision = 10
         self._custom_precisions = []
         self._precisions = []
-        self._delegate = delegate
+        self.delegate = delegate
 
 # min_precision
     def _get_min_precision(self):
@@ -45,7 +45,7 @@ class DecimalTestRunner:
 
 # custom_exponents
     def _get_custom_precisions(self):
-        return self._custom_exponents
+        return self._custom_precisions
 
     def _set_custom_precisions(self, value):
         self._custom_precisions = value
@@ -63,8 +63,11 @@ class DecimalTestRunner:
 
 # class logic
     def run(self):
+        if self.delegate is None:
+            ValueError("delegate cannot be None")
+
         lst = []
         for m in self._precisions:
             getcontext().prec = m
-            lst.extend(self._delegate())
+            lst.extend(self.delegate())
         return max(lst) - min(lst)

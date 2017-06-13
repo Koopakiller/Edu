@@ -7,7 +7,7 @@ from Sum import Sum
 from ui import *
 
 
-__min_prec = 1
+__min_prec = 3
 __max_prec = 10
 __min_k = 1
 __max_k = 5
@@ -30,7 +30,8 @@ def main():
         if read_yesno("Would you like to extend the predefined set of mantissas? (starting with {0}, ending with {1}) "
                       "[Y/n] "
                       .format(__min_prec, __max_prec)):
-            dtr.custom_precisions.extend(read_integer("Custom Precision:"))
+            prec = read_integer("Custom Precision: ")
+            dtr.custom_precisions.extend([prec])
 
     print()
     print("Test started")
@@ -38,6 +39,10 @@ def main():
     for k in range(__min_k, __max_k + 1):
         print("Test started for k={0}".format(k))
         dtr.delegate = lambda: test_runner_function(k)
-        dtr.run()
+        diff = dtr.run()
+        print("Maximum difference with the given mantissas is {0}".format(diff))
+        print()
+
+    print("Test finished")
 
 main()

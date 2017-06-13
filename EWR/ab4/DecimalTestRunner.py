@@ -27,7 +27,6 @@ class DecimalTestRunner:
         if value <= 0:
             raise ValueError("precision cannot less or equal 0")
         self._min_precision = value
-        self._update_precisions()
 
     min_precision = property(_get_min_precision, _set_min_precision)
 
@@ -39,7 +38,6 @@ class DecimalTestRunner:
         if value <= 0:
             raise ValueError("precision cannot less or equal 0")
         self._max_precision = value
-        self._update_precisions()
 
     max_precision = property(_get_min_precision, _set_min_precision)
 
@@ -49,7 +47,6 @@ class DecimalTestRunner:
 
     def _set_custom_precisions(self, value):
         self._custom_precisions = value
-        self._update_precisions()
 
     custom_precisions = property(_get_custom_precisions, _set_custom_precisions)
 
@@ -66,8 +63,11 @@ class DecimalTestRunner:
         if self.delegate is None:
             ValueError("delegate cannot be None")
 
+        self._update_precisions()
         lst = []
-        for m in self._precisions:
-            getcontext().prec = m
-            lst.extend(self.delegate())
+        for p in self._precisions:
+            getcontext().prec = p
+            res = self.delegate()
+            lst.extend([res])
+            print("  precision = {0:<4} | result = {1}".format(p, res))
         return max(lst) - min(lst)

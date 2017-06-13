@@ -3,6 +3,7 @@
 
 from decimal import *
 
+
 class Sum(object):
     """Provides functionality to calculate sums."""
 

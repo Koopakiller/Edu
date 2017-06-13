@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 
+# Author: Tom Lambert
+# Content: Contains the main program of ab4. It compares harmonic series calculated with different number of addends.
+
 from __future__ import print_function
 from decimal import *
 
@@ -16,9 +19,11 @@ def main():
     """The main program"""
     ks = range(__min_k, __max_k + 1)
 
+    print("This program compares harmonic series calculated with different number of addends.")
+    print("The maximum of the sum is a power to 10 (=10^k)")
+    print("The predefined set of k's is {0}".format(ks))
     if __name__ == '__main__':
-        if read_yesno("Would you like to extend the predefined set of k's? (starting with {0}, ending with {1}) "
-                      "[Y/n] "
+        if read_yesno("Would you like to extend the predefined set of k's? [Y/n] "
                       .format(__min_k, __max_k), default_input=True):
             prec = read_integer("Custom k: ")
             ks.append(prec)

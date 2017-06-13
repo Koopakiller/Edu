@@ -1,3 +1,7 @@
+# Author: Tom Lambert
+# Content: Provides functions to compare decimals with different exponents and mantissas
+
+
 class DecimalTestRunner:
     def __init__(self):
         self._min_exponent = 1

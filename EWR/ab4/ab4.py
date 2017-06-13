@@ -117,7 +117,7 @@ def main():
 
         __prec = 28
         if read_yesno("Would you like to provide a custom precision for the decimal type to use in the k-test? "
-                      "The default precision is {0}. [y/N] "
+                      "The default precreche bagision is {0}. [y/N] "
                       .format(__prec), default_input=False):
             __prec = read_integer_interval("Custom precision: ", minimum=1)
             getcontext().prec = __prec

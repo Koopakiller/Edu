@@ -18,7 +18,7 @@ class Sum(object):
         self._cache = {}
 
     def _get_from_cache(self):
-        """
+        """Flow ChartF
         Returns a cached value for the current start-value.
         If there is no cached value available, the default start values will be returned.
         :return: A tuple (<a>, <b>) with:

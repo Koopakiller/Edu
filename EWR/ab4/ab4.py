@@ -44,9 +44,9 @@ def main():
     last_sum = None
     diffs = []
 
+    s = Sum(lambda x: Decimal(1) / Decimal(str(x)))
+    s.start_value = 1
     for k in ks:
-        s = Sum(lambda x: Decimal(1) / Decimal(str(x)))
-        s.start_value = 1
         s.end_value = 10 ** k
         res = s.calculate()
         if last_sum is not None:

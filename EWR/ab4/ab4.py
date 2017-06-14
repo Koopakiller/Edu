@@ -103,8 +103,10 @@ def main():
     precisions = range(__min_prec, __max_prec + 1)
     prec_test_k = 5
 
-    print("This program compares harmonic series calculated with different number of addends in the first test.")
-    print("The maximum of the sum is a power to 10 (=10^k)")
+    print("This program tests the calculation of the harmonic sum with a certain number of addends. "
+          "The Test is split in 2 parts:")
+
+    print("The first one compares different amounts of addends (=10^k).")
     print("The predefined set of k's is {0}".format(ks))
     print()
 
@@ -124,7 +126,7 @@ def main():
             print("Initialized the precision of decimal to {0} places".format(__prec))
         print()
 
-    print("In the second test, different precisions of decimal will be used to compare the results.")
+    print("In the second test, different precisions of decimal type will be used to calculate the sums.")
     print("The predefined set of precisions is {0}".format(ks))
     print()
 
@@ -135,8 +137,8 @@ def main():
             precisions = list(set(precisions))  # distinct the list
         print()
 
-        if read_yesno("Would you like to provide a custom end for the calculation of the series? "
-                      "The default k is {0}. [y/N] "
+        if read_yesno("Would you like to provide a custom amount of addends for the calculation of the sum?\n"
+                      "(Amount of addends = 10^k, the default k is {0}) [y/N] "
                       .format(prec_test_k), default_input=False):
             prec_test_k = read_integer_interval("Custom k: ", minimum=1)
         print()

@@ -2,6 +2,7 @@
 
 # Author: Tom Lambert
 # Content: Contains the main program of ab4. It compares harmonic series calculated with different number of addends.
+# Task from Uebungsblatt 4 EWR 
 
 from __future__ import print_function
 from decimal import *
@@ -53,7 +54,7 @@ def test_k(ks):
     diff = max(lst) - min(lst)
     avg = average(diffs)
     print("Maximum difference between the sums is {0}".format(diff))
-    print("The average difference between the k's is {0}".format(avg))
+    print("The average difference between the results is {0}".format(avg))
     print()
 
     print("Test about different k's finished")

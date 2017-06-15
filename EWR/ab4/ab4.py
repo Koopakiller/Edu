@@ -127,7 +127,7 @@ def main():
         print()
 
     print("In the second test, different precisions of decimal type will be used to calculate the sums.")
-    print("The predefined set of precisions is {0}".format(ks))
+    print("The predefined set of precisions is {0}".format(precisions))
     print()
 
     if __name__ == '__main__':

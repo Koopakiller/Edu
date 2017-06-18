@@ -6,7 +6,7 @@
 import kreis
 from decimal import Decimal
 
-
+# Calculated with Mathematica (see Matheamtica.nb) to a precision of 100 places behind decimal point
 angles = {
     0: (Decimal("1.0"), Decimal("0.0")),
     10: (Decimal("0.98480775301220805936674302458952301367064325171984241879002575235582\

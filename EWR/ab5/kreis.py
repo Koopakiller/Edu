@@ -74,16 +74,16 @@ class Kreis:
         :rtype: Dictionary { angle (integer) : (x (integer), y (integer)) }
         :return: A dictionary with the angles as keys and the points ( (x,y)-tuples ) as values.
         """
-        pairs = self._naiv(range(1, 46))
+        pairs = self._naiv(range(0, 46))
         result = {}
         for angle in pairs:
             pair = pairs[angle]
-            result.append( { (  0 + angle) : ( pair[0],  pair[1]) } )
-            result.append( { (360 - angle) : ( pair[0], -pair[1]) } )
-            result.append( { (180 - angle) : (-pair[0],  pair[1]) } )
-            result.append( { (180 + angle) : (-pair[0], -pair[1]) } )
-            result.append( { ( 90 - angle) : ( pair[1],  pair[0]) } )
-            result.append( { (270 + angle) : ( pair[1], -pair[0]) } )
-            result.append( { ( 90 + angle) : (-pair[1],  pair[0]) } )
-            result.append( { (270 - angle) : (-pair[1], -pair[0]) } )
+            result.update( { (  0 + angle) : ( pair[0],  pair[1]) } )
+            result.update( { (360 - angle) : ( pair[0], -pair[1]) } )
+            result.update( { (180 - angle) : (-pair[0],  pair[1]) } )
+            result.update( { (180 + angle) : (-pair[0], -pair[1]) } )
+            result.update( { ( 90 - angle) : ( pair[1],  pair[0]) } )
+            result.update( { (270 + angle) : ( pair[1], -pair[0]) } )
+            result.update( { ( 90 + angle) : (-pair[1],  pair[0]) } )
+            result.update( { (270 - angle) : (-pair[1], -pair[0]) } )
         return result

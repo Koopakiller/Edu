@@ -36,6 +36,7 @@ class Kreis:
         """
         calculates the points at the unit circle with the 'naiv' algorithm for the given angles.
         :param angles: The points will be calculated these angles.
+        :rtype: Dictionary { angle (integer) : (x (integer), y (integer)) }
         :return: A dictionary with the angles as keys and the points ( (x,y)-tuples ) as values.
         """
         result = {}
@@ -48,6 +49,7 @@ class Kreis:
     def naiv(self):
         """
         calculates the points at the unit circle with the 'naiv' algorithm for the angles 0...359.
+        :rtype: Dictionary { angle (integer) : (x (integer), y (integer)) }
         :return: A dictionary with the angles as keys and the points ( (x,y)-tuples ) as values.
         """
         return self._naiv(range(0, 360))
@@ -55,6 +57,7 @@ class Kreis:
     def effizient(self):
         """
         calculates the points at the unit circle with the 'effizient' algorithm for the angles 0...359.
+        :rtype: Dictionary { angle (integer) : (x (integer), y (integer)) }
         :return: A dictionary with the angles as keys and the points ( (x,y)-tuples ) as values.
         """
 
@@ -68,6 +71,7 @@ class Kreis:
     def symmetrie(self):
         """
         calculates the points at the unit circle with the 'symmetrie' algorithm for the angles 0...359.
+        :rtype: Dictionary { angle (integer) : (x (integer), y (integer)) }
         :return: A dictionary with the angles as keys and the points ( (x,y)-tuples ) as values.
         """
         pairs = self._naiv(range(1, 46))

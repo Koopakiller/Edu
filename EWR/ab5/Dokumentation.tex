@@ -1,0 +1,97 @@
+%% Erläuterungen zu den Befehlen erfolgen unter
+%% diesem Beispiel.
+
+\documentclass{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+
+%% Helvetica als Schriftart benutzen
+\usepackage{helvet} 
+%%Schrift auf sans-serif setzen
+\renewcommand{\familydefault}{\sfdefault}
+
+\title{Dokumentation zum Arbeitsblatt 5 EWR}
+\author{Tom Lambert}
+\date{19. Juni 2017}
+\begin{document}
+	
+	\maketitle
+	\tableofcontents
+	
+	\section{Einführung in die Problemstellung}
+	
+	In der Vorlesung wurde in Abschnitt 11.3 folgende Aufgabe gestellt:
+	
+	\begin{quote}
+		Bestimme die Koordinaten der Punkte auf der Einheitskreislinie.
+	\end{quote}
+	
+	Dort wurden außerdem 3 Algorithmen vorgestellt, mit denen die Aufgabe gelöst werden kann. \\
+	Diese und deren Implementierung werden später aufgezeigt.
+	
+	
+	
+	\section{Darstellung des theoretischen Hintergrunds}
+	
+	Wie einmal in der Schule kennen gelernt, kann man zum berechnen der Punkte auf dem Einheitskreis (in Abhängigkeit eines Winkels) mit Hilfe von Sinus und Cosinus verwenden.
+	
+	\begin{align}
+		x(\alpha) &= cos(2\pi\cdot \frac{\alpha}{360}) \\
+		y(\alpha) &= sin(2\pi\cdot \frac{\alpha}{360})
+	\end{align}
+	
+	Zur Berechnung von Sinus und Cosinus sind jedoch relativ aufwendige Rechnungen notwendig, die ggf. auch recht hohe Rundungsfehler aufweisen können.
+	
+	TODO: effizient beschreiben
+	
+	TODO: symmetrie beschreiben
+	
+	
+	
+	\section{Aufbau des Programs}
+	
+	Das Programm ist in mehrere Dateien untergliedert:
+	
+	\begin{enumerate}
+		\item kreis.py \\ Diese Datei enthält die Logik für die eigentlichen Berechnungen mit notwendigen, zusätzlichen Algorithmen für eine Auswertung.
+		\item ab5.py \\ Diese Datei enthält das Hauptprogramm und enthält den Code, der die Tests durchführt.
+	\end{enumerate}
+	
+	\subsection{kreis.py}
+	
+	Die Logik wurde mit Hilfe einer Klasse \verb|Kreis| realisiert, welche die notwendigen Methoden enthält.
+	
+	Zunächst bietet die Klasse 2 Funktionen \verb|_sin| und \verb|_cos|, welche einfach den Sinus bzw. Cosinus mit Hilfe der \verb|Numpy|-Bibliothek berechnen. Das besonder ist jedoch, dass ein Methodenaufruf auch einen internen Zähler um jeweils 1 erhöht. Über die \verb|function_call_counter|-Eigenschaft lässt sich dieser Zähler abfragen und ggf. über die \verb|reset_function_call_counter|-Funktion auf 0 zurück setzen. \\
+	Dadurch wird es möglich von außen zu erfahren welcher Algorithmus wie oft Sinus- und Cosinus-Werte berechnet hat.
+	
+	Das eigentliche Kernstück sind jedoch die 3 Funktionen \verb|naiv|, \verb|effizient| sowie \verb|symmetrie| die die Algorithmen implementieren. Allen gemeinsma ist, dass sie eine Liste mit Punkten auf dem Einheitskreis zurück geben. Und zwar genau 360 stück, einen Punkt je Grad. Weiterhin werden die Listen der Punkte als Wörterbuch zurück gegeben. Dadurch ist es möglich über einen als \verb|Key| gewählten Winkel einen bestimmten Punkt abzufragen.
+	
+	Zum Berechnen habe ich zunächst eine Hilfsfunktion \verb|_naiv(angles)| erstellt, welche eine Liste mit Punkten zurück gibt, die auf den übergebenen Winkeln liegen. Die \verb|naiv|-Funktion ruft \verb|_naiv| nun einfach mit einer Liste der 360 Winkel auf. Die Funktion \verb|symmetrie| jedoch nur für die Winkel von 1 bis 45 Grad, sodass dann für jeden zurück gegebenen Punkt die 7 passend gespiegelt- und gedrehten Punkte ermittelt werden können.
+	
+	TODO: symmetrie beschreiben
+	
+	\subsection{ab5.px}
+	
+	Diese Datei enthält als ausführbaren Code lediglich eine \verb|main|-Methode, welche direkt am Ende aufgerufen wird. Diese Implementierung hat den Vorteil, dass bei Erweiterung des Programms um Benutzereingaben einfach eine 2. Funktion implementiert werden kann.
+	
+	Innerhalb der \verb|main|-Funktion wird zunächst die Präzision des \verb|Decimal|-Typs auf 20 festgelegt. Anschließend wird ein Wörterbuch erstellt, welches einige vorberechnete Punkte des Einheitskreises enthält. Diese wurden mit Wolfram Mathematica auf 20 Nachkommastellen genau berechnet. Diese Werte dienen später zum Vergleich mit den dynamisch berechneten Werten und zum Ermitteln des absoluten und des relativen Fehlers.
+	
+	Zunächst werden nun die 3 Funktionen \verb|naiv|, \verb|effizient| und \verb|symmetrie| aufgerufen. Nach jedem Aufruf wird dabei \verb|function_call_counter| abgefragt und dem Benutzer ausgegeben.
+	
+	Im zweiten Schritt werden nun einige ausgewählte berechnete Punkte mit ihren vorberechneten Pendants ausgegeben. Anschließend erscheinen die passenden absoluten- und relativen Fehler in der Benutzerausgabe. Während dieses Schritts werden die Fehler jeweils zu einer Liste hinzugefügt.
+	
+	Nach dem Durchlauf der Liste der ausgewählten Winkel werden noch die durchschnittlichen Fehler ausgegeben, um dem Benutzer ein besseres Gefühl zu verschaffen wie einzelne Werte in der Menge aller Fehler liegen.
+	
+	
+	
+	\section{Experimente und Beobachtungen}
+	
+	
+	
+	\section{Auswertung}	
+	
+\end{document}

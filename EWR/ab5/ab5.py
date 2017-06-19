@@ -6,6 +6,7 @@
 from kreis import Kreis
 from decimal import Decimal
 from numpy as np
+from utils import *
 
 def main():
     """
@@ -62,6 +63,12 @@ def main():
     print("Some calculated points will be compared to more exact calculated values.")
     print()
 
+    lst =  {
+        "absolute":  { "n": { "x":[], "y":[] }, "e": { "x":[], "y":[] }, "s": { "x":[], "y":[] } },
+        "relative1": { "n": { "x":[], "y":[] }, "e": { "x":[], "y":[] }, "s": { "x":[], "y":[] } },
+        "relative2": { "n": { "x":[], "y":[] }, "e": { "x":[], "y":[] }, "s": { "x":[], "y":[] } }
+    }
+
     for angle in angles:
         print("Compare of exactness with an angle of {0}".format(angle))
         print("x/y calculated with Mathematica with 20 places behind decimal point:")
@@ -74,12 +81,18 @@ def main():
         print("n_y: {0}".format(nai[angle][1]))
         print("Absolute approximation error from m_x/m_y:")
         print("|m_x - n_x| = {0}".format(np.abs(nai[angle][0] - angles[angle][0])))
-        print("|m_x - n_x| = {0}".format(np.abs(nai[angle][0] - angles[angle][0])))
+        print("|m_x - n_x| = {0}".format(np.abs(nai[angle][1] - angles[angle][1])))
+        lst["absolute"]["n"]["x"].append(np.abs(nai[angle][0] - angles[angle][0]))
+        lst["absolute"]["n"]["y"].append(np.abs(nai[angle][1] - angles[angle][1]))
         print("Relative approximation error from m_x/m_y:")
         print("|(m_x - n_x)/m_x| = {0}".format(np.abs((nai[angle][0] - angles[angle][0]) / nai[angle][0])))
         print("|(m_y - n_y)/m_y| = {0}".format(np.abs((nai[angle][1] - angles[angle][1]) / nai[angle][1])))
+        lst["relative1"]["n"]["x"].append(np.abs((nai[angle][0] - angles[angle][0]) / nai[angle][0]))
+        lst["relative1"]["n"]["x"].append(np.abs((nai[angle][1] - angles[angle][1]) / nai[angle][1]))
         print("|(m_x - n_x)/n_x| = {0}".format(np.abs((nai[angle][0] - angles[angle][0]) / angles[angle][0])))
         print("|(m_y - n_y)/n_y| = {0}".format(np.abs((nai[angle][1] - angles[angle][1]) / angles[angle][1])))
+        lst["relative2"]["n"]["x"].append(np.abs((nai[angle][0] - angles[angle][0]) / angles[angle][0]))
+        lst["relative2"]["n"]["x"].append(np.abs((nai[angle][1] - angles[angle][1]) / angles[angle][1]))
         print()
 
         print("Calculated with effizient():")
@@ -87,12 +100,18 @@ def main():
         print("e_y: {0}".format(eff[angle][1]))
         print("Absolute approximation error from m_x/m_y:")
         print("|m_x - e_x| = {0}".format(np.abs(eff[angle][0] - angles[angle][0])))
-        print("|m_x - e_x| = {0}".format(np.abs(eff[angle][0] - angles[angle][0])))
+        print("|m_x - e_x| = {0}".format(np.abs(eff[angle][1] - angles[angle][1])))
+        lst["absolute"]["e"]["x"].append(np.abs(eff[angle][0] - angles[angle][0]))
+        lst["absolute"]["e"]["y"].append(np.abs(eff[angle][1] - angles[angle][1]))
         print("Relative approximation error from m_x/m_y:")
         print("|(m_x - e_x)/m_x| = {0}".format(np.abs((eff[angle][0] - angles[angle][0]) / eff[angle][0])))
         print("|(m_y - e_y)/m_y| = {0}".format(np.abs((eff[angle][1] - angles[angle][1]) / eff[angle][1])))
+        lst["relative1"]["e"]["x"].append(np.abs((eff[angle][0] - angles[angle][0]) / eff[angle][0]))
+        lst["relative1"]["e"]["x"].append(np.abs((eff[angle][1] - angles[angle][1]) / eff[angle][1]))
         print("|(m_x - e_x)/n_x| = {0}".format(np.abs((eff[angle][0] - angles[angle][0]) / angles[angle][0])))
         print("|(m_y - e_y)/n_y| = {0}".format(np.abs((eff[angle][1] - angles[angle][1]) / angles[angle][1])))
+        lst["relative2"]["e"]["x"].append(np.abs((eff[angle][0] - angles[angle][0]) / angles[angle][0]))
+        lst["relative2"]["e"]["x"].append(np.abs((eff[angle][1] - angles[angle][1]) / angles[angle][1]))
         print()
 
         print("Calculated with symmetrie():")
@@ -100,15 +119,48 @@ def main():
         print("s_y: {0}".format(sym[angle][1]))
         print("Absolute approximation error from m_x/m_y:")
         print("|m_x - s_x| = {0}".format(np.abs(sym[angle][0] - angles[angle][0])))
-        print("|m_x - s_x| = {0}".format(np.abs(sym[angle][0] - angles[angle][0])))
+        print("|m_x - s_x| = {0}".format(np.abs(sym[angle][1] - angles[angle][1])))
+        lst["absolute"]["s"]["x"].append(np.abs(sym[angle][0] - angles[angle][0]))
+        lst["absolute"]["s"]["y"].append(np.abs(sym[angle][1] - angles[angle][1]))
         print("Relative approximation error from m_x/m_y:")
         print("|(m_x - s_x)/m_x| = {0}".format(np.abs((sym[angle][0] - angles[angle][0]) / sym[angle][0])))
         print("|(m_y - s_y)/m_y| = {0}".format(np.abs((sym[angle][1] - angles[angle][1]) / sym[angle][1])))
+        lst["relative1"]["s"]["x"].append(np.abs((sym[angle][0] - angles[angle][0]) / sym[angle][0]))
+        lst["relative1"]["s"]["x"].append(np.abs((sym[angle][1] - angles[angle][1]) / sym[angle][1]))
         print("|(m_x - s_x)/n_x| = {0}".format(np.abs((sym[angle][0] - angles[angle][0]) / angles[angle][0])))
         print("|(m_y - s_y)/n_y| = {0}".format(np.abs((sym[angle][1] - angles[angle][1]) / angles[angle][1])))
+        lst["relative2"]["s"]["x"].append(np.abs((sym[angle][0] - angles[angle][0]) / angles[angle][0]))
+        lst["relative2"]["s"]["x"].append(np.abs((sym[angle][1] - angles[angle][1]) / angles[angle][1]))
         print()
         print("---------------------------------------------------------------------------")
         print()
+
+    print("The average absolute errors are:")
+    print("naiv x:      {0}".format(average(lst["absolute"]["n"]["x"])))
+    print("effizient x: {0}".format(average(lst["absolute"]["e"]["x"])))
+    print("symmetrie x: {0}".format(average(lst["absolute"]["s"]["x"])))
+    print("naiv y:      {0}".format(average(lst["absolute"]["n"]["y"])))
+    print("effizient y: {0}".format(average(lst["absolute"]["e"]["y"])))
+    print("symmetrie y: {0}".format(average(lst["absolute"]["s"]["y"])))
+    print()
+
+    print("The average relative errors (with m_x/m_y in the denominator) are:")
+    print("naiv x:      {0}".format(average(lst["relative1"]["n"]["x"])))
+    print("effizient x: {0}".format(average(lst["relative1"]["e"]["x"])))
+    print("symmetrie x: {0}".format(average(lst["relative1"]["s"]["x"])))
+    print("naiv y:      {0}".format(average(lst["relative1"]["n"]["y"])))
+    print("effizient y: {0}".format(average(lst["relative1"]["e"]["y"])))
+    print("symmetrie y: {0}".format(average(lst["relative1"]["s"]["y"])))
+    print()
+
+    print("The average relative errors (with n/e/s _x/_y in the denominator) are:")
+    print("naiv x:      {0}".format(average(lst["relative2"]["n"]["x"])))
+    print("effizient x: {0}".format(average(lst["relative2"]["e"]["x"])))
+    print("symmetrie x: {0}".format(average(lst["relative2"]["s"]["x"])))
+    print("naiv y:      {0}".format(average(lst["relative2"]["n"]["y"])))
+    print("effizient y: {0}".format(average(lst["relative2"]["e"]["y"])))
+    print("symmetrie y: {0}".format(average(lst["relative2"]["s"]["y"])))
+    print()
 
     print("All tests run")
 

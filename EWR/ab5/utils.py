@@ -3,4 +3,8 @@
 
 
 def average(lst):
-    return sum(lst) / len(lst)
+    length = len(lst)
+    if length == 0:
+        return None
+    else:
+        return sum(lst) / len(lst)

@@ -1,7 +1,8 @@
 # Author: Tom Lambert
 # Content: Logic for ab5.py
 
-from numpy as np
+import sympy as sp
+from decimal import *
 
 
 class Kreis:
@@ -10,6 +11,7 @@ class Kreis:
     def __init__(self):
         """Initializes the class object."""
         self._function_call_counter = 0
+        self._pi = Decimal("3.14159265358979323846")
 
     @property
     def function_call_counter(self):
@@ -24,12 +26,12 @@ class Kreis:
     def _cos(self, angle):
         """Calculates the cosine of an angle and increases the counter for sin- and cos calls."""
         self._function_call_counter += 1
-        return np.cos(angle)
+        return sp.cos(angle)
 
     def _sin(self, angle):
         """Calculates the sine of an angle and increases the counter for sin- and cos calls."""
         self._function_call_counter += 1
-        return np.sin(angle)
+        return sp.sin(angle)
 
 
     def _naiv(self, angles):
@@ -41,9 +43,9 @@ class Kreis:
         """
         result = {}
         for angle in angles:
-            x = self._cos(2 * np.Pi * angle / 360)
-            y = self._sin(2 * np.Pi * angle / 360)
-            result.update( { angle: (x, y) } )
+            x = self._cos(Decimal("2") * self._pi * Decimal(str(angle)) / Decimal("360"))
+            y = self._sin(Decimal("2") * self._pi * Decimal(str(angle)) / Decimal("360"))
+            result.update( { angle: (x, y)})
         return result
 
     def naiv(self):
@@ -61,11 +63,12 @@ class Kreis:
         :return: A dictionary with the angles as keys and the points ( (x,y)-tuples ) as values.
         """
 
-        result = []
+        result = {}
         for angle in range(0, 360):
-            x = self._cos(2 * np.Pi * angle / 360)
-            y = self._sin(2 * np.Pi * angle / 360)
-            result.append((x, y))
+
+        #     x = self._cos(Decimal("2") * self._pi * Decimal(str(angle)) / Decimal("360"))
+        #     y = self._sin(Decimal("2") * self._pi * Decimal(str(angle)) / Decimal("360"))
+        #     result.append((x, y))
         return result
 
     def symmetrie(self):
@@ -78,12 +81,12 @@ class Kreis:
         result = {}
         for angle in pairs:
             pair = pairs[angle]
-            result.update( { (  0 + angle) : ( pair[0],  pair[1]) } )
-            result.update( { (360 - angle) : ( pair[0], -pair[1]) } )
-            result.update( { (180 - angle) : (-pair[0],  pair[1]) } )
-            result.update( { (180 + angle) : (-pair[0], -pair[1]) } )
-            result.update( { ( 90 - angle) : ( pair[1],  pair[0]) } )
-            result.update( { (270 + angle) : ( pair[1], -pair[0]) } )
-            result.update( { ( 90 + angle) : (-pair[1],  pair[0]) } )
-            result.update( { (270 - angle) : (-pair[1], -pair[0]) } )
+            result.update( { (  0 + angle): ( pair[0],  pair[1])})
+            result.update( { (360 - angle): ( pair[0], -pair[1])})
+            result.update( { (180 - angle): (-pair[0],  pair[1])})
+            result.update( { (180 + angle): (-pair[0], -pair[1])})
+            result.update( { ( 90 - angle): ( pair[1],  pair[0])})
+            result.update( { (270 + angle): ( pair[1], -pair[0])})
+            result.update( { ( 90 + angle): (-pair[1],  pair[0])})
+            result.update( { (270 - angle): (-pair[1], -pair[0])})
         return result

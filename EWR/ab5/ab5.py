@@ -3,10 +3,12 @@
 # Author: Tom Lambert
 # Content: Main program for tasks in ab5.py
 
+from __future__ import print_function
 from kreis import Kreis
-from decimal import Decimal
-from numpy as np
+from decimal import *
+import numpy as np
 from utils import *
+
 
 def main():
     """
@@ -14,7 +16,7 @@ def main():
     :return: Nothing.
     """
 
-    Decimal.getcontext().prec = 20
+    getcontext().prec = 20
 
     # Calculated with Mathematica (see Mathematica.nb) to a precision of 20 places behind decimal point
     angles = {
@@ -63,10 +65,10 @@ def main():
     print("Some calculated points will be compared to more exact calculated values.")
     print()
 
-    lst =  {
-        "absolute":  { "n": { "x":[], "y":[] }, "e": { "x":[], "y":[] }, "s": { "x":[], "y":[] } },
-        "relative1": { "n": { "x":[], "y":[] }, "e": { "x":[], "y":[] }, "s": { "x":[], "y":[] } },
-        "relative2": { "n": { "x":[], "y":[] }, "e": { "x":[], "y":[] }, "s": { "x":[], "y":[] } }
+    lst = {
+        "absolute":  {"n": {"x": [], "y": []}, "e": {"x": [], "y": []}, "s": {"x": [], "y": []}},
+        "relative1": {"n": {"x": [], "y": []}, "e": {"x": [], "y": []}, "s": {"x": [], "y": []}},
+        "relative2": {"n": {"x": [], "y": []}, "e": {"x": [], "y": []}, "s": {"x": [], "y": []}}
     }
 
     for angle in angles:
@@ -87,12 +89,16 @@ def main():
         print("Relative approximation error from m_x/m_y:")
         print("|(m_x - n_x)/m_x| = {0}".format(np.abs((nai[angle][0] - angles[angle][0]) / nai[angle][0])))
         print("|(m_y - n_y)/m_y| = {0}".format(np.abs((nai[angle][1] - angles[angle][1]) / nai[angle][1])))
-        lst["relative1"]["n"]["x"].append(np.abs((nai[angle][0] - angles[angle][0]) / nai[angle][0]))
-        lst["relative1"]["n"]["x"].append(np.abs((nai[angle][1] - angles[angle][1]) / nai[angle][1]))
+        if nai[angle][0] != 0:
+            lst["relative1"]["n"]["x"].append(np.abs((nai[angle][0] - angles[angle][0]) / nai[angle][0]))
+        if nai[angle][1] != 0:
+            lst["relative1"]["n"]["y"].append(np.abs((nai[angle][1] - angles[angle][1]) / nai[angle][1]))
         print("|(m_x - n_x)/n_x| = {0}".format(np.abs((nai[angle][0] - angles[angle][0]) / angles[angle][0])))
         print("|(m_y - n_y)/n_y| = {0}".format(np.abs((nai[angle][1] - angles[angle][1]) / angles[angle][1])))
-        lst["relative2"]["n"]["x"].append(np.abs((nai[angle][0] - angles[angle][0]) / angles[angle][0]))
-        lst["relative2"]["n"]["x"].append(np.abs((nai[angle][1] - angles[angle][1]) / angles[angle][1]))
+        if angles[angle][0] != 0:
+            lst["relative2"]["n"]["x"].append(np.abs((nai[angle][0] - angles[angle][0]) / angles[angle][0]))
+        if angles[angle][1] != 0:
+            lst["relative2"]["n"]["y"].append(np.abs((nai[angle][1] - angles[angle][1]) / angles[angle][1]))
         print()
 
         print("Calculated with effizient():")
@@ -106,12 +112,16 @@ def main():
         print("Relative approximation error from m_x/m_y:")
         print("|(m_x - e_x)/m_x| = {0}".format(np.abs((eff[angle][0] - angles[angle][0]) / eff[angle][0])))
         print("|(m_y - e_y)/m_y| = {0}".format(np.abs((eff[angle][1] - angles[angle][1]) / eff[angle][1])))
-        lst["relative1"]["e"]["x"].append(np.abs((eff[angle][0] - angles[angle][0]) / eff[angle][0]))
-        lst["relative1"]["e"]["x"].append(np.abs((eff[angle][1] - angles[angle][1]) / eff[angle][1]))
+        if eff[angle][1] != 0:
+            lst["relative1"]["e"]["x"].append(np.abs((eff[angle][0] - angles[angle][0]) / eff[angle][0]))
+        if eff[angle][1] != 0:
+            lst["relative1"]["e"]["y"].append(np.abs((eff[angle][1] - angles[angle][1]) / eff[angle][1]))
         print("|(m_x - e_x)/n_x| = {0}".format(np.abs((eff[angle][0] - angles[angle][0]) / angles[angle][0])))
         print("|(m_y - e_y)/n_y| = {0}".format(np.abs((eff[angle][1] - angles[angle][1]) / angles[angle][1])))
-        lst["relative2"]["e"]["x"].append(np.abs((eff[angle][0] - angles[angle][0]) / angles[angle][0]))
-        lst["relative2"]["e"]["x"].append(np.abs((eff[angle][1] - angles[angle][1]) / angles[angle][1]))
+        if angles[angle][0] != 0:
+            lst["relative2"]["e"]["x"].append(np.abs((eff[angle][0] - angles[angle][0]) / angles[angle][0]))
+        if angles[angle][1] != 0:
+            lst["relative2"]["e"]["y"].append(np.abs((eff[angle][1] - angles[angle][1]) / angles[angle][1]))
         print()
 
         print("Calculated with symmetrie():")
@@ -125,12 +135,16 @@ def main():
         print("Relative approximation error from m_x/m_y:")
         print("|(m_x - s_x)/m_x| = {0}".format(np.abs((sym[angle][0] - angles[angle][0]) / sym[angle][0])))
         print("|(m_y - s_y)/m_y| = {0}".format(np.abs((sym[angle][1] - angles[angle][1]) / sym[angle][1])))
-        lst["relative1"]["s"]["x"].append(np.abs((sym[angle][0] - angles[angle][0]) / sym[angle][0]))
-        lst["relative1"]["s"]["x"].append(np.abs((sym[angle][1] - angles[angle][1]) / sym[angle][1]))
+        if sym[angle][0] != 0:
+            lst["relative1"]["s"]["x"].append(np.abs((sym[angle][0] - angles[angle][0]) / sym[angle][0]))
+        if sym[angle][1] != 0:
+            lst["relative1"]["s"]["y"].append(np.abs((sym[angle][1] - angles[angle][1]) / sym[angle][1]))
         print("|(m_x - s_x)/n_x| = {0}".format(np.abs((sym[angle][0] - angles[angle][0]) / angles[angle][0])))
         print("|(m_y - s_y)/n_y| = {0}".format(np.abs((sym[angle][1] - angles[angle][1]) / angles[angle][1])))
-        lst["relative2"]["s"]["x"].append(np.abs((sym[angle][0] - angles[angle][0]) / angles[angle][0]))
-        lst["relative2"]["s"]["x"].append(np.abs((sym[angle][1] - angles[angle][1]) / angles[angle][1]))
+        if angles[angle][0] != 0:
+            lst["relative2"]["s"]["x"].append(np.abs((sym[angle][0] - angles[angle][0]) / angles[angle][0]))
+        if angles[angle][1] != 0:
+            lst["relative2"]["s"]["y"].append(np.abs((sym[angle][1] - angles[angle][1]) / angles[angle][1]))
         print()
         print("---------------------------------------------------------------------------")
         print()

@@ -1,8 +1,8 @@
 # Author: Tom Lambert
 # Content: Logic for ab5.py
 
-import sympy as sp
 from decimal import *
+import sympy as sp
 
 
 class Kreis:
@@ -62,13 +62,25 @@ class Kreis:
         :rtype: Dictionary { angle (integer) : (x (integer), y (integer)) }
         :return: A dictionary with the angles as keys and the points ( (x,y)-tuples ) as values.
         """
+        beta = Decimal("2") * self._pi / Decimal("360")
+        cos_beta = self._cos(beta)
+        sin_beta = self._sin(beta)
+        alpha = 0
 
         result = {}
-        for angle in range(0, 360):
 
-        #     x = self._cos(Decimal("2") * self._pi * Decimal(str(angle)) / Decimal("360"))
-        #     y = self._sin(Decimal("2") * self._pi * Decimal(str(angle)) / Decimal("360"))
-        #     result.append((x, y))
+        last_x = Decimal("1")
+        last_y = Decimal("0")
+
+        result.update({0: (last_x, last_y)})
+
+        while alpha < 360:
+            alpha += 1
+            x = last_x * cos_beta - last_y * sin_beta
+            y = last_y * cos_beta + last_x * sin_beta
+            result.update({alpha: (x, y)})
+            last_x = x
+            last_y = y
         return result
 
     def symmetrie(self):

@@ -86,19 +86,29 @@ def main():
         print("|m_x - n_x| = {0}".format(np.abs(nai[angle][1] - angles[angle][1])))
         lst["absolute"]["n"]["x"].append(np.abs(nai[angle][0] - angles[angle][0]))
         lst["absolute"]["n"]["y"].append(np.abs(nai[angle][1] - angles[angle][1]))
+
         print("Relative approximation error from m_x/m_y:")
-        print("|(m_x - n_x)/m_x| = {0}".format(np.abs((nai[angle][0] - angles[angle][0]) / nai[angle][0])))
-        print("|(m_y - n_y)/m_y| = {0}".format(np.abs((nai[angle][1] - angles[angle][1]) / nai[angle][1])))
         if nai[angle][0] != 0:
             lst["relative1"]["n"]["x"].append(np.abs((nai[angle][0] - angles[angle][0]) / nai[angle][0]))
+            print("|(m_x - n_x)/n_x| = {0}".format(np.abs((nai[angle][0] - angles[angle][0]) / nai[angle][0])))
+        else:
+            print("|(m_x - n_x)/n_x| = not defined (because n_x = 0)")
         if nai[angle][1] != 0:
             lst["relative1"]["n"]["y"].append(np.abs((nai[angle][1] - angles[angle][1]) / nai[angle][1]))
-        print("|(m_x - n_x)/n_x| = {0}".format(np.abs((nai[angle][0] - angles[angle][0]) / angles[angle][0])))
-        print("|(m_y - n_y)/n_y| = {0}".format(np.abs((nai[angle][1] - angles[angle][1]) / angles[angle][1])))
+            print("|(m_y - n_y)/n_y| = {0}".format(np.abs((nai[angle][1] - angles[angle][1]) / nai[angle][1])))
+        else:
+            print("|(m_y - n_y)/n_y| = not defined (because n_y = 0)")
+
         if angles[angle][0] != 0:
             lst["relative2"]["n"]["x"].append(np.abs((nai[angle][0] - angles[angle][0]) / angles[angle][0]))
+            print("|(m_x - n_x)/m_x| = {0}".format(np.abs((nai[angle][0] - angles[angle][0]) / angles[angle][0])))
+        else:
+            print("|(m_x - n_x)/m_x| = not defined (because m_x = 0)")
         if angles[angle][1] != 0:
             lst["relative2"]["n"]["y"].append(np.abs((nai[angle][1] - angles[angle][1]) / angles[angle][1]))
+            print("|(m_y - n_y)/m_y| = {0}".format(np.abs((nai[angle][1] - angles[angle][1]) / angles[angle][1])))
+        else:
+            print("|(m_y - n_y)/m_y| = not defined (because m_y = 0)")
         print()
 
         print("Calculated with effizient():")
@@ -109,19 +119,29 @@ def main():
         print("|m_x - e_x| = {0}".format(np.abs(eff[angle][1] - angles[angle][1])))
         lst["absolute"]["e"]["x"].append(np.abs(eff[angle][0] - angles[angle][0]))
         lst["absolute"]["e"]["y"].append(np.abs(eff[angle][1] - angles[angle][1]))
+
         print("Relative approximation error from m_x/m_y:")
-        print("|(m_x - e_x)/m_x| = {0}".format(np.abs((eff[angle][0] - angles[angle][0]) / eff[angle][0])))
-        print("|(m_y - e_y)/m_y| = {0}".format(np.abs((eff[angle][1] - angles[angle][1]) / eff[angle][1])))
-        if eff[angle][1] != 0:
+        if eff[angle][0] != 0:
             lst["relative1"]["e"]["x"].append(np.abs((eff[angle][0] - angles[angle][0]) / eff[angle][0]))
+            print("|(m_x - e_x)/e_x| = {0}".format(np.abs((eff[angle][0] - angles[angle][0]) / eff[angle][0])))
+        else:
+            print("|(m_x - e_x)/e_x| = not defined (because e_x = 0)")
         if eff[angle][1] != 0:
             lst["relative1"]["e"]["y"].append(np.abs((eff[angle][1] - angles[angle][1]) / eff[angle][1]))
-        print("|(m_x - e_x)/n_x| = {0}".format(np.abs((eff[angle][0] - angles[angle][0]) / angles[angle][0])))
-        print("|(m_y - e_y)/n_y| = {0}".format(np.abs((eff[angle][1] - angles[angle][1]) / angles[angle][1])))
+            print("|(m_y - e_y)/e_y| = {0}".format(np.abs((eff[angle][1] - angles[angle][1]) / eff[angle][1])))
+        else:
+            print("|(m_y - e_y)/e_y| = not defined (because e_y = 0)")
+
         if angles[angle][0] != 0:
             lst["relative2"]["e"]["x"].append(np.abs((eff[angle][0] - angles[angle][0]) / angles[angle][0]))
+            print("|(m_x - e_x)/n_x| = {0}".format(np.abs((eff[angle][0] - angles[angle][0]) / angles[angle][0])))
+        else:
+            print("|(m_x - e_x)/m_x| = not defined (because m_x = 0)")
         if angles[angle][1] != 0:
             lst["relative2"]["e"]["y"].append(np.abs((eff[angle][1] - angles[angle][1]) / angles[angle][1]))
+            print("|(m_y - e_y)/m_y| = {0}".format(np.abs((eff[angle][1] - angles[angle][1]) / angles[angle][1])))
+        else:
+            print("|(m_y - e_y)/m_y| = not defined (because m_y = 0)")
         print()
 
         print("Calculated with symmetrie():")
@@ -132,19 +152,29 @@ def main():
         print("|m_x - s_x| = {0}".format(np.abs(sym[angle][1] - angles[angle][1])))
         lst["absolute"]["s"]["x"].append(np.abs(sym[angle][0] - angles[angle][0]))
         lst["absolute"]["s"]["y"].append(np.abs(sym[angle][1] - angles[angle][1]))
+
         print("Relative approximation error from m_x/m_y:")
-        print("|(m_x - s_x)/m_x| = {0}".format(np.abs((sym[angle][0] - angles[angle][0]) / sym[angle][0])))
-        print("|(m_y - s_y)/m_y| = {0}".format(np.abs((sym[angle][1] - angles[angle][1]) / sym[angle][1])))
         if sym[angle][0] != 0:
             lst["relative1"]["s"]["x"].append(np.abs((sym[angle][0] - angles[angle][0]) / sym[angle][0]))
+            print("|(m_x - s_x)/s_x| = {0}".format(np.abs((sym[angle][0] - angles[angle][0]) / sym[angle][0])))
+        else:
+            print("|(m_x - s_x)/s_x| = not defined (because s_x = 0)")
         if sym[angle][1] != 0:
             lst["relative1"]["s"]["y"].append(np.abs((sym[angle][1] - angles[angle][1]) / sym[angle][1]))
-        print("|(m_x - s_x)/n_x| = {0}".format(np.abs((sym[angle][0] - angles[angle][0]) / angles[angle][0])))
-        print("|(m_y - s_y)/n_y| = {0}".format(np.abs((sym[angle][1] - angles[angle][1]) / angles[angle][1])))
+            print("|(m_y - s_y)/s_y| = {0}".format(np.abs((sym[angle][1] - angles[angle][1]) / sym[angle][1])))
+        else:
+            print("|(m_y - s_y)/s_y| = not defined (because s_y = 0)")
+
         if angles[angle][0] != 0:
             lst["relative2"]["s"]["x"].append(np.abs((sym[angle][0] - angles[angle][0]) / angles[angle][0]))
+            print("|(m_x - s_x)/m_x| = {0}".format(np.abs((sym[angle][0] - angles[angle][0]) / angles[angle][0])))
+        else:
+            print("|(m_x - s_x)/m_x| = not defined (because m_x = 0)")
         if angles[angle][1] != 0:
             lst["relative2"]["s"]["y"].append(np.abs((sym[angle][1] - angles[angle][1]) / angles[angle][1]))
+            print("|(m_y - s_y)/m_y| = {0}".format(np.abs((sym[angle][1] - angles[angle][1]) / angles[angle][1])))
+        else:
+            print("|(m_y - s_y)/m_y| = not defined (because m_y = 0)")
         print()
         print("---------------------------------------------------------------------------")
         print()

@@ -7,4 +7,4 @@ def average(lst):
     if length == 0:
         return None
     else:
-        return sum(lst) / len(lst)
+        return sum(lst) / length

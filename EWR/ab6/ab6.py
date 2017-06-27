@@ -52,6 +52,7 @@ def compare_results(results, should_result):
     :param should_result: The result, sorted by the python default.
     :return: Nothing.
     """
+    succeeded, failed = 0, 0
     for result_key in results:
         print("Testing the result of '{0}'".format(result_key))
         if len(results[result_key]) == len(should_result):
@@ -62,14 +63,18 @@ def compare_results(results, should_result):
                     counter += 0
             if counter == 0:
                 print("The result of '{0}' matches the result of the standard python sort method.".format(result_key))
+                succeeded += 1
             else:
                 print("The result of '{0}' does not match the result of the standard python sort method."
                       .format(result_key))
                 print("{0} out of {1} words are different".format(counter, len(should_result)))
+                failed += 1
         else:
             print("The length of the List is incorrect. It should be {0} but it is {1}."
                   .format(len(should_result), len(results[result_key])))
+            failed += 1
         print()
+    print("{0} sorts succeeded, {1} failed".format(succeeded, failed))
 
 
 def print_function_calls(calls):

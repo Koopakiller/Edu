@@ -8,6 +8,9 @@ from abc import abstractmethod
 class SortAlgorithm(object):
     __metaclass__ = ABCMeta
 
+    def __init__(self):
+        self.calls = {}
+
     @abstractmethod
     def sort(self, lst):
         """
@@ -17,6 +20,12 @@ class SortAlgorithm(object):
         """
         NotImplementedError()
 
+    def increase_call_counter(self, name):
+        if name in self.calls:
+            self.calls[name] += 1
+        else:
+            self.calls.update({ name: 1})
+
     def chunk(self, lst, n):
         """
         Splits a list in n-sized chunks.
@@ -24,8 +33,20 @@ class SortAlgorithm(object):
         :param n: The number of entry in 1 chunk.
         :return: A list of chunks with items from lst.
         """
+        self.increase_call_counter("chunk(n={0})".format(n))
         for i in range(0, len(lst), n):
             yield lst[i:i + n]
+
+    def swap(self, lst, i, j):
+        """
+        Swaps two items in the list.
+        :param lst: The list.
+        :param i: The index of the first item.
+        :param j: The index of the second item.
+        :return: Nothing.
+        """
+        self.increase_call_counter("swap")
+        lst[i], lst[j] = lst[j], lst[i]
 
 
 class MergeSort(SortAlgorithm):
@@ -113,7 +134,7 @@ class GnomeSort(SortAlgorithm):
             if pos == 0 or lst[pos] >= lst[pos - 1]:
                 pos += 1
             else:
-                lst[pos], lst[pos - 1] = lst[pos - 1], lst[pos]  # swap items
+                self.swap(lst, pos, pos - 1)
                 pos -= 1
 
 
@@ -126,6 +147,6 @@ class PythonSort(SortAlgorithm):
         :param lst: The list to sort.
         :return: A sorted list with the items from lst.
         """
-        result = list(lst)  # copy the list
+        result = list(lst)  # copy the list, because lists are mutable and passed by reference
         result.sort()
         return result

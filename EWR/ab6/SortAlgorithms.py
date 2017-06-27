@@ -35,8 +35,8 @@ class SortAlgorithm(object):
         :return: A list of chunks with items from lst.
         """
         self.increase_call_counter("chunk(n={0})".format(n))
-        for i in range(0, len(lst), n):
-            yield lst[i:i + n]
+        k, m = divmod(len(lst), n)
+        return (lst[i * k + min(i, m):(i + 1) * k + min(i + 1, m)] for i in range(n))
 
     def swap(self, lst, i, j):
         """
@@ -54,6 +54,7 @@ class MergeSort(SortAlgorithm):
     """Provides an implementation for the Mergesort algorithm"""
 
     def __init__(self):
+        super(MergeSort, self).__init__()
         self.name = "Mergesort"
 
     @staticmethod
@@ -84,7 +85,7 @@ class MergeSort(SortAlgorithm):
         """
         if len(lst) <= 1:
             return lst
-        chunks = self.chunk(lst, 2)
+        chunks = list(self.chunk(lst, 2))
         l_lst = self.sort(chunks[0])
         r_lst = self.sort(chunks[1])
         return self.merge(l_lst, r_lst)
@@ -94,6 +95,7 @@ class QuickSort(SortAlgorithm):
     """Provides an implementation for the Quicksort algorithm"""
 
     def __init__(self):
+        super(QuickSort, self).__init__()
         self.name = "Quicksort"
 
     def sort(self, lst):
@@ -130,6 +132,7 @@ class GnomeSort(SortAlgorithm):
     """Provides an implementation for the Gnome sort algorithm"""
 
     def __init__(self):
+        super(GnomeSort, self).__init__()
         self.name = "Gnome sort"
 
     def sort(self, lst):
@@ -138,7 +141,7 @@ class GnomeSort(SortAlgorithm):
         :param lst: The list to sort.
         :return: A sorted list with the items from lst.
         """
-
+        lst = list(lst)  # copy the list, because lists are mutable and passed by reference
         pos = 0
         while pos < len(lst):
             if pos == 0 or lst[pos] >= lst[pos - 1]:
@@ -146,12 +149,14 @@ class GnomeSort(SortAlgorithm):
             else:
                 self.swap(lst, pos, pos - 1)
                 pos -= 1
+        return lst
 
 
 class PythonSort(SortAlgorithm):
     """Provides an implementation for a sort algorithm, using the python standard function."""
 
     def __init__(self):
+        super(PythonSort, self).__init__()
         self.name = "Pythons standard list sort"
 
     def sort(self, lst):
@@ -162,4 +167,5 @@ class PythonSort(SortAlgorithm):
         """
         result = list(lst)  # copy the list, because lists are mutable and passed by reference
         result.sort()
+        self.increase_call_counter("python_list.sort")
         return result

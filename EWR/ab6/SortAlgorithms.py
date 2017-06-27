@@ -1,4 +1,5 @@
-
+# Author: Tom Lambert
+# Content: Implementation of sorting algorithms for EWR/ab6.
 
 from abc import ABCMeta
 from abc import abstractmethod

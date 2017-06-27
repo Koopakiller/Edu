@@ -39,6 +39,25 @@ def output_list(msg, lst):
     print(lst)
 
 
+def compare_results(results, should_result):
+    for result_key in results:
+        print("Testing the result of {0}".format(result_key))
+        if len(results[result_key]) != len(should_result):
+            print("The length of the list is correct.")
+            counter = 0
+            for index in range(0, len(should_result)):
+                if results[result_key][index] != should_result[index]:
+                    counter += 0
+            if counter == 0:
+                print("The result of {0} matches the result of the standard python sort method.".format(result_key))
+            else:
+                print("The result of {0} does not match the result of the standard python sort method."
+                      .format(result_key))
+                print("{0} out of {1} words are different".format(counter, len(should_result)))
+        else:
+            print("The length of the List is incorrect. It should be {0} but it is {1}."
+                  .format(len(should_result), len(results[result_key])))
+
 def main():
     """
     The main program and logic of the program ab6.
@@ -55,12 +74,21 @@ def main():
     sort_algorithms = [
         MergeSort(),
         QuickSort(),
-        GnomeSort(),
-        PythonSort()
+        GnomeSort()
     ]
+
+    results = {}
 
     for sort_algorithm in sort_algorithms:
         result = sort_algorithm.sort(words)
         output_list("The sort-method from {0} returned this list:".format(sort_algorithm.name), result)
+        results.update({sort_algorithm.name: result})
+        print()
+
+    standard_sort_algorithm = PythonSort()
+    should_result = standard_sort_algorithm.sort(words)
+    output_list("The sort-method from {0} returned this list:".format(standard_sort_algorithm.name), should_result)
+
+    compare_results(results, should_result)
 
 main()  # always execute main(), __name__ is checked in other places

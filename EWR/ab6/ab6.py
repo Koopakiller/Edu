@@ -8,6 +8,9 @@ import os.path
 import sys
 
 
+ConsoleLine = "-------------------------------------------------------------------------------------"
+
+
 def get_file_name():
     """
     Gets a file name from user in __name__ == "__main__" mode, otherwise returns a default file name.
@@ -76,14 +79,14 @@ def print_function_calls(calls):
     :return: Nothing,
     """
     if len(calls) > 0:
-        print("Statistics:")
+        print(" > Statistics:")
         for key in calls:
             if calls[key] == 1:
-                print(" Function '{0}' was called once.".format(key))
+                print("   - Method '{0}' was called once.".format(key))
             elif calls[key] == 2:
-                print(" Function '{0}' was called twice.".format(key))
+                print("   - Method '{0}' was called twice.".format(key))
             elif calls[key] > 2:
-                print(" Function '{0}' was called {1} times".format(key, calls[key]))
+                print("   - Method '{0}' was called {1} times".format(key, calls[key]))
 
 
 def main():
@@ -119,6 +122,9 @@ def main():
     results = {}
 
     print()
+    print(ConsoleLine)
+    print()
+
     for sort_algorithm in sort_algorithms:
         result = sort_algorithm.sort(words)
         output_list("The sort-method from '{0}' returned this list:".format(sort_algorithm.name), result)
@@ -129,6 +135,9 @@ def main():
     standard_sort_algorithm = PythonSort()
     should_result = standard_sort_algorithm.sort(words)
     output_list("The sort-method from '{0}' returned this list:".format(standard_sort_algorithm.name), should_result)
+    print()
+
+    print(ConsoleLine)
     print()
 
     compare_results(results, should_result)

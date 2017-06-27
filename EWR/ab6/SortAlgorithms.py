@@ -57,8 +57,7 @@ class MergeSort(SortAlgorithm):
         super(MergeSort, self).__init__()
         self.name = "Mergesort"
 
-    @staticmethod
-    def merge(l_lst, r_lst):
+    def merge(self, l_lst, r_lst):
         """
         Merges wo lists together into a sorted result list.
         :param l_lst: List 1 (left) to merge.
@@ -67,12 +66,14 @@ class MergeSort(SortAlgorithm):
         """
         result = []
         while len(l_lst) > 0 and len(r_lst) > 0:
+            self.increase_call_counter("Element Compare")
             if l_lst[0] <= r_lst[0]:
                 item = l_lst.pop(0)
                 result.append(item)
             else:
                 item = r_lst.pop(0)
                 result.append(item)
+        self.increase_call_counter("Split list into list1 < PivotItem(s) < list2")
         result.extend(l_lst)
         result.extend(r_lst)
         return result
@@ -86,8 +87,12 @@ class MergeSort(SortAlgorithm):
         if len(lst) <= 1:
             return lst
         chunks = list(self.chunk(lst, 2))
+
+        self.increase_call_counter("Recursive Sort-Call")
         l_lst = self.sort(chunks[0])
+        self.increase_call_counter("Recursive Sort-Call")
         r_lst = self.sort(chunks[1])
+
         return self.merge(l_lst, r_lst)
 
 
@@ -111,18 +116,24 @@ class QuickSort(SortAlgorithm):
             gtp = []  # greater than pivot item
             ep = []  # equals pivot item
             for item in lst:
+                self.increase_call_counter("Element Compare")
                 if item < pivot:
                     ltp.append(item)
                 elif item > pivot:
                     gtp.append(item)
                 else:
                     ep.append(item)
+            self.increase_call_counter("Split list into list1 < PivotItem(s) < list2")
 
+            self.increase_call_counter("Recursive Sort-Call")
             ltp = self.sort(ltp)
+            self.increase_call_counter("Recursive Sort-Call")
             gtp = self.sort(gtp)
+
             result = ltp
             result.extend(ep)
             result.extend(gtp)
+            self.increase_call_counter("Combined lists.")
             return result
         else:
             return lst
@@ -144,6 +155,7 @@ class GnomeSort(SortAlgorithm):
         lst = list(lst)  # copy the list, because lists are mutable and passed by reference
         pos = 0
         while pos < len(lst):
+            self.increase_call_counter("Element Compare")
             if pos == 0 or lst[pos] >= lst[pos - 1]:
                 pos += 1
             else:

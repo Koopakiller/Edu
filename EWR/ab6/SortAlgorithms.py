@@ -10,6 +10,7 @@ class SortAlgorithm(object):
 
     def __init__(self):
         self.calls = {}
+        self.name = "No implementation."
 
     @abstractmethod
     def sort(self, lst):
@@ -52,6 +53,9 @@ class SortAlgorithm(object):
 class MergeSort(SortAlgorithm):
     """Provides an implementation for the Mergesort algorithm"""
 
+    def __init__(self):
+        self.name = "Mergesort"
+
     @staticmethod
     def merge(l_lst, r_lst):
         """
@@ -89,6 +93,9 @@ class MergeSort(SortAlgorithm):
 class QuickSort(SortAlgorithm):
     """Provides an implementation for the Quicksort algorithm"""
 
+    def __init__(self):
+        self.name = "Quicksort"
+
     def sort(self, lst):
         """
         Sorts the list using the Quicksort algorithm.
@@ -122,6 +129,9 @@ class QuickSort(SortAlgorithm):
 class GnomeSort(SortAlgorithm):
     """Provides an implementation for the Gnome sort algorithm"""
 
+    def __init__(self):
+        self.name = "Gnome sort"
+
     def sort(self, lst):
         """
         Sorts the list using the Gnome sort algorithm.
@@ -140,6 +150,9 @@ class GnomeSort(SortAlgorithm):
 
 class PythonSort(SortAlgorithm):
     """Provides an implementation for a sort algorithm, using the python standard function."""
+
+    def __init__(self):
+        self.name = "Pythons standard list sort"
 
     def sort(self, lst):
         """

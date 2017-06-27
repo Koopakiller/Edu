@@ -61,6 +61,6 @@ def main():
 
     for sort_algorithm in sort_algorithms:
         result = sort_algorithm.sort(words)
-        output_list("The sort-method returned this list:", result)
+        output_list("The sort-method from {0} returned this list:".format(sort_algorithm.name), result)
 
 main()  # always execute main(), __name__ is checked in other places

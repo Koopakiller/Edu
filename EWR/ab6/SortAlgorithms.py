@@ -28,7 +28,7 @@ class SortAlgorithm(object):
 
 
 class MergeSort(SortAlgorithm):
-    """Provides an implementation for the merge sort algorithm"""
+    """Provides an implementation for the Mergesort algorithm"""
 
     @staticmethod
     def merge(l_lst, r_lst):
@@ -52,7 +52,7 @@ class MergeSort(SortAlgorithm):
 
     def sort(self, lst):
         """
-        Sorts the list using the merge sort algorithm.
+        Sorts the list using the Mergesort algorithm.
         :param lst: The list to sort.
         :return: A sorted list with the items from lst.
         """
@@ -64,8 +64,37 @@ class MergeSort(SortAlgorithm):
         return self.merge(l_lst, r_lst)
 
 
+class QuickSort(SortAlgorithm):
+    """Provides an implementation for the Quicksort algorithm"""
 
-# class QuickSort(SortAlgorithm):
+    def sort(self, lst):
+        """
+        Sorts the list using the Quicksort algorithm.
+        :param lst: The list to sort.
+        :return: A sorted list with the items from lst.
+        """
+
+        if len(lst) > 1:
+            pivot = lst[0]
+            ltp = []  # less than pivot item
+            gtp = []  # greater than pivot item
+            ep = []  # equals pivot item
+            for item in lst:
+                if item < pivot:
+                    ltp.append(item)
+                elif item > pivot:
+                    gtp.append(item)
+                else:
+                    ep.append(item)
+
+            ltp = self.sort(ltp)
+            gtp = self.sort(gtp)
+            result = ltp
+            result.extend(ep)
+            result.extend(gtp)
+            return result
+        else:
+            return lst
 
 # class GnomeSort(SortAlgorithm):
 

@@ -40,6 +40,13 @@ def output_list(msg, lst):
 
 
 def compare_results(results, should_result):
+    """
+    Compares results of sort algorithms with the python standard and prints them.
+    :param results: A dictionary of results.
+    The keys are the name of the sort algorithms and the values the sorted list.
+    :param should_result: The result, sorted by the python default.
+    :return: Nothing.
+    """
     for result_key in results:
         print("Testing the result of {0}".format(result_key))
         if len(results[result_key]) != len(should_result):
@@ -57,18 +64,47 @@ def compare_results(results, should_result):
         else:
             print("The length of the List is incorrect. It should be {0} but it is {1}."
                   .format(len(should_result), len(results[result_key])))
+        print()
+
+
+def print_function_calls(calls):
+    """
+    Prints the dictionary with the number of function calls.
+    :param calls: A dictionary with function-names as keys and call-counts as values.
+    :return: Nothing,
+    """
+    for key in calls:
+        if calls[key] == 1:
+            print("Function '{0}' was called once.".format(key))
+        elif calls[key] == 2:
+            print("Function '{0}' was called twice.".format(key))
+        elif calls[key] > 2:
+            print("Function '{0}' was called {1} times".format(key, calls[key]))
+
 
 def main():
     """
     The main program and logic of the program ab6.
     :return: Nothing.
     """
+
+    print("This program executes some sort algorithms and compares them to the standard python implementation.")
+    print("The program reads words (delimited by space) from a file.")
     path = get_file_name()
     if not os.path.isfile(path):
         print("File '{0}' does not exists.".format(path))
         return
 
-    words = read_words_from_file(path)
+    print("The file '{0}' will be used.".format(path))
+
+    # noinspection PyBroadException
+    try:
+        words = read_words_from_file(path)
+    except:
+        print("An unknown error occurred.")
+        return
+
+    print()
     output_list("The following words wre found:", words)
 
     sort_algorithms = [
@@ -76,9 +112,9 @@ def main():
         QuickSort(),
         GnomeSort()
     ]
-
     results = {}
 
+    print()
     for sort_algorithm in sort_algorithms:
         result = sort_algorithm.sort(words)
         output_list("The sort-method from {0} returned this list:".format(sort_algorithm.name), result)

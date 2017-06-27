@@ -4,6 +4,7 @@
 from abc import ABCMeta
 from abc import abstractmethod
 
+
 class SortAlgorithm(object):
     __metaclass__ = ABCMeta
 
@@ -96,7 +97,24 @@ class QuickSort(SortAlgorithm):
         else:
             return lst
 
-# class GnomeSort(SortAlgorithm):
+
+class GnomeSort(SortAlgorithm):
+    """Provides an implementation for the Gnome sort algorithm"""
+
+    def sort(self, lst):
+        """
+        Sorts the list using the Gnome sort algorithm.
+        :param lst: The list to sort.
+        :return: A sorted list with the items from lst.
+        """
+
+        pos = 0
+        while pos < len(lst):
+            if pos == 0 or lst[pos] >= lst[pos - 1]:
+                pos += 1
+            else:
+                lst[pos], lst[pos - 1] = lst[pos - 1], lst[pos]  # swap items
+                pos -= 1
 
 
 class PythonSort(SortAlgorithm):

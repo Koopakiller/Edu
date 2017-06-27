@@ -6,11 +6,12 @@ from abc import abstractmethod
 
 
 class SortAlgorithm(object):
+    """A base-class for testing sorting algorithms."""
     __metaclass__ = ABCMeta
 
     def __init__(self):
         self.calls = {}
-        self.name = "No implementation."
+        self.name = None
 
     @abstractmethod
     def sort(self, lst):
@@ -22,6 +23,11 @@ class SortAlgorithm(object):
         NotImplementedError()
 
     def increase_call_counter(self, name):
+        """
+        Increases the counter for the given name to generate statistics about sorting algorithms.
+        :param name: The name of the used method.
+        :return: Nothing
+        """
         if name in self.calls:
             self.calls[name] += 1
         else:
@@ -29,7 +35,7 @@ class SortAlgorithm(object):
 
     def chunk(self, lst, n):
         """
-        Splits a list in n-sized chunks.
+        Splits a list in n chunks.
         :param lst: The list to split.
         :param n: The number of entry in 1 chunk.
         :return: A list of chunks with items from lst.

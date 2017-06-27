@@ -99,7 +99,6 @@ def main():
     The main program and logic of the program ab6.
     :return: Nothing.
     """
-
     print("This program executes some sort algorithms and compares them to the standard python implementation.")
     print("The program reads words (delimited by space) from a file.")
     path = get_file_name()

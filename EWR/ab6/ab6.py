@@ -41,7 +41,7 @@ def output_list(msg, lst):
     :return: Nothing.
     """
     print(msg)
-    print(lst)
+    print("[ '{0}' ]".format("', '".join(lst)))  # simulates ths standard list output, but with better unicode display
 
 
 def compare_results(results, should_result):

@@ -6,7 +6,7 @@ from SortAlgorithms import *
 from ui import *
 import os.path
 import sys
-
+import time
 
 ConsoleLine = "-------------------------------------------------------------------------------------"
 
@@ -84,7 +84,7 @@ def print_function_calls(calls):
     :return: Nothing,
     """
     if len(calls) > 0:
-        print(" > Statistics:")
+        print(" > Statistics about used methods:")
         for key in calls:
             if calls[key] == 1:
                 print("   - Method '{0}' was called once.".format(key))
@@ -130,15 +130,24 @@ def main():
     print()
 
     for sort_algorithm in sort_algorithms:
+        # for time measurement, see: https://stackoverflow.com/a/7370824/1623754
+        # Works in Python 2.7 and 3.x
+        start_time = time.time()
         result = sort_algorithm.sort(words)
+        end_time = time.time()
+
         output_list("The sort-method from '{0}' returned this list:".format(sort_algorithm.name), result)
         results.update({sort_algorithm.name: result})
         print_function_calls(sort_algorithm.calls)
+        print(" > Needed time for sort: {0}ms".format((end_time - start_time) * 1000))
         print()
 
+    start_time = time.time()
     standard_sort_algorithm = PythonSort()
+    end_time = time.time()
     should_result = standard_sort_algorithm.sort(words)
     output_list("The sort-method from '{0}' returned this list:".format(standard_sort_algorithm.name), should_result)
+    print(" > Needed time for sort: {0}ms".format((end_time - start_time) * 1000))
     print()
 
     print(ConsoleLine)

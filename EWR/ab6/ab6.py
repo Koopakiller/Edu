@@ -118,7 +118,7 @@ def main():
         return
 
     print()
-    output_list("The following words wre found:", words)
+    output_list("The following words were found:", words)
 
     sort_algorithms = [
         MergeSort(),

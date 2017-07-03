@@ -4,7 +4,7 @@
 import os.path
 
 
-def input_file_name(msg, error_msg="The files does not exists. Try again."):
+def input_file_name(msg, error_msg="The file does not exists. Try again."):
     user_input = raw_input(msg)
     if not os.path.isfile(user_input):
         print(error_msg)

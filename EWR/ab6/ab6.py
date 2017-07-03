@@ -96,6 +96,23 @@ def print_function_calls(calls):
                 print("   - Method '{0}' was called {1} times".format(key, calls[key]))
 
 
+def show_list_stats(lst):
+    """
+    Shows statistics about a given list.
+    :param lst: A list to show statistics about.
+    :return: Nothing.
+    """
+    lst_d = list(set(lst))
+
+    output_list("The following words were found:", lst)
+    print("The list of words has {0} entries.".format(len(lst)))
+
+    if len(lst_d) == len(lst):
+        print("The list of words is distinct, no words repeat.")
+    else:
+        output_list("The list of words is not distinct. These are the distinct {0} words:".format(len(lst_d)), lst_d)
+
+
 def main():
     """
     The main program and logic of the program ab6.
@@ -118,7 +135,9 @@ def main():
         return
 
     print()
-    output_list("The following words were found:", words)
+    print(ConsoleLine)
+    print()
+    show_list_stats(words)
 
     sort_algorithms = [
         MergeSort(),

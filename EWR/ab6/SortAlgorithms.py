@@ -22,16 +22,17 @@ class SortAlgorithm(object):
         """
         NotImplementedError()
 
-    def increase_call_counter(self, name):
+    def increase_call_counter(self, name, count=1):
         """
         Increases the counter for the given name to generate statistics about sorting algorithms.
         :param name: The name of the used method.
+        :param count: the number to increase the counter.
         :return: Nothing
         """
         if name in self.calls:
-            self.calls[name] += 1
+            self.calls[name] += count
         else:
-            self.calls.update({ name: 1})
+            self.calls.update({ name: count})
 
     def chunk(self, lst, n):
         """
@@ -52,7 +53,8 @@ class SortAlgorithm(object):
         :param j: The index of the second item.
         :return: Nothing.
         """
-        self.increase_call_counter("swap")
+        # a swap equals 2 list assignments when there are no tuples and we need a help-variable to swap
+        self.increase_call_counter("swap (~2 List item assignments)")
         lst[i], lst[j] = lst[j], lst[i]
 
 
@@ -73,13 +75,19 @@ class MergeSort(SortAlgorithm):
         result = []
         while len(l_lst) > 0 and len(r_lst) > 0:
             self.increase_call_counter("Element Compare")
+            self.increase_call_counter("Get item from list", 2)
             if l_lst[0] <= r_lst[0]:
+                self.increase_call_counter("Get item from list")
                 item = l_lst.pop(0)
+                self.increase_call_counter("Add item to result-list")
                 result.append(item)
             else:
+                self.increase_call_counter("Get item from list")
                 item = r_lst.pop(0)
+                self.increase_call_counter("Add item to result-list")
                 result.append(item)
         self.increase_call_counter("Split list into list1 < PivotItem(s) < list2")
+        self.increase_call_counter("Add multiple items to result-list")
         result.extend(l_lst)
         result.extend(r_lst)
         return result
@@ -117,17 +125,22 @@ class QuickSort(SortAlgorithm):
         """
 
         if len(lst) > 1:
+            self.increase_call_counter("Get item from list")
             pivot = lst[0]
             ltp = []  # less than pivot item
             gtp = []  # greater than pivot item
             ep = []  # equals pivot item
             for item in lst:
+                self.increase_call_counter("Get item from list")
                 self.increase_call_counter("Element Compare")
                 if item < pivot:
+                    self.increase_call_counter("Add item to result-list")
                     ltp.append(item)
                 elif item > pivot:
+                    self.increase_call_counter("Add item to result-list")
                     gtp.append(item)
                 else:
+                    self.increase_call_counter("Add item to result-list")
                     ep.append(item)
             self.increase_call_counter("Split list into list1 < PivotItem(s) < list2")
 
@@ -137,9 +150,10 @@ class QuickSort(SortAlgorithm):
             gtp = self.sort(gtp)
 
             result = ltp
+            self.increase_call_counter("Add multiple items to result-list")
             result.extend(ep)
+            self.increase_call_counter("Add multiple items to result-list")
             result.extend(gtp)
-            self.increase_call_counter("Combined lists.")
             return result
         else:
             return lst
@@ -158,15 +172,47 @@ class GnomeSort(SortAlgorithm):
         :param lst: The list to sort.
         :return: A sorted list with the items from lst.
         """
+        self.increase_call_counter("Copy the list")
         lst = list(lst)  # copy the list, because lists are mutable and passed by reference
         pos = 0
         while pos < len(lst):
+            self.increase_call_counter("Get item from list", 2)
             self.increase_call_counter("Element Compare")
             if pos == 0 or lst[pos] >= lst[pos - 1]:
                 pos += 1
             else:
                 self.swap(lst, pos, pos - 1)
                 pos -= 1
+        return lst
+
+
+class InsertionSort(SortAlgorithm):
+    """Provides an implementation for the Insertion sort algorithm"""
+
+    def __init__(self):
+        super(InsertionSort, self).__init__()
+        self.name = "Insertion sort"
+
+    def sort(self, lst):
+        """
+        Sorts the list using the Insertion sort algorithm.
+        :param lst: The list to sort.
+        :return: A sorted list with the items from lst.
+        """
+        self.increase_call_counter("Copy the list")
+        lst = list(lst)  # copy the list, because lists are mutable and passed by reference
+        for i in range(1, len(lst)):
+            self.increase_call_counter("Get item from list")
+            val = lst[i]
+            j = i
+            while j > 1 and lst[j - 1] > val:
+                self.increase_call_counter("Get item from list")
+                self.increase_call_counter("Element Compare")
+                self.increase_call_counter("List item assignment")
+                lst[j] = lst[j - 1]
+                j = j - 1  # breaks the while loop
+            lst[j] = val
+            self.increase_call_counter("List item assignment")
         return lst
 
 

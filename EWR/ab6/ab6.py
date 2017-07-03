@@ -121,7 +121,8 @@ def main():
     sort_algorithms = [
         MergeSort(),
         QuickSort(),
-        GnomeSort()
+        GnomeSort(),
+        InsertionSort()
     ]
     results = {}
 

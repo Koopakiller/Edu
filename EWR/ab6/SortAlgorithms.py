@@ -205,7 +205,7 @@ class InsertionSort(SortAlgorithm):
             self.increase_call_counter("Get item from list")
             val = lst[i]
             j = i
-            while j > 1 and lst[j - 1] > val:
+            while j > 0 and lst[j - 1] > val:
                 self.increase_call_counter("Get item from list")
                 self.increase_call_counter("Element Compare")
                 self.increase_call_counter("List item assignment")

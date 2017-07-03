@@ -60,7 +60,7 @@ def compare_results(results, should_result):
             counter = 0
             for index in range(0, len(should_result)):
                 if results[result_key][index] != should_result[index]:
-                    counter += 0
+                    counter += 1
             if counter == 0:
                 print("The result of '{0}' matches the result of the standard python sort method.".format(result_key))
                 succeeded += 1

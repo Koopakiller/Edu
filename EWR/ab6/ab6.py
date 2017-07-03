@@ -63,11 +63,13 @@ def compare_results(results, should_result):
                     counter += 1
             if counter == 0:
                 print("The result of '{0}' matches the result of the standard python sort method.".format(result_key))
+                print("All {0} elements are equal positioned.".format(len(should_result)))
                 succeeded += 1
             else:
                 print("The result of '{0}' does not match the result of the standard python sort method."
                       .format(result_key))
-                print("{0} out of {1} words are different".format(counter, len(should_result)))
+                print("{0} out of {1} words are different, {2} words are equal positioned."
+                      .format(counter, len(should_result), len(should_result) - counter))
                 failed += 1
         else:
             print("The length of the List is incorrect. It should be {0} but it is {1}."

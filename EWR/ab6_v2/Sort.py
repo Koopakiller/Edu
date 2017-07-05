@@ -7,7 +7,7 @@ class Sort(object):
     """Implementiert Sortier-Algorithmen mit der Möglichkeit einer statistischen Auswertung"""
 
     def __init__(self):
-        self.counter_swap = 0  # ~2 List item assignments
+        self.counter_swap = 0  # entspricht ca 2 Elementabrufen und 2 Elementzuweisungen
         self.counter_list_item_assignment = 0
         self.counter_item_compare = 0
         self.counter_get_item_from_list = 0

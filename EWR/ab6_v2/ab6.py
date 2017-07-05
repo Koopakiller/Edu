@@ -36,23 +36,23 @@ def compare_lists(a, b):
       sind. Sollten die Längen unterschiedlich sein, werden nur diese zurück gegeben.
     """
     if len(a) != len(b):
-        return "length", len(a), len(b)
+        return "len", len(a), len(b)
     else:
         counter = 0
         for i in range(0, len(a)):
             if a[i] != b[i]:
                 counter += 1
         if counter == 0:
-            return "ok"
+            return "ok", None, None
         else:
-            return "different", counter, len(a) - counter
+            return "diff", counter, len(a) - counter
 
 
 def main():
     """Führt die Logik des Programms aus."""
     print("Dieses Programm sortiert eine Liste mit Wörtern mit verschiedenen Algorithmen und "
           "wertet die unterschiedlichen Vorgehensweißen statistisch aus.")
-    print("Die zu sortierenden Wörter werden von einer Datei eingelesen.")
+    print("Die zu sortierenden Wörter werden von einer Datei eingelesen (durch Leerzeichen getrennt).")
 
     if __name__ == "__main__":
         path = input_file_name("Geben Sie eine Datei mit zu sortierenden Wörtern an: ")
@@ -97,11 +97,7 @@ def main():
 
     print("Mit Pythons Standard-sort-Methode sortiert, ergibt sich folgende Liste:")
     print_list(words_sorted)
-    print("Diese Sortierung hat {0}ms gedauert".format((time_end - time_start) * 1000))
-    print()
-
-    print_line()
-    print()
+    print("Diese Sortierung hat {0}ms gedauert.".format((time_end - time_start) * 1000))
 
     sort_algorithms = {
         "Gnome Sort": lambda sort: sort.gnome_sort(words),
@@ -111,7 +107,9 @@ def main():
 
     succeeded = 0
     for key in sort_algorithms:
+        print()
         print_line()
+        print()
 
         # https://stackoverflow.com/a/7370824/1623754
         sort = Sort()
@@ -119,36 +117,39 @@ def main():
         result = sort_algorithms[key](sort)
         time_end = time.time()
 
-        print("'{0}' hat folgende sortierte Liste zurück gegeben:")
+        print("'{0}' hat folgende sortierte Liste zurück gegeben:".format(key))
         print_list(result)
-        print("  Die Sortierung hat {0}ms gedauert".format((time_end - time_start) * 1000))
-        print("  Statistik über die ausgeführten Operationen:")
-        print("   - swap (elemente tauschen): . . . . . . . . . . . {0}".format(sort.counter_swap))
-        print("   - Element zu einer Liste hinzufügen:  . . . . . . {0}".format(sort.counter_add_item_to_result_list))
-        print("   - Liste kopieren (für gleiche Start-Bedingugnen): {0}".format(sort.counter_copy_list))
-        print("   - Element aus Liste abrufen:  . . . . . . . . . . {0}".format(sort.counter_get_item_from_list))
-        print("   - 2 Elemente vergleichen: . . . . . . . . . . . . {0}".format(sort.counter_item_compare))
-        print("   - Element in Liste zuweisen:  . . . . . . . . . . {0}".format(sort.counter_list_item_assignment))
-        print("   - Rekursiver Funktionsaufruf: . . . . . . . . . . {0}".format(sort.counter_recursive_call))
-        print("   - Aufrufe der Sortier-Funktion: . . . . . . . . . {0}".format(sort.counter_sort_call))
-        print("   - Aufteilen der Liste:  . . . . . . . . . . . . . {0}".format(sort.counter_split_list))
+        print("Die Sortierung hat {0}ms gedauert".format((time_end - time_start) * 1000))
+        print("Statistik über die ausgeführten Operationen:")
+        print(" - swap (Elemente tauschen): . . . . . . . . . . . {0}".format(sort.counter_swap))
+        print(" - Element zu einer Liste hinzufügen:  . . . . . . {0}".format(sort.counter_add_item_to_result_list))
+        print(" - Liste kopieren (für gleiche Start-Bedingungen): {0}".format(sort.counter_copy_list))
+        print(" - Element aus Liste abrufen:  . . . . . . . . . . {0}".format(sort.counter_get_item_from_list))
+        print(" - 2 Elemente vergleichen: . . . . . . . . . . . . {0}".format(sort.counter_item_compare))
+        print(" - Element in Liste zuweisen:  . . . . . . . . . . {0}".format(sort.counter_list_item_assignment))
+        print(" - Rekursiver Funktionsaufruf: . . . . . . . . . . {0}".format(sort.counter_recursive_call))
+        print(" - Aufrufe der Sortier-Funktion: . . . . . . . . . {0}".format(sort.counter_sort_call))
+        print(" - Aufteilen einer Liste:  . . . . . . . . . . . . {0}".format(sort.counter_split_list))
         print()
 
         print("Die von '{0}' sortierte Liste wird mit der von Python sortierten Liste verglichen.".format(key))
         compare = compare_lists(words_sorted, result)
         print("Der Vergleich wurde beendet, das Ergebnis lautet:")
         if compare[0] == "ok":
-            print("Die Listen stimmen überein.")
+            print("Die Listen stimmen in allen {0} Elementen überein.".format(len(result)))
             succeeded += 1
-        elif compare[0] == "length":
-            print("Die Längen ({0} und {1}) stimmen nicht überein.".format(compare[1], compare[2]))
-        elif compare[0] == "different":
+        elif compare[0] == "len":
+            print("Die Längen der Listen ({0} und {1}) stimmen nicht überein.".format(compare[1], compare[2]))
+        elif compare[0] == "diff":
             print("Die Listen stimmen nicht überein. {0} Elemente sind unterschiedlich, {1} sind gleich."
                   .format(compare[1], compare[2]))
         else:
             print("Unbekanntes Ergebnis. Die Listen stimmen vermutlich nicht überein.")
 
     print()
-    print("{0} Sortieralgorithmen arbeiten korrekt, {0} nicht.".format(succeeded, len(sort_algorithms) - succeeded))
+    print_line()
+    print()
+
+    print("{0} Sortieralgorithmen arbeiten korrekt, {1} nicht.".format(succeeded, len(sort_algorithms) - succeeded))
 
 main()  # immer main() ausführen, __name__ wird (wenn notwendig) im inneren überprüft.

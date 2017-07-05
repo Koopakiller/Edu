@@ -2,6 +2,7 @@
 # Author: Tom Lambert
 # Content: Implementierung der Sort-Klasse für ab6.
 
+
 class Sort(object):
     """Implementiert Sortier-Algorithmen mit der Möglichkeit einer statistischen Auswertung"""
 

@@ -1,9 +1,10 @@
+# coding=utf-8
 # Author: Tom Lambert
-# Content: Implementation of sorting algorithms for EWR/ab6.
-
+# Content: Implementierung der Sort-Klasse für ab6.
 
 class Sort(object):
-    
+    """Implementiert Sortier-Algorithmen mit der Möglichkeit einer statistischen Auswertung"""
+
     def __init__(self):
         self.counter_swap = 0  # ~2 List item assignments
         self.counter_list_item_assignment = 0
@@ -17,9 +18,8 @@ class Sort(object):
 
     def quick_sort(self, lst):
         """
-        Sorts the list using the Quicksort algorithm.
-        :param lst: The list to sort.
-        :return: A sorted list with the items from lst.
+         Sortiert die lst-Liste mit dem Quick-Sort-Algorithmus und gibt die sortierte Liste zurück.
+         Bestimmte Operationen werden in den counter_-Variablen gezählt.
         """
         self.counter_sort_call += 1
         if len(lst) > 1:
@@ -58,9 +58,8 @@ class Sort(object):
         
     def gnome_sort(self, lst):
         """
-        Sorts the list using the Gnome sort algorithm.
-        :param lst: The list to sort.
-        :return: A sorted list with the items from lst.
+         Sortiert die lst-Liste mit dem Gnome-Sort-Algorithmus und gibt die sortierte Liste zurück.
+         Bestimmte Operationen werden in den counter_-Variablen gezählt.
         """
         self.counter_sort_call += 1
         self.counter_copy_list += 1
@@ -79,9 +78,8 @@ class Sort(object):
         
     def insertion_sort(self, lst):
         """
-        Sorts the list using the Insertion sort algorithm.
-        :param lst: The list to sort.
-        :return: A sorted list with the items from lst.
+         Sortiert die lst-Liste mit dem Insertion-Sort-Algorithmus und gibt die sortierte Liste zurück.
+         Bestimmte Operationen werden in den counter_-Variablen gezählt.
         """
         self.counter_sort_call += 1
         self.counter_copy_list += 1
@@ -99,15 +97,3 @@ class Sort(object):
             lst[j] = val
             self.counter_list_item_assignment += 1
         return lst
-        
-    def python_sort(self, lst):
-        """
-        Sorts the list using the standard python function.
-        :param lst: The list to sort.
-        :return: A sorted list with the items from lst.
-        """
-        result = list(lst)  # copy the list, because lists are mutable and passed by reference
-        self.counter_copy_list += 1
-        self.counter_sort_call += 1
-        result.sort()
-        return result

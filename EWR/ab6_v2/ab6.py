@@ -2,13 +2,21 @@
 # Content: Main program for EWR/ab6 (sorting algorithms).
 
 from __future__ import print_function
-from SortAlgorithms import *
-from ui import *
+from Sort import *
 import os.path
 import sys
 import time
+import os.path
 
 ConsoleLine = "-------------------------------------------------------------------------------------"
+
+
+def input_file_name(msg, error_msg="The file does not exists. Try again."):
+    user_input = raw_input(msg)
+    if not os.path.isfile(user_input):
+        print(error_msg)
+        return input_file_name(msg, error_msg=error_msg)
+    return user_input
 
 
 def get_file_name():

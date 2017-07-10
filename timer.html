@@ -1,0 +1,39 @@
+<html>
+<head>
+    <title>Timer</title>
+</head>
+<body style="font-family: 'Courier New', monospace; text-align:center;">
+
+    <!-- Display the countdown timer in an element -->
+    <span id="demo" style="font-size:288pt;"></span>
+
+    <script>
+
+        function pad(num, size) {
+            var s = num + "";
+            while (s.length < size) s = "0" + s;
+            return s;
+        }
+
+        var start = new Date().getTime();
+
+        var x = setInterval(function() {
+            var distance = new Date().getTime() - start;
+
+            var h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var s = Math.floor((distance % (1000 * 60)) / 1000);
+
+            str = pad(m, 2) + ":" + pad(s, 2);
+
+            if(h > 0){
+                str = pad(h, 2) + ":" + str;
+            }      
+
+            // Display the result in the element with id="demo"
+            document.getElementById("demo").innerHTML = str;
+        }, 1000);
+    </script>
+
+</body>
+</html>

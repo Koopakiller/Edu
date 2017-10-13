@@ -14,6 +14,11 @@ class BruchTests(unittest.TestCase):
     c = Bruch(2*3, 3*5)
     d = Bruch(2*7, 7*5)
 
+    def test_init(self):
+        x = Bruch(2, 4)
+        self.assertEqual(x.numerator, 1)
+        self.assertEqual(x.denominator, 2)
+
     def test_operator_eq(self):
         self.assertEqual(self.a == self.a, True)
         self.assertEqual(self.a == self.b, False)

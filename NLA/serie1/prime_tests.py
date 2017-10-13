@@ -26,8 +26,14 @@ class PrimeTests(unittest.TestCase):
         self.assertListEqual(Prime.get_prime_factors(2), [2])
         self.assertListEqual(Prime.get_prime_factors(2 * 3 * 5 * 7 * 7 * 11), [2, 3, 5, 7, 7, 11])
 
-    def test(self):
+    def test_get_greatest_common_divisor(self):
         self.assertEqual(Prime.get_greatest_common_divisor(3 * 5 * 7 * 7 * 11, 5 * 7 * 11 * 11 * 13), 5 * 7 * 11)
+        self.assertEqual(Prime.get_greatest_common_divisor(1, 2), 1)
+        self.assertEqual(Prime.get_greatest_common_divisor(-1, 2), 1)
+        self.assertEqual(Prime.get_greatest_common_divisor(-1, -2), 1)
+        self.assertEqual(Prime.get_greatest_common_divisor(2, -1), 1)
+        self.assertEqual(Prime.get_greatest_common_divisor(-2, 1), 1)
+        self.assertEqual(Prime.get_greatest_common_divisor(-2, -1), 1)
 
 if __name__ == '__main__':
     unittest.main()

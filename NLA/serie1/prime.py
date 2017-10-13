@@ -70,8 +70,9 @@ class Prime:
         :param b: The second number.
         :return: The greatest common divisor of a and b.
         """
-        a_factors = Prime.get_prime_factors(a)
-        b_factors = Prime.get_prime_factors(b)
+        a_factors = Prime.get_prime_factors(a) if a > 1 else Prime.get_prime_factors(-a) if a < -1 else [a]
+        b_factors = Prime.get_prime_factors(b) if b > 1 else Prime.get_prime_factors(-b) if b < -1 else [b]
+
         q = 1
         for f in a_factors:
             if f in b_factors:

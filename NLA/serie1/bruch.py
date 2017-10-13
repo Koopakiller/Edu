@@ -12,5 +12,3 @@ class Bruch:
         self._denominator = self._denominator / q
 
     def __add__(self, a, b):
-        
-

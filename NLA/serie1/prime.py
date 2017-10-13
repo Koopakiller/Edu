@@ -47,12 +47,15 @@ class Prime:
         :param num: The number to split in prime factors.
         :return: An array of prime factors of num.
         """
+        if num <= 1:
+            raise ValueError("num must be > 1")
+
         index = 0
         result = []
         while num > 1:
             prime = Prime.get_prime(index)
-            if num % prime:
-                result.append(num)
+            if num % prime == 0:
+                result.append(prime)
                 num /= prime
             else:
                 index += 1
@@ -67,10 +70,11 @@ class Prime:
         :param b: The second number.
         :return: The greatest common divisor of a and b.
         """
-        n_factors = Prime.get_prime_factors(a)
-        d_factors = Prime.get_prime_factors(b)
+        a_factors = Prime.get_prime_factors(a)
+        b_factors = Prime.get_prime_factors(b)
         q = 1
-        for f in n_factors:
-            if f in d_factors:
+        for f in a_factors:
+            if f in b_factors:
+                b_factors.remove(f)
                 q *= f
         return q
